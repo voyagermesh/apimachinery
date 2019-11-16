@@ -14,39 +14,33 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package v1beta1
+package crds
 
 import (
-	"encoding/json"
+	"fmt"
 
-	core "k8s.io/api/core/v1"
+	apiextensions "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1beta1"
+	"k8s.io/apimachinery/pkg/runtime/schema"
+	"sigs.k8s.io/yaml"
 )
 
-func NewEngressFromIngress(ing interface{}) (*Ingress, error) {
-	data, err := json.Marshal(ing)
+func CustomResourceDefinition(gvr schema.GroupVersionResource) (*apiextensions.CustomResourceDefinition, error) {
+	data, err := Asset(fmt.Sprintf("%s_%s.yaml", gvr.Group, gvr.Resource))
 	if err != nil {
 		return nil, err
 	}
-	r := &Ingress{}
-	err = json.Unmarshal(data, r)
+	var out apiextensions.CustomResourceDefinition
+	err = yaml.Unmarshal(data, &out)
 	if err != nil {
 		return nil, err
 	}
-	if r.Annotations == nil {
-		r.Annotations = make(map[string]string)
-	}
-	r.Annotations[APISchema] = APISchemaIngress
+	return &out, nil
+}
 
-	if v, _ := get[NodeSelector](r.Annotations); v != nil {
-		r.Spec.NodeSelector = v.(map[string]string)
+func MustCustomResourceDefinition(gvr schema.GroupVersionResource) *apiextensions.CustomResourceDefinition {
+	out, err := CustomResourceDefinition(gvr)
+	if err != nil {
+		panic(err)
 	}
-	delete(r.Annotations, NodeSelector)
-
-	if v, _ := get[Tolerations](r.Annotations); v != nil {
-		r.Spec.Tolerations = v.([]core.Toleration)
-	}
-	delete(r.Annotations, Tolerations)
-
-	r.Migrate()
-	return r, nil
+	return out
 }
