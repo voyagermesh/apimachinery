@@ -121,7 +121,7 @@ DOCKER_REPO_ROOT := /go/src/$(GO_PKG)/$(REPO)
 # If you want to build AND push all containers, see the 'all-push' rule.
 all: fmt build
 
-KUBE_NAMESPACE ?= kube-system
+KUBE_NAMESPACE ?= voyager
 LICENSE_FILE   ?=
 
 # For the following OS/ARCH expansions, we transform OS/ARCH into OS_ARCH
@@ -548,7 +548,7 @@ endif
 install:
 	@cd ../installer; \
 	helm install voyager-community charts/voyager --wait \
-		--namespace=kube-system \
+		--namespace=$(KUBE_NAMESPACE) --create-namespace \
 		--set-file license=$(LICENSE_FILE) \
 		--set voyager.registry=$(REGISTRY) \
 		--set voyager.tag=$(TAG) \
@@ -560,7 +560,7 @@ install:
 .PHONY: uninstall
 uninstall:
 	@cd ../installer; \
-	helm uninstall voyager-community --namespace=kube-system || true
+	helm uninstall voyager-community --namespace=$(KUBE_NAMESPACE) || true
 
 .PHONY: purge
 purge: uninstall
