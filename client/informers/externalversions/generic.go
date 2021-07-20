@@ -21,7 +21,7 @@ package externalversions
 import (
 	"fmt"
 
-	v1beta1 "voyagermesh.dev/voyager/apis/voyager/v1beta1"
+	v1 "voyagermesh.dev/apimachinery/apis/voyager/v1"
 
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
@@ -53,9 +53,9 @@ func (f *genericInformer) Lister() cache.GenericLister {
 // TODO extend this to unknown resources with a client pool
 func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource) (GenericInformer, error) {
 	switch resource {
-	// Group=voyager.appscode.com, Version=v1beta1
-	case v1beta1.SchemeGroupVersion.WithResource("ingresses"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Voyager().V1beta1().Ingresses().Informer()}, nil
+	// Group=voyager.appscode.com, Version=v1
+	case v1.SchemeGroupVersion.WithResource("ingresses"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Voyager().V1().Ingresses().Informer()}, nil
 
 	}
 

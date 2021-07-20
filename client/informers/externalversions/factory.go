@@ -23,9 +23,9 @@ import (
 	sync "sync"
 	time "time"
 
-	versioned "voyagermesh.dev/voyager/client/clientset/versioned"
-	internalinterfaces "voyagermesh.dev/voyager/client/informers/externalversions/internalinterfaces"
-	voyager "voyagermesh.dev/voyager/client/informers/externalversions/voyager"
+	versioned "voyagermesh.dev/apimachinery/client/clientset/versioned"
+	internalinterfaces "voyagermesh.dev/apimachinery/client/informers/externalversions/internalinterfaces"
+	voyager "voyagermesh.dev/apimachinery/client/informers/externalversions/voyager"
 
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"

@@ -17,7 +17,7 @@ limitations under the License.
 package install
 
 import (
-	"voyagermesh.dev/voyager/apis/voyager/v1beta1"
+	v1 "voyagermesh.dev/apimachinery/apis/voyager/v1"
 
 	"k8s.io/apimachinery/pkg/runtime"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
@@ -26,6 +26,6 @@ import (
 // Install registers the API group and adds types to a scheme
 
 func Install(scheme *runtime.Scheme) {
-	utilruntime.Must(v1beta1.AddToScheme(scheme))
-	utilruntime.Must(scheme.SetVersionPriority(v1beta1.SchemeGroupVersion))
+	utilruntime.Must(v1.AddToScheme(scheme))
+	utilruntime.Must(scheme.SetVersionPriority(v1.SchemeGroupVersion))
 }

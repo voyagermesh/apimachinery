@@ -21,7 +21,7 @@ package versioned
 import (
 	"fmt"
 
-	voyagerv1beta1 "voyagermesh.dev/voyager/client/clientset/versioned/typed/voyager/v1beta1"
+	voyagerv1 "voyagermesh.dev/apimachinery/client/clientset/versioned/typed/voyager/v1"
 
 	discovery "k8s.io/client-go/discovery"
 	rest "k8s.io/client-go/rest"
@@ -30,19 +30,19 @@ import (
 
 type Interface interface {
 	Discovery() discovery.DiscoveryInterface
-	VoyagerV1beta1() voyagerv1beta1.VoyagerV1beta1Interface
+	VoyagerV1() voyagerv1.VoyagerV1Interface
 }
 
 // Clientset contains the clients for groups. Each group has exactly one
 // version included in a Clientset.
 type Clientset struct {
 	*discovery.DiscoveryClient
-	voyagerV1beta1 *voyagerv1beta1.VoyagerV1beta1Client
+	voyagerV1 *voyagerv1.VoyagerV1Client
 }
 
-// VoyagerV1beta1 retrieves the VoyagerV1beta1Client
-func (c *Clientset) VoyagerV1beta1() voyagerv1beta1.VoyagerV1beta1Interface {
-	return c.voyagerV1beta1
+// VoyagerV1 retrieves the VoyagerV1Client
+func (c *Clientset) VoyagerV1() voyagerv1.VoyagerV1Interface {
+	return c.voyagerV1
 }
 
 // Discovery retrieves the DiscoveryClient
@@ -66,7 +66,7 @@ func NewForConfig(c *rest.Config) (*Clientset, error) {
 	}
 	var cs Clientset
 	var err error
-	cs.voyagerV1beta1, err = voyagerv1beta1.NewForConfig(&configShallowCopy)
+	cs.voyagerV1, err = voyagerv1.NewForConfig(&configShallowCopy)
 	if err != nil {
 		return nil, err
 	}
@@ -82,7 +82,7 @@ func NewForConfig(c *rest.Config) (*Clientset, error) {
 // panics if there is an error in the config.
 func NewForConfigOrDie(c *rest.Config) *Clientset {
 	var cs Clientset
-	cs.voyagerV1beta1 = voyagerv1beta1.NewForConfigOrDie(c)
+	cs.voyagerV1 = voyagerv1.NewForConfigOrDie(c)
 
 	cs.DiscoveryClient = discovery.NewDiscoveryClientForConfigOrDie(c)
 	return &cs
@@ -91,7 +91,7 @@ func NewForConfigOrDie(c *rest.Config) *Clientset {
 // New creates a new Clientset for the given RESTClient.
 func New(c rest.Interface) *Clientset {
 	var cs Clientset
-	cs.voyagerV1beta1 = voyagerv1beta1.New(c)
+	cs.voyagerV1 = voyagerv1.New(c)
 
 	cs.DiscoveryClient = discovery.NewDiscoveryClient(c)
 	return &cs

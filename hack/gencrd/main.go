@@ -21,8 +21,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"voyagermesh.dev/voyager/apis/voyager/install"
-	v1beta1 "voyagermesh.dev/voyager/apis/voyager/v1beta1"
+	"voyagermesh.dev/apimachinery/apis/voyager/install"
+	v1beta1 "voyagermesh.dev/apimachinery/apis/voyager/v1"
 
 	"github.com/go-openapi/spec"
 	gort "gomodules.xyz/runtime"
@@ -68,7 +68,7 @@ func generateSwaggerJson() {
 		klog.Fatal(err)
 	}
 
-	filename := gort.GOPath() + "/src/voyagermesh.dev/voyager/openapi/swagger.json"
+	filename := gort.GOPath() + "/src/voyagermesh.dev/apimachinery/openapi/swagger.json"
 	err = os.MkdirAll(filepath.Dir(filename), 0755)
 	if err != nil {
 		klog.Fatal(err)

@@ -19,7 +19,7 @@ limitations under the License.
 package fake
 
 import (
-	voyagerv1beta1 "voyagermesh.dev/voyager/apis/voyager/v1beta1"
+	voyagerv1 "voyagermesh.dev/apimachinery/apis/voyager/v1"
 
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
@@ -32,7 +32,7 @@ var scheme = runtime.NewScheme()
 var codecs = serializer.NewCodecFactory(scheme)
 
 var localSchemeBuilder = runtime.SchemeBuilder{
-	voyagerv1beta1.AddToScheme,
+	voyagerv1.AddToScheme,
 }
 
 // AddToScheme adds all types of this clientset into the given scheme. This allows composition

@@ -19,14 +19,14 @@ limitations under the License.
 package voyager
 
 import (
-	internalinterfaces "voyagermesh.dev/voyager/client/informers/externalversions/internalinterfaces"
-	v1beta1 "voyagermesh.dev/voyager/client/informers/externalversions/voyager/v1beta1"
+	internalinterfaces "voyagermesh.dev/apimachinery/client/informers/externalversions/internalinterfaces"
+	v1 "voyagermesh.dev/apimachinery/client/informers/externalversions/voyager/v1"
 )
 
 // Interface provides access to each of this group's versions.
 type Interface interface {
-	// V1beta1 provides access to shared informers for resources in V1beta1.
-	V1beta1() v1beta1.Interface
+	// V1 provides access to shared informers for resources in V1.
+	V1() v1.Interface
 }
 
 type group struct {
@@ -40,7 +40,7 @@ func New(f internalinterfaces.SharedInformerFactory, namespace string, tweakList
 	return &group{factory: f, namespace: namespace, tweakListOptions: tweakListOptions}
 }
 
-// V1beta1 returns a new v1beta1.Interface.
-func (g *group) V1beta1() v1beta1.Interface {
-	return v1beta1.New(g.factory, g.namespace, g.tweakListOptions)
+// V1 returns a new v1.Interface.
+func (g *group) V1() v1.Interface {
+	return v1.New(g.factory, g.namespace, g.tweakListOptions)
 }

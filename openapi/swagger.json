@@ -74,7 +74,7 @@
         }
       }
     },
-    "/apis/voyager.appscode.com/v1beta1/": {
+    "/apis/voyager.appscode.com/v1/": {
       "get": {
         "description": "get available resources",
         "consumes": [
@@ -91,9 +91,9 @@
           "https"
         ],
         "tags": [
-          "voyagerAppscodeCom_v1beta1"
+          "voyagerAppscodeCom_v1"
         ],
-        "operationId": "getVoyagerAppscodeComV1beta1APIResources",
+        "operationId": "getVoyagerAppscodeComV1APIResources",
         "responses": {
           "200": {
             "description": "OK",
@@ -104,7 +104,7 @@
         }
       }
     },
-    "/apis/voyager.appscode.com/v1beta1/ingresses": {
+    "/apis/voyager.appscode.com/v1/ingresses": {
       "get": {
         "description": "list or watch objects of kind Ingress",
         "consumes": [
@@ -121,21 +121,21 @@
           "https"
         ],
         "tags": [
-          "voyagerAppscodeCom_v1beta1"
+          "voyagerAppscodeCom_v1"
         ],
-        "operationId": "listVoyagerAppscodeComV1beta1IngressForAllNamespaces",
+        "operationId": "listVoyagerAppscodeComV1IngressForAllNamespaces",
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.IngressList"
+              "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.IngressList"
             }
           }
         },
         "x-kubernetes-action": "list",
         "x-kubernetes-group-version-kind": {
           "group": "voyager.appscode.com",
-          "version": "v1beta1",
+          "version": "v1",
           "kind": "Ingress"
         }
       },
@@ -212,7 +212,7 @@
         }
       ]
     },
-    "/apis/voyager.appscode.com/v1beta1/namespaces/{namespace}/ingresses": {
+    "/apis/voyager.appscode.com/v1/namespaces/{namespace}/ingresses": {
       "get": {
         "description": "list or watch objects of kind Ingress",
         "consumes": [
@@ -229,9 +229,9 @@
           "https"
         ],
         "tags": [
-          "voyagerAppscodeCom_v1beta1"
+          "voyagerAppscodeCom_v1"
         ],
-        "operationId": "listVoyagerAppscodeComV1beta1NamespacedIngress",
+        "operationId": "listVoyagerAppscodeComV1NamespacedIngress",
         "parameters": [
           {
             "uniqueItems": true,
@@ -301,14 +301,14 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.IngressList"
+              "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.IngressList"
             }
           }
         },
         "x-kubernetes-action": "list",
         "x-kubernetes-group-version-kind": {
           "group": "voyager.appscode.com",
-          "version": "v1beta1",
+          "version": "v1",
           "kind": "Ingress"
         }
       },
@@ -326,16 +326,16 @@
           "https"
         ],
         "tags": [
-          "voyagerAppscodeCom_v1beta1"
+          "voyagerAppscodeCom_v1"
         ],
-        "operationId": "createVoyagerAppscodeComV1beta1NamespacedIngress",
+        "operationId": "createVoyagerAppscodeComV1NamespacedIngress",
         "parameters": [
           {
             "name": "body",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.Ingress"
+              "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.Ingress"
             }
           },
           {
@@ -357,26 +357,26 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.Ingress"
+              "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.Ingress"
             }
           },
           "201": {
             "description": "Created",
             "schema": {
-              "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.Ingress"
+              "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.Ingress"
             }
           },
           "202": {
             "description": "Accepted",
             "schema": {
-              "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.Ingress"
+              "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.Ingress"
             }
           }
         },
         "x-kubernetes-action": "post",
         "x-kubernetes-group-version-kind": {
           "group": "voyager.appscode.com",
-          "version": "v1beta1",
+          "version": "v1",
           "kind": "Ingress"
         }
       },
@@ -394,9 +394,9 @@
           "https"
         ],
         "tags": [
-          "voyagerAppscodeCom_v1beta1"
+          "voyagerAppscodeCom_v1"
         ],
-        "operationId": "deleteVoyagerAppscodeComV1beta1CollectionNamespacedIngress",
+        "operationId": "deleteVoyagerAppscodeComV1CollectionNamespacedIngress",
         "parameters": [
           {
             "name": "body",
@@ -494,7 +494,7 @@
         "x-kubernetes-action": "deletecollection",
         "x-kubernetes-group-version-kind": {
           "group": "voyager.appscode.com",
-          "version": "v1beta1",
+          "version": "v1",
           "kind": "Ingress"
         }
       },
@@ -516,7 +516,7 @@
         }
       ]
     },
-    "/apis/voyager.appscode.com/v1beta1/namespaces/{namespace}/ingresses/{name}": {
+    "/apis/voyager.appscode.com/v1/namespaces/{namespace}/ingresses/{name}": {
       "get": {
         "description": "read the specified Ingress",
         "consumes": [
@@ -531,21 +531,21 @@
           "https"
         ],
         "tags": [
-          "voyagerAppscodeCom_v1beta1"
+          "voyagerAppscodeCom_v1"
         ],
-        "operationId": "readVoyagerAppscodeComV1beta1NamespacedIngress",
+        "operationId": "readVoyagerAppscodeComV1NamespacedIngress",
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.Ingress"
+              "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.Ingress"
             }
           }
         },
         "x-kubernetes-action": "get",
         "x-kubernetes-group-version-kind": {
           "group": "voyager.appscode.com",
-          "version": "v1beta1",
+          "version": "v1",
           "kind": "Ingress"
         }
       },
@@ -563,16 +563,16 @@
           "https"
         ],
         "tags": [
-          "voyagerAppscodeCom_v1beta1"
+          "voyagerAppscodeCom_v1"
         ],
-        "operationId": "replaceVoyagerAppscodeComV1beta1NamespacedIngress",
+        "operationId": "replaceVoyagerAppscodeComV1NamespacedIngress",
         "parameters": [
           {
             "name": "body",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.Ingress"
+              "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.Ingress"
             }
           },
           {
@@ -594,20 +594,20 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.Ingress"
+              "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.Ingress"
             }
           },
           "201": {
             "description": "Created",
             "schema": {
-              "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.Ingress"
+              "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.Ingress"
             }
           }
         },
         "x-kubernetes-action": "put",
         "x-kubernetes-group-version-kind": {
           "group": "voyager.appscode.com",
-          "version": "v1beta1",
+          "version": "v1",
           "kind": "Ingress"
         }
       },
@@ -625,9 +625,9 @@
           "https"
         ],
         "tags": [
-          "voyagerAppscodeCom_v1beta1"
+          "voyagerAppscodeCom_v1"
         ],
-        "operationId": "deleteVoyagerAppscodeComV1beta1NamespacedIngress",
+        "operationId": "deleteVoyagerAppscodeComV1NamespacedIngress",
         "parameters": [
           {
             "name": "body",
@@ -682,7 +682,7 @@
         "x-kubernetes-action": "delete",
         "x-kubernetes-group-version-kind": {
           "group": "voyager.appscode.com",
-          "version": "v1beta1",
+          "version": "v1",
           "kind": "Ingress"
         }
       },
@@ -703,9 +703,9 @@
           "https"
         ],
         "tags": [
-          "voyagerAppscodeCom_v1beta1"
+          "voyagerAppscodeCom_v1"
         ],
-        "operationId": "patchVoyagerAppscodeComV1beta1NamespacedIngress",
+        "operationId": "patchVoyagerAppscodeComV1NamespacedIngress",
         "parameters": [
           {
             "name": "body",
@@ -741,14 +741,14 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.Ingress"
+              "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.Ingress"
             }
           }
         },
         "x-kubernetes-action": "patch",
         "x-kubernetes-group-version-kind": {
           "group": "voyager.appscode.com",
-          "version": "v1beta1",
+          "version": "v1",
           "kind": "Ingress"
         }
       },
@@ -778,7 +778,7 @@
         }
       ]
     },
-    "/apis/voyager.appscode.com/v1beta1/watch/ingresses": {
+    "/apis/voyager.appscode.com/v1/watch/ingresses": {
       "get": {
         "description": "watch individual changes to a list of Ingress. deprecated: use the 'watch' parameter with a list operation instead.",
         "consumes": [
@@ -795,9 +795,9 @@
           "https"
         ],
         "tags": [
-          "voyagerAppscodeCom_v1beta1"
+          "voyagerAppscodeCom_v1"
         ],
-        "operationId": "watchVoyagerAppscodeComV1beta1IngressListForAllNamespaces",
+        "operationId": "watchVoyagerAppscodeComV1IngressListForAllNamespaces",
         "responses": {
           "200": {
             "description": "OK",
@@ -809,7 +809,7 @@
         "x-kubernetes-action": "watchlist",
         "x-kubernetes-group-version-kind": {
           "group": "voyager.appscode.com",
-          "version": "v1beta1",
+          "version": "v1",
           "kind": "Ingress"
         }
       },
@@ -886,7 +886,7 @@
         }
       ]
     },
-    "/apis/voyager.appscode.com/v1beta1/watch/namespaces/{namespace}/ingresses": {
+    "/apis/voyager.appscode.com/v1/watch/namespaces/{namespace}/ingresses": {
       "get": {
         "description": "watch individual changes to a list of Ingress. deprecated: use the 'watch' parameter with a list operation instead.",
         "consumes": [
@@ -903,9 +903,9 @@
           "https"
         ],
         "tags": [
-          "voyagerAppscodeCom_v1beta1"
+          "voyagerAppscodeCom_v1"
         ],
-        "operationId": "watchVoyagerAppscodeComV1beta1NamespacedIngressList",
+        "operationId": "watchVoyagerAppscodeComV1NamespacedIngressList",
         "responses": {
           "200": {
             "description": "OK",
@@ -917,7 +917,7 @@
         "x-kubernetes-action": "watchlist",
         "x-kubernetes-group-version-kind": {
           "group": "voyager.appscode.com",
-          "version": "v1beta1",
+          "version": "v1",
           "kind": "Ingress"
         }
       },
@@ -1002,7 +1002,7 @@
         }
       ]
     },
-    "/apis/voyager.appscode.com/v1beta1/watch/namespaces/{namespace}/ingresses/{name}": {
+    "/apis/voyager.appscode.com/v1/watch/namespaces/{namespace}/ingresses/{name}": {
       "get": {
         "description": "watch changes to an object of kind Ingress. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.",
         "consumes": [
@@ -1019,9 +1019,9 @@
           "https"
         ],
         "tags": [
-          "voyagerAppscodeCom_v1beta1"
+          "voyagerAppscodeCom_v1"
         ],
-        "operationId": "watchVoyagerAppscodeComV1beta1NamespacedIngress",
+        "operationId": "watchVoyagerAppscodeComV1NamespacedIngress",
         "responses": {
           "200": {
             "description": "OK",
@@ -1033,7 +1033,7 @@
         "x-kubernetes-action": "watch",
         "x-kubernetes-group-version-kind": {
           "group": "voyager.appscode.com",
-          "version": "v1beta1",
+          "version": "v1",
           "kind": "Ingress"
         }
       },
@@ -1128,25 +1128,25 @@
     }
   },
   "definitions": {
-    "dev.voyagermesh.voyager.apis.voyager.v1beta1.AuthOption": {
+    "dev.voyagermesh.apimachinery.apis.voyager.v1.AuthOption": {
       "type": "object",
       "properties": {
         "basic": {
-          "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.BasicAuth"
+          "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.BasicAuth"
         },
         "oauth": {
           "type": "array",
           "items": {
             "default": {},
-            "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.OAuth"
+            "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.OAuth"
           }
         },
         "tls": {
-          "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.TLSAuth"
+          "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.TLSAuth"
         }
       }
     },
-    "dev.voyagermesh.voyager.apis.voyager.v1beta1.BasicAuth": {
+    "dev.voyagermesh.apimachinery.apis.voyager.v1.BasicAuth": {
       "type": "object",
       "properties": {
         "realm": {
@@ -1157,16 +1157,16 @@
         }
       }
     },
-    "dev.voyagermesh.voyager.apis.voyager.v1beta1.FrontendRule": {
+    "dev.voyagermesh.apimachinery.apis.voyager.v1.FrontendRule": {
       "type": "object",
       "properties": {
         "auth": {
-          "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.AuthOption"
+          "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.AuthOption"
         },
         "port": {
           "description": "Port indicates the frontend port where HAProxy is listening for connection",
-          "default": {},
-          "$ref": "#/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString"
+          "type": "integer",
+          "format": "int32"
         },
         "rules": {
           "description": "Serialized rules",
@@ -1178,7 +1178,7 @@
         }
       }
     },
-    "dev.voyagermesh.voyager.apis.voyager.v1beta1.HTTPIngressBackend": {
+    "dev.voyagermesh.apimachinery.apis.voyager.v1.HTTPIngressBackend": {
       "type": "object",
       "properties": {
         "alpn": {
@@ -1233,25 +1233,21 @@
             "default": ""
           }
         },
-        "serviceName": {
-          "description": "Specifies the name of the referenced service.",
-          "type": "string"
-        },
-        "servicePort": {
-          "description": "Specifies the port of the referenced service.",
+        "service": {
+          "description": "Service references a Service as a Backend. This is a mutually exclusive setting with \"Resource\".",
           "default": {},
-          "$ref": "#/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString"
+          "$ref": "#/definitions/io.k8s.api.networking.v1.IngressServiceBackend"
         }
       }
     },
-    "dev.voyagermesh.voyager.apis.voyager.v1beta1.HTTPIngressPath": {
+    "dev.voyagermesh.apimachinery.apis.voyager.v1.HTTPIngressPath": {
       "description": "HTTPIngressPath associates a path regex with a backend. Incoming urls matching the path are forwarded to the backend.",
       "type": "object",
       "properties": {
         "backend": {
           "description": "Backend defines the referenced service endpoint to which the traffic will be forwarded to.",
           "default": {},
-          "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.HTTPIngressBackend"
+          "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.HTTPIngressBackend"
         },
         "path": {
           "description": "Path is a extended POSIX regex as defined by IEEE Std 1003.1, (i.e this follows the egrep/unix syntax, not the perl syntax) matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional \"path\" part of a URL as defined by RFC 3986. Paths must begin with a '/'. If unspecified, the path defaults to a catch all sending traffic to the backend.",
@@ -1259,7 +1255,7 @@
         }
       }
     },
-    "dev.voyagermesh.voyager.apis.voyager.v1beta1.HTTPIngressRuleValue": {
+    "dev.voyagermesh.apimachinery.apis.voyager.v1.HTTPIngressRuleValue": {
       "description": "HTTPIngressRuleValue is a list of http selectors pointing to backends. In the example: http://\u003chost\u003e/\u003cpath\u003e?\u003csearchpart\u003e -\u003e backend where where parts of the url correspond to RFC 3986, this resource will be used to match against everything after the last '/' and before the first '?' or '#'.",
       "type": "object",
       "required": [
@@ -1284,21 +1280,21 @@
         },
         "nodePort": {
           "description": "Specifies the node port of the referenced service.",
-          "default": {},
-          "$ref": "#/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString"
+          "type": "integer",
+          "format": "int32"
         },
         "paths": {
           "description": "A collection of paths that map requests to backends.",
           "type": "array",
           "items": {
             "default": {},
-            "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.HTTPIngressPath"
+            "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.HTTPIngressPath"
           }
         },
         "port": {
           "description": "port to listen http(s) connections.",
-          "default": {},
-          "$ref": "#/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString"
+          "type": "integer",
+          "format": "int32"
         },
         "proto": {
           "description": "HTTP protocol to use If the Proto contains \"h2\",  \"option http-use-htx\" will be added to enable HTX mode https://www.haproxy.com/blog/haproxy-1-9-2-adds-grpc-support/",
@@ -1306,7 +1302,7 @@
         }
       }
     },
-    "dev.voyagermesh.voyager.apis.voyager.v1beta1.Ingress": {
+    "dev.voyagermesh.apimachinery.apis.voyager.v1.Ingress": {
       "type": "object",
       "properties": {
         "apiVersion": {
@@ -1323,22 +1319,22 @@
         },
         "spec": {
           "default": {},
-          "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.IngressSpec"
+          "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.IngressSpec"
         },
         "status": {
           "default": {},
-          "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.IngressStatus"
+          "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.IngressStatus"
         }
       },
       "x-kubernetes-group-version-kind": [
         {
           "group": "voyager.appscode.com",
           "kind": "Ingress",
-          "version": "v1beta1"
+          "version": "v1"
         }
       ]
     },
-    "dev.voyagermesh.voyager.apis.voyager.v1beta1.IngressBackend": {
+    "dev.voyagermesh.apimachinery.apis.voyager.v1.IngressBackend": {
       "description": "IngressBackend describes all endpoints for a given service and port.",
       "type": "object",
       "properties": {
@@ -1378,18 +1374,14 @@
           "description": "HTTP protocol to use If the Proto contains \"h2\",  \"option http-use-htx\" will be added to enable HTX mode https://www.haproxy.com/blog/haproxy-1-9-2-adds-grpc-support/",
           "type": "string"
         },
-        "serviceName": {
-          "description": "Specifies the name of the referenced service.",
-          "type": "string"
-        },
-        "servicePort": {
-          "description": "Specifies the port of the referenced service.",
+        "service": {
+          "description": "Service references a Service as a Backend. This is a mutually exclusive setting with \"Resource\".",
           "default": {},
-          "$ref": "#/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString"
+          "$ref": "#/definitions/io.k8s.api.networking.v1.IngressServiceBackend"
         }
       }
     },
-    "dev.voyagermesh.voyager.apis.voyager.v1beta1.IngressList": {
+    "dev.voyagermesh.apimachinery.apis.voyager.v1.IngressList": {
       "description": "IngressList is a collection of Ingress.",
       "type": "object",
       "required": [
@@ -1405,7 +1397,7 @@
           "type": "array",
           "items": {
             "default": {},
-            "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.Ingress"
+            "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.Ingress"
           }
         },
         "kind": {
@@ -1422,11 +1414,11 @@
         {
           "group": "voyager.appscode.com",
           "kind": "IngressList",
-          "version": "v1beta1"
+          "version": "v1"
         }
       ]
     },
-    "dev.voyagermesh.voyager.apis.voyager.v1beta1.IngressRule": {
+    "dev.voyagermesh.apimachinery.apis.voyager.v1.IngressRule": {
       "description": "IngressRule represents the rules mapping the paths under a specified host to the related backend services. Incoming requests are first evaluated for a host match, then routed to the backend associated with the matching IngressRuleValue.",
       "type": "object",
       "properties": {
@@ -1435,14 +1427,14 @@
           "type": "string"
         },
         "http": {
-          "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.HTTPIngressRuleValue"
+          "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.HTTPIngressRuleValue"
         },
         "tcp": {
-          "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.TCPIngressRuleValue"
+          "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.TCPIngressRuleValue"
         }
       }
     },
-    "dev.voyagermesh.voyager.apis.voyager.v1beta1.IngressSpec": {
+    "dev.voyagermesh.apimachinery.apis.voyager.v1.IngressSpec": {
       "description": "IngressSpec describes the Ingress the user wishes to exist.",
       "type": "object",
       "properties": {
@@ -1450,17 +1442,17 @@
           "description": "If specified, the pod's scheduling constraints",
           "$ref": "#/definitions/io.k8s.api.core.v1.Affinity"
         },
-        "backend": {
-          "description": "A default backend capable of servicing requests that don't match any rule. At least one of 'backend' or 'rules' must be specified. This field is optional to allow the loadbalancer controller or defaulting logic to specify a global default.",
-          "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.HTTPIngressBackend"
-        },
         "configVolumes": {
           "description": "Config volumes are used to mount any secret or configmap into HAProxy pods.",
           "type": "array",
           "items": {
             "default": {},
-            "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.VolumeSource"
+            "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.VolumeSource"
           }
+        },
+        "defaultBackend": {
+          "description": "A default backend capable of servicing requests that don't match any rule. At least one of 'backend' or 'rules' must be specified. This field is optional to allow the loadbalancer controller or defaulting logic to specify a global default.",
+          "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.HTTPIngressBackend"
         },
         "externalIPs": {
           "description": "externalIPs is a list of IP addresses for which nodes in the cluster will also accept traffic for this service.  These IPs are not managed by Kubernetes.  The user is responsible for ensuring that traffic arrives at a node with this IP.  A common example is external load-balancers that are not part of the Kubernetes system.",
@@ -1475,7 +1467,7 @@
           "type": "array",
           "items": {
             "default": {},
-            "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.FrontendRule"
+            "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.FrontendRule"
           }
         },
         "imagePullSecrets": {
@@ -1529,7 +1521,7 @@
           "type": "array",
           "items": {
             "default": {},
-            "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.IngressRule"
+            "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.IngressRule"
           }
         },
         "schedulerName": {
@@ -1550,7 +1542,7 @@
           "type": "array",
           "items": {
             "default": {},
-            "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.IngressTLS"
+            "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.IngressTLS"
           }
         },
         "tolerations": {
@@ -1563,7 +1555,7 @@
         }
       }
     },
-    "dev.voyagermesh.voyager.apis.voyager.v1beta1.IngressStatus": {
+    "dev.voyagermesh.apimachinery.apis.voyager.v1.IngressStatus": {
       "description": "IngressStatus describe the current state of the Ingress.",
       "type": "object",
       "properties": {
@@ -1579,7 +1571,7 @@
         }
       }
     },
-    "dev.voyagermesh.voyager.apis.voyager.v1beta1.IngressTLS": {
+    "dev.voyagermesh.apimachinery.apis.voyager.v1.IngressTLS": {
       "description": "IngressTLS describes the transport layer security associated with an Ingress.",
       "type": "object",
       "properties": {
@@ -1593,7 +1585,7 @@
         },
         "ref": {
           "description": "Ref to used tls termination.",
-          "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.LocalTypedReference"
+          "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.LocalTypedReference"
         },
         "secretName": {
           "description": "SecretName is the name of the secret used to terminate SSL traffic on 443. Field is left optional to allow SSL routing based on SNI hostname alone. If the SNI host in a listener conflicts with the \"Host\" header field used by an IngressRule, the SNI host is used for termination and value of the Host header is used for routing. Deprecated",
@@ -1601,7 +1593,7 @@
         }
       }
     },
-    "dev.voyagermesh.voyager.apis.voyager.v1beta1.LocalTypedReference": {
+    "dev.voyagermesh.apimachinery.apis.voyager.v1.LocalTypedReference": {
       "description": "LocalTypedReference contains enough information to let you inspect or modify the referred object.",
       "type": "object",
       "properties": {
@@ -1619,7 +1611,7 @@
         }
       }
     },
-    "dev.voyagermesh.voyager.apis.voyager.v1beta1.OAuth": {
+    "dev.voyagermesh.apimachinery.apis.voyager.v1.OAuth": {
       "type": "object",
       "properties": {
         "authBackend": {
@@ -1643,7 +1635,7 @@
         }
       }
     },
-    "dev.voyagermesh.voyager.apis.voyager.v1beta1.TCPIngressRuleValue": {
+    "dev.voyagermesh.apimachinery.apis.voyager.v1.TCPIngressRuleValue": {
       "type": "object",
       "properties": {
         "address": {
@@ -1661,7 +1653,7 @@
         "backend": {
           "description": "Backend to forward the requests.",
           "default": {},
-          "$ref": "#/definitions/dev.voyagermesh.voyager.apis.voyager.v1beta1.IngressBackend"
+          "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.IngressBackend"
         },
         "noTLS": {
           "description": "Set noTLS = true to force plain text. Else, auto detect like present",
@@ -1669,13 +1661,13 @@
         },
         "nodePort": {
           "description": "Specifies the node port of the referenced service.",
-          "default": {},
-          "$ref": "#/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString"
+          "type": "integer",
+          "format": "int32"
         },
         "port": {
           "description": "port to listen tcp connections.",
-          "default": {},
-          "$ref": "#/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString"
+          "type": "integer",
+          "format": "int32"
         },
         "proto": {
           "description": "HTTP protocol to use If the Proto contains \"h2\",  \"option http-use-htx\" will be added to enable HTX mode https://www.haproxy.com/blog/haproxy-1-9-2-adds-grpc-support/",
@@ -1683,7 +1675,7 @@
         }
       }
     },
-    "dev.voyagermesh.voyager.apis.voyager.v1beta1.TLSAuth": {
+    "dev.voyagermesh.apimachinery.apis.voyager.v1.TLSAuth": {
       "type": "object",
       "properties": {
         "errorPage": {
@@ -1704,7 +1696,7 @@
         }
       }
     },
-    "dev.voyagermesh.voyager.apis.voyager.v1beta1.VolumeSource": {
+    "dev.voyagermesh.apimachinery.apis.voyager.v1.VolumeSource": {
       "description": "Represents the source of a volume to mount. Only one of its members may be specified.",
       "type": "object",
       "required": [
@@ -2619,6 +2611,40 @@
         }
       }
     },
+    "io.k8s.api.networking.v1.IngressServiceBackend": {
+      "description": "IngressServiceBackend references a Kubernetes Service as a Backend.",
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "description": "Name is the referenced service. The service must exist in the same namespace as the Ingress object.",
+          "type": "string",
+          "default": ""
+        },
+        "port": {
+          "description": "Port of the referenced service. A port name or port number is required for a IngressServiceBackend.",
+          "default": {},
+          "$ref": "#/definitions/io.k8s.api.networking.v1.ServiceBackendPort"
+        }
+      }
+    },
+    "io.k8s.api.networking.v1.ServiceBackendPort": {
+      "description": "ServiceBackendPort is the service port being referenced.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name is the name of the port on the Service. This is a mutually exclusive setting with \"Number\".",
+          "type": "string"
+        },
+        "number": {
+          "description": "Number is the numerical port number (e.g. 80) on the Service. This is a mutually exclusive setting with \"Name\".",
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
     "io.k8s.apimachinery.pkg.api.resource.Quantity": {
       "description": "Quantity is a fixed-point representation of a number. It provides convenient marshaling/unmarshaling in JSON and YAML, in addition to String() and AsInt64() accessors.\n\nThe serialization format is:\n\n\u003cquantity\u003e        ::= \u003csignedNumber\u003e\u003csuffix\u003e\n  (Note that \u003csuffix\u003e may be empty, from the \"\" case in \u003cdecimalSI\u003e.)\n\u003cdigit\u003e           ::= 0 | 1 | ... | 9 \u003cdigits\u003e          ::= \u003cdigit\u003e | \u003cdigit\u003e\u003cdigits\u003e \u003cnumber\u003e          ::= \u003cdigits\u003e | \u003cdigits\u003e.\u003cdigits\u003e | \u003cdigits\u003e. | .\u003cdigits\u003e \u003csign\u003e            ::= \"+\" | \"-\" \u003csignedNumber\u003e    ::= \u003cnumber\u003e | \u003csign\u003e\u003cnumber\u003e \u003csuffix\u003e          ::= \u003cbinarySI\u003e | \u003cdecimalExponent\u003e | \u003cdecimalSI\u003e \u003cbinarySI\u003e        ::= Ki | Mi | Gi | Ti | Pi | Ei\n  (International System of units; See: http://physics.nist.gov/cuu/Units/binary.html)\n\u003cdecimalSI\u003e       ::= m | \"\" | k | M | G | T | P | E\n  (Note that 1024 = 1Ki but 1000 = 1k; I didn't choose the capitalization.)\n\u003cdecimalExponent\u003e ::= \"e\" \u003csignedNumber\u003e | \"E\" \u003csignedNumber\u003e\n\nNo matter which of the three exponent forms is used, no quantity may represent a number greater than 2^63-1 in magnitude, nor may it have more than 3 decimal places. Numbers larger or more precise will be capped or rounded up. (E.g.: 0.1m will rounded up to 1m.) This may be extended in the future if we require larger or smaller quantities.\n\nWhen a Quantity is parsed from a string, it will remember the type of suffix it had, and will use the same type again when it is serialized.\n\nBefore serializing, Quantity will be put in \"canonical form\". This means that Exponent/suffix will be adjusted up or down (with a corresponding increase or decrease in Mantissa) such that:\n  a. No precision is lost\n  b. No fractional digits will be emitted\n  c. The exponent (or suffix) is as large as possible.\nThe sign will be omitted unless the number is negative.\n\nExamples:\n  1.5 will be serialized as \"1500m\"\n  1.5Gi will be serialized as \"1536Mi\"\n\nNote that the quantity will NEVER be internally represented by a floating point number. That is the whole point of this exercise.\n\nNon-canonical values will still parse as long as they are well formed, but will be re-emitted in their canonical form. (So always use canonical form, or don't diff.)\n\nThis format is intended to make it difficult to use these numbers without writing some sort of special handling code in the hopes that that will cause implementors to also use a fixed point implementation.",
       "type": "string"
@@ -2860,7 +2886,7 @@
         {
           "group": "voyager.appscode.com",
           "kind": "DeleteOptions",
-          "version": "v1beta1"
+          "version": "v1"
         }
       ]
     },
@@ -3216,7 +3242,7 @@
         {
           "group": "voyager.appscode.com",
           "kind": "Status",
-          "version": "v1beta1"
+          "version": "v1"
         }
       ]
     },
@@ -3305,7 +3331,7 @@
         {
           "group": "voyager.appscode.com",
           "kind": "WatchEvent",
-          "version": "v1beta1"
+          "version": "v1"
         }
       ]
     },

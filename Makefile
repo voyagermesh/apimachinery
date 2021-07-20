@@ -14,19 +14,15 @@
 
 SHELL=/bin/bash -o pipefail
 
-PRODUCT_OWNER_NAME := appscode
-PRODUCT_NAME       := voyager-community
-ENFORCE_LICENSE    ?=
-
 GO_PKG   := voyagermesh.dev
 REPO     := $(notdir $(shell pwd))
-BIN      := voyager
+BIN      := apimachinery
 COMPRESS ?= no
 
 # Produce CRDs that work back to Kubernetes 1.11 (no version conversion)
-CRD_OPTIONS          ?= "crd:trivialVersions=true,preserveUnknownFields=false,crdVersions={v1beta1,v1}"
+CRD_OPTIONS          ?= "crd:trivialVersions=true,preserveUnknownFields=false,generateEmbeddedObjectMeta=true"
 CODE_GENERATOR_IMAGE ?= appscode/gengo:release-1.21
-API_GROUPS           ?= voyager:v1beta1
+API_GROUPS           ?= voyager:v1
 
 # Where to push the docker image.
 REGISTRY ?= appscode
@@ -55,43 +51,28 @@ endif
 ### These variables should not need tweaking.
 ###
 
-REPO_ROOT := $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
+SRC_PKGS := apis client crds # directories which hold app source excluding tests (not vendored)
+SRC_DIRS := $(SRC_PKGS) hack/gencrd
 
-SRC_PKGS := apis client pkg third_party
-SRC_DIRS := $(SRC_PKGS) *.go test hack/gencrd hack/gendocs # directories which hold app source (not vendored)
-
-DOCKER_PLATFORMS := linux/amd64
+DOCKER_PLATFORMS := linux/amd64 linux/arm linux/arm64
 BIN_PLATFORMS    := $(DOCKER_PLATFORMS)
 
 # Used internally.  Users should pass GOOS and/or GOARCH.
 OS   := $(if $(GOOS),$(GOOS),$(shell go env GOOS))
 ARCH := $(if $(GOARCH),$(GOARCH),$(shell go env GOARCH))
 
-HAPROXY_VERSION  ?= 1.9.15
+BASEIMAGE_PROD   ?= gcr.io/distroless/static-debian10
+BASEIMAGE_DBG    ?= debian:buster
 
-BASEIMAGE_PROD   ?= haproxy:$(HAPROXY_VERSION)-alpine
-BASEIMAGE_DBG    ?= haproxy:$(HAPROXY_VERSION)-alpine
-
-IMAGE           := $(REGISTRY)/$(BIN)
-VERSION_PROD    := $(VERSION)
-VERSION_DBG     := $(VERSION)-dbg
-
-TAG             := $(VERSION)_$(OS)_$(ARCH)
-TAG_PROD        := $(TAG)
-TAG_DBG         := $(VERSION)-dbg_$(OS)_$(ARCH)
-
-
-HAPROXY_DEB     := $(HAPROXY_VERSION)-$(VERSION)
-HAPROXY_ALP     := $(HAPROXY_VERSION)-$(VERSION)-alpine
-
-TAG_HAPROXY     := $(HAPROXY_VERSION)-$(TAG)
-TAG_HAPROXY_DEB := $(TAG_HAPROXY)
-TAG_HAPROXY_ALP := $(HAPROXY_VERSION)-$(VERSION)-alpine_$(OS)_$(ARCH)
-
+IMAGE            := $(REGISTRY)/$(BIN)
+VERSION_PROD     := $(VERSION)
+VERSION_DBG      := $(VERSION)-dbg
+TAG              := $(VERSION)_$(OS)_$(ARCH)
+TAG_PROD         := $(TAG)
+TAG_DBG          := $(VERSION)-dbg_$(OS)_$(ARCH)
 
 GO_VERSION       ?= 1.16
 BUILD_IMAGE      ?= appscode/golang-dev:$(GO_VERSION)
-TEST_IMAGE       ?= appscode/golang-dev:$(GO_VERSION)-voyager
 CHART_TEST_IMAGE ?= quay.io/helmpack/chart-testing:v3.0.0
 
 OUTBIN = bin/$(OS)_$(ARCH)/$(BIN)
@@ -108,11 +89,8 @@ BUILD_DIRS  := bin/$(OS)_$(ARCH)     \
                $(HOME)/.kube         \
                $(HOME)/.minikube
 
-DOCKERFILE_PROD        = hack/docker/voyager/Dockerfile.in
-DOCKERFILE_DBG         = hack/docker/voyager/Dockerfile.dbg
-DOCKERFILE_TEST        = hack/docker/voyager/Dockerfile.test
-DOCKERFILE_HAPROXY_DEB = hack/docker/haproxy/$(HAPROXY_VERSION)/Dockerfile
-DOCKERFILE_HAPROXY_ALP = hack/docker/haproxy/$(HAPROXY_VERSION)-alpine/Dockerfile
+DOCKERFILE_PROD  = Dockerfile.in
+DOCKERFILE_DBG   = Dockerfile.dbg
 
 DOCKER_REPO_ROOT := /go/src/$(GO_PKG)/$(REPO)
 
@@ -120,9 +98,6 @@ DOCKER_REPO_ROOT := /go/src/$(GO_PKG)/$(REPO)
 # If you want to build all containers, see the 'all-container' rule.
 # If you want to build AND push all containers, see the 'all-push' rule.
 all: fmt build
-
-KUBE_NAMESPACE ?= voyager
-LICENSE_FILE   ?=
 
 # For the following OS/ARCH expansions, we transform OS/ARCH into OS_ARCH
 # because make pattern rules don't match with embedded '/' characters.
@@ -150,24 +125,6 @@ all-build: $(addprefix build-, $(subst /,_, $(BIN_PLATFORMS)))
 all-container: $(addprefix container-, $(subst /,_, $(DOCKER_PLATFORMS)))
 
 all-push: $(addprefix push-, $(subst /,_, $(DOCKER_PLATFORMS)))
-
-
-haproxy-container-%:
-	@$(MAKE) haproxy-container            \
-	    --no-print-directory              \
-	    GOOS=$(firstword $(subst _, ,$*)) \
-	    GOARCH=$(lastword $(subst _, ,$*))
-
-haproxy-push-%:
-	@$(MAKE) haproxy-push                 \
-	    --no-print-directory              \
-	    GOOS=$(firstword $(subst _, ,$*)) \
-	    GOARCH=$(lastword $(subst _, ,$*))
-
-all-haproxy-container: $(addprefix haproxy-container-, $(subst /,_, $(DOCKER_PLATFORMS)))
-
-all-haproxy-push: $(addprefix haproxy-push-, $(subst /,_, $(DOCKER_PLATFORMS)))
-
 
 version:
 	@echo ::set-output name=version::$(VERSION)
@@ -225,7 +182,7 @@ openapi-%:
 		openapi-gen                                      \
 			--v 1 --logtostderr                          \
 			--go-header-file "./hack/license/go.txt" \
-			--input-dirs "$(GO_PKG)/$(REPO)/apis/$(subst _,/,$*),k8s.io/apimachinery/pkg/apis/meta/v1,k8s.io/apimachinery/pkg/api/resource,k8s.io/apimachinery/pkg/runtime,k8s.io/apimachinery/pkg/util/intstr,k8s.io/apimachinery/pkg/version,k8s.io/api/core/v1,k8s.io/api/apps/v1,kmodules.xyz/monitoring-agent-api/api/v1,k8s.io/api/rbac/v1" \
+			--input-dirs "$(GO_PKG)/$(REPO)/apis/$(subst _,/,$*),k8s.io/apimachinery/pkg/apis/meta/v1,k8s.io/apimachinery/pkg/api/resource,k8s.io/apimachinery/pkg/runtime,k8s.io/apimachinery/pkg/util/intstr,k8s.io/apimachinery/pkg/version,k8s.io/api/core/v1,k8s.io/api/apps/v1,kmodules.xyz/monitoring-agent-api/api/v1,k8s.io/api/rbac/v1,k8s.io/api/networking/v1" \
 			--output-package "$(GO_PKG)/$(REPO)/apis/$(subst _,/,$*)" \
 			--report-filename .config/api-rules/violation_exceptions.list
 
@@ -292,16 +249,8 @@ fmt: $(BUILD_DIRS)
 
 build: $(OUTBIN)
 
-# The following structure defeats Go's (intentional) behavior to always touch
-# result files, even if they have not changed.  This will still run `go` but
-# will not trigger further work if nothing has actually changed.
-
-$(OUTBIN): .go/$(OUTBIN).stamp
-	@true
-
-# This will build the binary under ./.go and update the real binary iff needed.
-.PHONY: .go/$(OUTBIN).stamp
-.go/$(OUTBIN).stamp: $(BUILD_DIRS)
+.PHONY: .go/$(OUTBIN)
+$(OUTBIN): $(BUILD_DIRS)
 	@echo "making $(OUTBIN)"
 	@docker run                                                 \
 	    -i                                                      \
@@ -316,9 +265,6 @@ $(OUTBIN): .go/$(OUTBIN).stamp
 	    --env HTTPS_PROXY=$(HTTPS_PROXY)                        \
 	    $(BUILD_IMAGE)                                          \
 	    /bin/bash -c "                                          \
-	        PRODUCT_OWNER_NAME=$(PRODUCT_OWNER_NAME)            \
-	        PRODUCT_NAME=$(PRODUCT_NAME)                        \
-	        ENFORCE_LICENSE=$(ENFORCE_LICENSE)                  \
 	        ARCH=$(ARCH)                                        \
 	        OS=$(OS)                                            \
 	        VERSION=$(VERSION)                                  \
@@ -329,26 +275,6 @@ $(OUTBIN): .go/$(OUTBIN).stamp
 	        commit_timestamp=$(commit_timestamp)                \
 	        ./hack/build.sh                                     \
 	    "
-	@if [ $(COMPRESS) = yes ] && [ $(OS) != darwin ]; then          \
-		echo "compressing $(OUTBIN)";                               \
-		@docker run                                                 \
-		    -i                                                      \
-		    --rm                                                    \
-		    -u $$(id -u):$$(id -g)                                  \
-		    -v $$(pwd):/src                                         \
-		    -w /src                                                 \
-		    -v $$(pwd)/.go/bin/$(OS)_$(ARCH):/go/bin                \
-		    -v $$(pwd)/.go/bin/$(OS)_$(ARCH):/go/bin/$(OS)_$(ARCH)  \
-		    -v $$(pwd)/.go/cache:/.cache                            \
-		    --env HTTP_PROXY=$(HTTP_PROXY)                          \
-		    --env HTTPS_PROXY=$(HTTPS_PROXY)                        \
-		    $(BUILD_IMAGE)                                          \
-		    upx --brute /go/$(OUTBIN);                              \
-	fi
-	@if ! cmp -s .go/$(OUTBIN) $(OUTBIN); then \
-	    mv .go/$(OUTBIN) $(OUTBIN);            \
-	    date >$@;                              \
-	fi
 	@echo
 
 # Used to track state in hidden files.
@@ -362,7 +288,6 @@ bin/.container-$(DOTFILE_IMAGE)-%: bin/$(OS)_$(ARCH)/$(BIN) $(DOCKERFILE_%)
 		-e 's|{ARG_ARCH}|$(ARCH)|g'         \
 		-e 's|{ARG_OS}|$(OS)|g'             \
 		-e 's|{ARG_FROM}|$(BASEIMAGE_$*)|g' \
-		-e 's|{ARG_HAPROXY}|$(HAPROXY_VERSION)|g' \
 		$(DOCKERFILE_$*) > bin/.dockerfile-$*-$(OS)_$(ARCH)
 	@DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --platform $(OS)/$(ARCH) --load --pull -t $(IMAGE):$(TAG_$*) -f bin/.dockerfile-$*-$(OS)_$(ARCH) .
 	@docker images -q $(IMAGE):$(TAG_$*) > $@
@@ -380,52 +305,10 @@ docker-manifest-%:
 	DOCKER_CLI_EXPERIMENTAL=enabled docker manifest create -a $(IMAGE):$(VERSION_$*) $(foreach PLATFORM,$(DOCKER_PLATFORMS),$(IMAGE):$(VERSION_$*)_$(subst /,_,$(PLATFORM)))
 	DOCKER_CLI_EXPERIMENTAL=enabled docker manifest push $(IMAGE):$(VERSION_$*)
 
-
-DOTFILE_HAPROXY = $(subst /,_,$(REGISTRY))_haproxy-$(TAG_HAPROXY)
-
-haproxy-container: bin/.container-$(DOTFILE_HAPROXY)-DEB bin/.container-$(DOTFILE_HAPROXY)-ALP
-bin/.container-$(DOTFILE_HAPROXY)-%: $(BUILD_DIRS) bin/$(OS)_$(ARCH)/$(BIN)
-	@echo "haproxy: $(REGISTRY)/haproxy:$(TAG_HAPROXY_$*)"
-	@sed                                    \
-		-e 's|{ARG_BIN}|$(BIN)|g'           \
-		-e 's|{ARG_ARCH}|$(ARCH)|g'         \
-		-e 's|{ARG_OS}|$(OS)|g'             \
-		-e 's|{ARG_FROM}|$(BASEIMAGE_$*)|g' \
-		-e 's|{ARG_HAPROXY}|$(HAPROXY_VERSION)|g' \
-		$(DOCKERFILE_HAPROXY_$*) > bin/.dockerfile-$*-$(OS)_$(ARCH)
-	@DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --platform $(OS)/$(ARCH) --load --pull -t $(REGISTRY)/haproxy:$(TAG_HAPROXY_$*) -f bin/.dockerfile-$*-$(OS)_$(ARCH) .
-	@docker images -q $(REGISTRY)/haproxy:$(TAG_HAPROXY_$*) > $@
-	@echo
-
-haproxy-push: bin/.push-$(DOTFILE_HAPROXY)-DEB bin/.push-$(DOTFILE_HAPROXY)-ALP
-bin/.push-$(DOTFILE_HAPROXY)-%: bin/.container-$(DOTFILE_HAPROXY)-%
-	@docker push $(REGISTRY)/haproxy:$(TAG_HAPROXY_$*)
-	@echo "pushed: $(REGISTRY)/haproxy:$(TAG_HAPROXY_$*)"
-	@echo
-
-.PHONY: haproxy-manifest
-haproxy-manifest: haproxy-manifest-DEB haproxy-manifest-ALP
-haproxy-manifest-%:
-	DOCKER_CLI_EXPERIMENTAL=enabled docker manifest create -a $(REGISTRY)/haproxy:$(HAPROXY_$*) $(foreach PLATFORM,$(DOCKER_PLATFORMS),$(REGISTRY)/haproxy:$(HAPROXY_$*)_$(subst /,_,$(PLATFORM)))
-	DOCKER_CLI_EXPERIMENTAL=enabled docker manifest push $(REGISTRY)/haproxy:$(HAPROXY_$*)
-
-
 .PHONY: test
 test: unit-tests e2e-tests
 
-bin/.container-$(DOTFILE_IMAGE)-TEST:
-	@echo "container: $(TEST_IMAGE)"
-	@sed                                            \
-	    -e 's|{ARG_BIN}|$(BIN)|g'                   \
-	    -e 's|{ARG_ARCH}|$(ARCH)|g'                 \
-	    -e 's|{ARG_OS}|$(OS)|g'                     \
-	    -e 's|{ARG_FROM}|$(BUILD_IMAGE)|g'          \
-	    $(DOCKERFILE_TEST) > bin/.dockerfile-TEST-$(OS)_$(ARCH)
-	@DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --platform $(OS)/$(ARCH) --load --pull -t $(TEST_IMAGE) -f bin/.dockerfile-TEST-$(OS)_$(ARCH) .
-	@docker images -q $(TEST_IMAGE) > $@
-	@echo
-
-unit-tests: $(BUILD_DIRS) bin/.container-$(DOTFILE_IMAGE)-TEST
+unit-tests: $(BUILD_DIRS)
 	@docker run                                                 \
 	    -i                                                      \
 	    --rm                                                    \
@@ -437,7 +320,7 @@ unit-tests: $(BUILD_DIRS) bin/.container-$(DOTFILE_IMAGE)-TEST
 	    -v $$(pwd)/.go/cache:/.cache                            \
 	    --env HTTP_PROXY=$(HTTP_PROXY)                          \
 	    --env HTTPS_PROXY=$(HTTPS_PROXY)                        \
-	    $(TEST_IMAGE)                                           \
+	    $(BUILD_IMAGE)                                          \
 	    /bin/bash -c "                                          \
 	        ARCH=$(ARCH)                                        \
 	        OS=$(OS)                                            \
@@ -453,8 +336,8 @@ unit-tests: $(BUILD_DIRS) bin/.container-$(DOTFILE_IMAGE)-TEST
 #
 # NB: -t is used to catch ctrl-c interrupt from keyboard and -t will be problematic for CI.
 
-GINKGO_ARGS ?= --flakeAttempts=2
-TEST_ARGS   ?= -cloud-provider=minikube
+GINKGO_ARGS ?=
+TEST_ARGS   ?=
 
 .PHONY: e2e-tests
 e2e-tests: $(BUILD_DIRS)
@@ -474,6 +357,7 @@ e2e-tests: $(BUILD_DIRS)
 	    --env HTTP_PROXY=$(HTTP_PROXY)                          \
 	    --env HTTPS_PROXY=$(HTTPS_PROXY)                        \
 	    --env KUBECONFIG=$(KUBECONFIG)                          \
+	    --env-file=$$(pwd)/hack/config/.env                     \
 	    $(BUILD_IMAGE)                                          \
 	    /bin/bash -c "                                          \
 	        ARCH=$(ARCH)                                        \
@@ -490,27 +374,6 @@ e2e-tests: $(BUILD_DIRS)
 .PHONY: e2e-parallel
 e2e-parallel:
 	@$(MAKE) e2e-tests GINKGO_ARGS="-p -stream --flakeAttempts=2" --no-print-directory
-
-.PHONY: ct
-ct: $(BUILD_DIRS)
-	@echo $(XYZ)
-	@docker run                                                 \
-	    -i                                                      \
-	    --rm                                                    \
-	    -v $$(pwd):/src                                         \
-	    -w /src                                                 \
-	    --net=host                                              \
-	    -v $(HOME)/.kube:/.kube                                 \
-	    -v $(HOME)/.minikube:$(HOME)/.minikube                  \
-	    -v $(HOME)/.credentials:$(HOME)/.credentials            \
-	    -v $$(pwd)/.go/bin/$(OS)_$(ARCH):/go/bin                \
-	    -v $$(pwd)/.go/bin/$(OS)_$(ARCH):/go/bin/$(OS)_$(ARCH)  \
-	    -v $$(pwd)/.go/cache:/.cache                            \
-	    --env HTTP_PROXY=$(HTTP_PROXY)                          \
-	    --env HTTPS_PROXY=$(HTTPS_PROXY)                        \
-	    --env KUBECONFIG=$(subst $(HOME),,$(KUBECONFIG))        \
-	    $(CHART_TEST_IMAGE)                                     \
-		ct lint-and-install --all
 
 ADDTL_LINTERS   := goconst,gofmt,goimports,unparam
 
@@ -547,30 +410,31 @@ endif
 .PHONY: install
 install:
 	@cd ../installer; \
-	helm install voyager-community charts/voyager --wait \
-		--namespace=$(KUBE_NAMESPACE) --create-namespace \
-		--set-file license=$(LICENSE_FILE) \
-		--set voyager.registry=$(REGISTRY) \
-		--set voyager.tag=$(TAG) \
+	helm install apimachinery charts/apimachinery \
+		--namespace=kube-system \
+		--set operator.registry=$(REGISTRY) \
+		--set operator.tag=$(TAG) \
 		--set imagePullPolicy=Always \
-		--set cloudProvider=minikube \
-		--set apiserver.enableValidatingWebhook=false \
-		$(IMAGE_PULL_SECRETS)
+		$(IMAGE_PULL_SECRETS); \
+	kubectl wait --for=condition=Ready pods -n kube-system -l 'app.kubernetes.io/name=apimachinery,app.kubernetes.io/instance=apimachinery' --timeout=5m; \
+	kubectl wait --for=condition=Available apiservice -l 'app.kubernetes.io/name=apimachinery,app.kubernetes.io/instance=apimachinery' --timeout=5m; \
+	helm install vault-catalog charts/vault-catalog --namespace=kube-system
 
 .PHONY: uninstall
 uninstall:
 	@cd ../installer; \
-	helm uninstall voyager-community --namespace=$(KUBE_NAMESPACE) || true
+	helm uninstall apimachinery --namespace=kube-system || true; \
+	helm uninstall vault-catalog --namespace=kube-system || true
 
 .PHONY: purge
 purge: uninstall
-	kubectl delete crds -l app.kubernetes.io/name=voyager
+	kubectl delete crds -l app=kubevault
 
 .PHONY: dev
 dev: gen fmt push
 
 .PHONY: verify
-verify: verify-gen verify-modules
+verify: verify-gen #verify-modules
 
 .PHONY: verify-modules
 verify-modules:
@@ -625,7 +489,7 @@ qa:
 		echo "Are you trying to 'release' binaries to prod?"; \
 		exit 1;                                               \
 	fi
-	@$(MAKE) clean all-push docker-manifest all-haproxy-push haproxy-manifest --no-print-directory
+	@$(MAKE) clean all-push docker-manifest --no-print-directory
 
 .PHONY: release
 release:
@@ -637,19 +501,8 @@ release:
 		echo "apply tag to release binaries and/or docker images."; \
 		exit 1;                                                     \
 	fi
-	@$(MAKE) clean all-push docker-manifest all-haproxy-push haproxy-manifest --no-print-directory
+	@$(MAKE) clean all-push docker-manifest --no-print-directory
 
 .PHONY: clean
 clean:
 	rm -rf .go bin
-
-.PHONY: run
-run:
-	GO111MODULE=on go run -mod=vendor *.go run \
-		--v=3 \
-		--secure-port=8443 \
-		--kubeconfig=$(KUBECONFIG) \
-		--authorization-kubeconfig=$(KUBECONFIG) \
-		--authentication-kubeconfig=$(KUBECONFIG) \
-		--authentication-skip-lookup \
-		--docker-registry=$(REGISTRY)

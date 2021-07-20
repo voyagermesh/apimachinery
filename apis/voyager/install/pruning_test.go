@@ -19,8 +19,8 @@ package install
 import (
 	"testing"
 
-	"voyagermesh.dev/voyager/apis/voyager/fuzzer"
-	"voyagermesh.dev/voyager/apis/voyager/v1beta1"
+	"voyagermesh.dev/apimachinery/apis/voyager/fuzzer"
+	v1 "voyagermesh.dev/apimachinery/apis/voyager/v1"
 
 	clientsetscheme "k8s.io/client-go/kubernetes/scheme"
 	crdfuzz "kmodules.xyz/crd-schema-fuzz"
@@ -30,12 +30,12 @@ func TestPruneTypes(t *testing.T) {
 	Install(clientsetscheme.Scheme)
 
 	// CRD v1
-	if crd := (v1beta1.Ingress{}).CustomResourceDefinition(); crd.V1 != nil {
+	if crd := (v1.Ingress{}).CustomResourceDefinition(); crd.V1 != nil {
 		crdfuzz.SchemaFuzzTestForV1CRD(t, clientsetscheme.Scheme, crd.V1, fuzzer.Funcs)
 	}
 
 	// CRD v1beta1
-	if crd := (v1beta1.Ingress{}).CustomResourceDefinition(); crd.V1beta1 != nil {
+	if crd := (v1.Ingress{}).CustomResourceDefinition(); crd.V1beta1 != nil {
 		crdfuzz.SchemaFuzzTestForV1beta1CRD(t, clientsetscheme.Scheme, crd.V1beta1, fuzzer.Funcs)
 	}
 }
