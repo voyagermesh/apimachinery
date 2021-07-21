@@ -22,6 +22,8 @@ import (
 	clientset "voyagermesh.dev/apimachinery/client/clientset/versioned"
 	voyagerv1 "voyagermesh.dev/apimachinery/client/clientset/versioned/typed/voyager/v1"
 	fakevoyagerv1 "voyagermesh.dev/apimachinery/client/clientset/versioned/typed/voyager/v1/fake"
+	voyagerv1beta1 "voyagermesh.dev/apimachinery/client/clientset/versioned/typed/voyager/v1beta1"
+	fakevoyagerv1beta1 "voyagermesh.dev/apimachinery/client/clientset/versioned/typed/voyager/v1beta1/fake"
 
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/watch"
@@ -76,6 +78,11 @@ func (c *Clientset) Tracker() testing.ObjectTracker {
 }
 
 var _ clientset.Interface = &Clientset{}
+
+// VoyagerV1beta1 retrieves the VoyagerV1beta1Client
+func (c *Clientset) VoyagerV1beta1() voyagerv1beta1.VoyagerV1beta1Interface {
+	return &fakevoyagerv1beta1.FakeVoyagerV1beta1{Fake: &c.Fake}
+}
 
 // VoyagerV1 retrieves the VoyagerV1Client
 func (c *Clientset) VoyagerV1() voyagerv1.VoyagerV1Interface {

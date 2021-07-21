@@ -22,6 +22,8 @@ import (
 	core "k8s.io/api/core/v1"
 )
 
+func (*Ingress) Hub() {}
+
 func NewEngressFromIngress(ing interface{}) (*Ingress, error) {
 	data, err := json.Marshal(ing)
 	if err != nil {

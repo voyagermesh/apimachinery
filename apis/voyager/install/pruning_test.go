@@ -33,9 +33,4 @@ func TestPruneTypes(t *testing.T) {
 	if crd := (v1.Ingress{}).CustomResourceDefinition(); crd.V1 != nil {
 		crdfuzz.SchemaFuzzTestForV1CRD(t, clientsetscheme.Scheme, crd.V1, fuzzer.Funcs)
 	}
-
-	// CRD v1beta1
-	if crd := (v1.Ingress{}).CustomResourceDefinition(); crd.V1beta1 != nil {
-		crdfuzz.SchemaFuzzTestForV1beta1CRD(t, clientsetscheme.Scheme, crd.V1beta1, fuzzer.Funcs)
-	}
 }

@@ -18,6 +18,7 @@ package install
 
 import (
 	v1 "voyagermesh.dev/apimachinery/apis/voyager/v1"
+	v1beta1 "voyagermesh.dev/apimachinery/apis/voyager/v1beta1"
 
 	"k8s.io/apimachinery/pkg/runtime"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
@@ -27,5 +28,6 @@ import (
 
 func Install(scheme *runtime.Scheme) {
 	utilruntime.Must(v1.AddToScheme(scheme))
-	utilruntime.Must(scheme.SetVersionPriority(v1.SchemeGroupVersion))
+	utilruntime.Must(v1beta1.AddToScheme(scheme))
+	utilruntime.Must(scheme.SetVersionPriority(v1.SchemeGroupVersion, v1beta1.SchemeGroupVersion))
 }
