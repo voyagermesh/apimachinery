@@ -3,66 +3,33 @@ module voyagermesh.dev/apimachinery
 go 1.16
 
 require (
-	cloud.google.com/go v0.65.0
-	github.com/Azure/azure-sdk-for-go v43.0.0+incompatible
-	github.com/Azure/go-autorest/autorest v0.11.12
-	github.com/Azure/go-autorest/autorest/adal v0.9.5
-	github.com/Azure/go-autorest/autorest/to v0.3.0
-	github.com/StackExchange/wmi v0.0.0-20210224194228-fe8f1750fd46 // indirect
-	github.com/aws/aws-sdk-go v1.38.31
-	github.com/codeskyblue/go-sh v0.0.0-20200712050446-30169cf553fe
 	github.com/evanphx/json-patch v4.11.0+incompatible
-	github.com/go-logr/logr v0.4.0
-	github.com/go-ole/go-ole v1.2.5 // indirect
 	github.com/go-openapi/spec v0.19.5
+	github.com/golang/glog v0.0.0-20210429001901-424d2337a529 // indirect
 	github.com/google/go-cmp v0.5.6
 	github.com/google/gofuzz v1.2.0
-	github.com/hashicorp/vault/api v1.1.0
 	github.com/json-iterator/go v1.1.10
-	github.com/mitchellh/go-ps v1.0.0
-	github.com/moul/http2curl v1.0.0
-	github.com/onsi/ginkgo v1.16.4
-	github.com/onsi/gomega v1.13.0
-	github.com/pires/go-proxyproto v0.5.0
+	github.com/mitchellh/mapstructure v1.3.2 // indirect
 	github.com/pkg/errors v0.9.1
-	github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring v0.47.0
-	github.com/prometheus-operator/prometheus-operator/pkg/client v0.47.0
-	github.com/prometheus/client_golang v1.11.0
-	github.com/shirou/gopsutil v3.21.4+incompatible
-	github.com/spf13/cobra v1.1.3
-	github.com/spf13/pflag v1.0.5
+	github.com/soheilhy/cmux v0.1.5 // indirect
 	github.com/stretchr/testify v1.7.0
-	github.com/tklauser/go-sysconf v0.3.5 // indirect
-	github.com/tredoe/osutil v1.0.4
-	go.bytebuilders.dev/audit v0.0.7
-	go.bytebuilders.dev/license-verifier v0.9.2
-	go.bytebuilders.dev/license-verifier/kubernetes v0.9.2
-	golang.org/x/oauth2 v0.0.0-20210615190721-d04028783cf1
-	gomodules.xyz/atomic-writer v0.0.2
-	gomodules.xyz/blobfs v0.1.7
-	gomodules.xyz/cert v1.2.0
-	gomodules.xyz/flags v0.1.0
-	gomodules.xyz/kglog v0.0.4
-	gomodules.xyz/pointer v0.0.0-20201105071923-daf60fa55209
+	golang.org/x/crypto v0.0.0-20210314154223-e6e6c4f2bb5b // indirect
+	golang.org/x/oauth2 v0.0.0-20210615190721-d04028783cf1 // indirect
 	gomodules.xyz/runtime v0.2.0
-	gomodules.xyz/x v0.0.5
-	google.golang.org/api v0.26.0
-	google.golang.org/grpc v1.39.0
-	gopkg.in/gcfg.v1 v1.2.3
-	k8s.io/api v0.21.1
-	k8s.io/apiextensions-apiserver v0.21.1
-	k8s.io/apimachinery v0.21.1
-	k8s.io/apiserver v0.21.1
-	k8s.io/client-go v0.21.1
+	google.golang.org/genproto v0.0.0-20210617175327-b9e0b3197ced // indirect
+	google.golang.org/grpc v1.39.0 // indirect
+	google.golang.org/protobuf v1.26.0 // indirect
+	k8s.io/api v0.21.2
+	k8s.io/apimachinery v0.21.2
+	k8s.io/client-go v0.21.2
 	k8s.io/klog/v2 v2.8.0
 	k8s.io/kube-openapi v0.0.0-20210305001622-591a79e4bda7
-	k8s.io/utils v0.0.0-20210527160623-6fdb442a123b
 	kmodules.xyz/client-go v0.0.0-20210719120358-dd0503cf99cf
 	kmodules.xyz/crd-schema-fuzz v0.0.0-20210618002152-fae23aef5fb4
 	kmodules.xyz/monitoring-agent-api v0.0.0-20210618005119-a8c212adc2bf
 	kmodules.xyz/webhook-runtime v0.0.0-20210716205500-e489faf01981
+	sigs.k8s.io/controller-runtime v0.9.2
 	sigs.k8s.io/yaml v1.2.0
-	voyagermesh.dev/hello-grpc v0.1.0
 )
 
 replace bitbucket.org/ww/goautoneg => gomodules.xyz/goautoneg v0.0.0-20120707110453-a547fc61f48d

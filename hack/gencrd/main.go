@@ -22,7 +22,8 @@ import (
 	"path/filepath"
 
 	"voyagermesh.dev/apimachinery/apis/voyager/install"
-	v1beta1 "voyagermesh.dev/apimachinery/apis/voyager/v1"
+	v1 "voyagermesh.dev/apimachinery/apis/voyager/v1"
+	"voyagermesh.dev/apimachinery/apis/voyager/v1beta1"
 
 	"github.com/go-openapi/spec"
 	gort "gomodules.xyz/runtime"
@@ -58,9 +59,11 @@ func generateSwaggerJson() {
 			},
 		},
 		OpenAPIDefinitions: []common.GetOpenAPIDefinitions{
+			v1.GetOpenAPIDefinitions,
 			v1beta1.GetOpenAPIDefinitions,
 		},
 		Resources: []openapi.TypeInfo{
+			{GroupVersion: v1.SchemeGroupVersion, Resource: v1.ResourceIngresses, Kind: v1.ResourceKindIngress, NamespaceScoped: true},
 			{GroupVersion: v1beta1.SchemeGroupVersion, Resource: v1beta1.ResourceIngresses, Kind: v1beta1.ResourceKindIngress, NamespaceScoped: true},
 		},
 	})

@@ -18,6 +18,7 @@ package fuzzer
 
 import (
 	v1 "voyagermesh.dev/apimachinery/apis/voyager/v1"
+	v1beta1 "voyagermesh.dev/apimachinery/apis/voyager/v1beta1"
 
 	fuzz "github.com/google/gofuzz"
 	runtimeserializer "k8s.io/apimachinery/pkg/runtime/serializer"
@@ -27,6 +28,9 @@ import (
 var Funcs = func(codecs runtimeserializer.CodecFactory) []interface{} {
 	return []interface{}{
 		func(s *v1.Ingress, c fuzz.Continue) {
+			c.FuzzNoCustom(s) // fuzz self without calling this function again
+		},
+		func(s *v1beta1.Ingress, c fuzz.Continue) {
 			c.FuzzNoCustom(s) // fuzz self without calling this function again
 		},
 	}

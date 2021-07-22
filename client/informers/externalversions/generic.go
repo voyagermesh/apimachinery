@@ -22,6 +22,7 @@ import (
 	"fmt"
 
 	v1 "voyagermesh.dev/apimachinery/apis/voyager/v1"
+	v1beta1 "voyagermesh.dev/apimachinery/apis/voyager/v1beta1"
 
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
@@ -56,6 +57,10 @@ func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource
 	// Group=voyager.appscode.com, Version=v1
 	case v1.SchemeGroupVersion.WithResource("ingresses"):
 		return &genericInformer{resource: resource.GroupResource(), informer: f.Voyager().V1().Ingresses().Informer()}, nil
+
+		// Group=voyager.appscode.com, Version=v1beta1
+	case v1beta1.SchemeGroupVersion.WithResource("ingresses"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Voyager().V1beta1().Ingresses().Informer()}, nil
 
 	}
 

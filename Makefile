@@ -22,7 +22,7 @@ COMPRESS ?= no
 # Produce CRDs that work back to Kubernetes 1.11 (no version conversion)
 CRD_OPTIONS          ?= "crd:trivialVersions=true,preserveUnknownFields=false,generateEmbeddedObjectMeta=true"
 CODE_GENERATOR_IMAGE ?= appscode/gengo:release-1.21
-API_GROUPS           ?= voyager:v1
+API_GROUPS           ?= voyager:v1beta1 voyager:v1
 
 # Where to push the docker image.
 REGISTRY ?= appscode
@@ -137,7 +137,7 @@ version:
 # Generate a typed clientset
 .PHONY: clientset
 clientset:
-	@docker run --rm                                     \
+	@docker run --rm                                   \
 		-u $$(id -u):$$(id -g)                           \
 		-v /tmp:/.cache                                  \
 		-v $$(pwd):$(DOCKER_REPO_ROOT)                   \
@@ -151,6 +151,18 @@ clientset:
 			$(GO_PKG)/$(REPO)/apis                       \
 			"$(API_GROUPS)"                              \
 			--go-header-file "./hack/license/go.txt"
+	rm -rf ./apis/voyager/v1beta1/zz_generated.conversion.go
+	@docker run --rm                                   \
+		-u $$(id -u):$$(id -g)                           \
+		-v /tmp:/.cache                                  \
+		-v $$(pwd):$(DOCKER_REPO_ROOT)                   \
+		-w $(DOCKER_REPO_ROOT)                           \
+		--env HTTP_PROXY=$(HTTP_PROXY)                   \
+		--env HTTPS_PROXY=$(HTTPS_PROXY)                 \
+		$(CODE_GENERATOR_IMAGE)                          \
+		/go/bin/conversion-gen --go-header-file ./hack/license/go.txt \
+			--input-dirs $(GO_PKG)/$(REPO)/apis/voyager/v1beta1 \
+			-O zz_generated.conversion
 
 # Generate openapi schema
 .PHONY: openapi
