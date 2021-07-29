@@ -38,6 +38,15 @@ func (dst *Ingress) ConvertFrom(srcRaw kbconv.Hub) error {
 	return Convert_v1_Ingress_To_v1beta1_Ingress(srcRaw.(*v1.Ingress), dst, nil)
 }
 
+func Convert_v1beta1_IngressTLS_To_v1_IngressTLS(in *IngressTLS, out *v1.IngressTLS, s conversion.Scope) error {
+	out.Hosts = *(*[]string)(unsafe.Pointer(&in.Hosts))
+	out.SecretName = in.SecretName
+	if in.SecretName == "" && in.Ref != nil && in.Ref.Kind == "Secret" {
+		out.SecretName = in.Ref.Name
+	}
+	return nil
+}
+
 func Convert_intstr_IntOrString_To_int32(in *intstr.IntOrString, out *int32, s conversion.Scope) error {
 	*out = int32(in.IntValue())
 	return nil

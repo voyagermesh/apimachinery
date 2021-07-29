@@ -53,19 +53,6 @@ func (a address) String() string {
 	return fmt.Sprintf("%s:%d", a.Address, a.PodPort)
 }
 
-func (r *Ingress) Migrate() {
-	for ti, tls := range r.Spec.TLS {
-		if tls.SecretName != "" {
-			r.Spec.TLS[ti].Ref = &LocalTypedReference{
-				APIVersion: "v1",
-				Kind:       "Secret",
-				Name:       tls.SecretName,
-			}
-			r.Spec.TLS[ti].SecretName = ""
-		}
-	}
-}
-
 func (r Ingress) IsValid(cloudProvider string) error {
 	for key, fn := range get {
 		if _, err := fn(r.Annotations); err != nil && err != kutil.ErrNotFound {
@@ -86,15 +73,6 @@ func (r Ingress) IsValid(cloudProvider string) error {
 	for ti, tls := range r.Spec.TLS {
 		if tls.SecretName != "" {
 			return errors.Errorf("spec.tls[%d].secretName must be migrated to spec.tls[%d].ref", ti, ti)
-		} else if tls.Ref == nil {
-			return errors.Errorf("spec.tls[%d] specifies no secret name and secret ref", ti)
-		} else {
-			if tls.Ref.Kind != "" && !(strings.EqualFold(tls.Ref.Kind, "Secret") || strings.EqualFold(tls.Ref.Kind, "Certificate")) {
-				return errors.Errorf("spec.tls[%d].ref.kind %s is unsupported", ti, tls.Ref.Kind)
-			}
-			if tls.Ref.Name == "" {
-				return errors.Errorf("spec.tls[%d] specifies no secret name and secret ref name", ti)
-			}
 		}
 	}
 
