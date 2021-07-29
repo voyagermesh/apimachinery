@@ -188,11 +188,7 @@ type IngressTLS struct {
 	// If the SNI host in a listener conflicts with the "Host" header field used
 	// by an IngressRule, the SNI host is used for termination and value of the
 	// Host header is used for routing.
-	// Deprecated
 	SecretName string `json:"secretName,omitempty"`
-
-	// Ref to used tls termination.
-	Ref *LocalTypedReference `json:"ref,omitempty"`
 }
 
 // IngressStatus describe the current state of the Ingress.

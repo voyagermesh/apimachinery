@@ -379,7 +379,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.IngressSpec":          schema_apimachinery_apis_voyager_v1_IngressSpec(ref),
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.IngressStatus":        schema_apimachinery_apis_voyager_v1_IngressStatus(ref),
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.IngressTLS":           schema_apimachinery_apis_voyager_v1_IngressTLS(ref),
-		"voyagermesh.dev/apimachinery/apis/voyager/v1.LocalTypedReference":  schema_apimachinery_apis_voyager_v1_LocalTypedReference(ref),
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.OAuth":                schema_apimachinery_apis_voyager_v1_OAuth(ref),
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.TCPIngressRuleValue":  schema_apimachinery_apis_voyager_v1_TCPIngressRuleValue(ref),
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.TLSAuth":              schema_apimachinery_apis_voyager_v1_TLSAuth(ref),
@@ -18542,49 +18541,7 @@ func schema_apimachinery_apis_voyager_v1_IngressTLS(ref common.ReferenceCallback
 					},
 					"secretName": {
 						SchemaProps: spec.SchemaProps{
-							Description: "SecretName is the name of the secret used to terminate SSL traffic on 443. Field is left optional to allow SSL routing based on SNI hostname alone. If the SNI host in a listener conflicts with the \"Host\" header field used by an IngressRule, the SNI host is used for termination and value of the Host header is used for routing. Deprecated",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"ref": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Ref to used tls termination.",
-							Ref:         ref("voyagermesh.dev/apimachinery/apis/voyager/v1.LocalTypedReference"),
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"voyagermesh.dev/apimachinery/apis/voyager/v1.LocalTypedReference"},
-	}
-}
-
-func schema_apimachinery_apis_voyager_v1_LocalTypedReference(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "LocalTypedReference contains enough information to let you inspect or modify the referred object.",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"kind": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"name": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"apiVersion": {
-						SchemaProps: spec.SchemaProps{
-							Description: "API version of the referent.",
+							Description: "SecretName is the name of the secret used to terminate SSL traffic on 443. Field is left optional to allow SSL routing based on SNI hostname alone. If the SNI host in a listener conflicts with the \"Host\" header field used by an IngressRule, the SNI host is used for termination and value of the Host header is used for routing.",
 							Type:        []string{"string"},
 							Format:      "",
 						},

@@ -49,6 +49,5 @@ func NewEngressFromIngress(ing interface{}) (*Ingress, error) {
 	}
 	delete(r.Annotations, Tolerations)
 
-	r.Migrate()
 	return r, nil
 }

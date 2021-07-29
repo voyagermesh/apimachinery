@@ -25,7 +25,6 @@ import (
 
 func TestIsValid(t *testing.T) {
 	for k, expected := range dataTables {
-		k.Migrate()
 		err := k.IsValid("minikube")
 		actual := err == nil
 		if expected != actual {

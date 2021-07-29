@@ -89,18 +89,18 @@ func (r Ingress) UseTLSForRule(rule IngressRule) bool {
 	return ok
 }
 
-func (r Ingress) FindTLSSecret(h string) (*LocalTypedReference, bool) {
+func (r Ingress) FindTLSSecret(h string) (string, bool) {
 	if h == "" {
-		return nil, false
+		return "", false
 	}
 	for _, tls := range r.Spec.TLS {
 		for _, host := range tls.Hosts {
 			if host == h || (h != "" && host == "*."+h) {
-				return tls.Ref, true
+				return tls.SecretName, true
 			}
 		}
 	}
-	return nil, false
+	return "", false
 }
 
 func (r Ingress) IsPortChanged(o Ingress, cloudProvider string) bool {
