@@ -71,8 +71,8 @@ func (r Ingress) IsValid(cloudProvider string) error {
 		}
 	}
 	for ti, tls := range r.Spec.TLS {
-		if tls.SecretName != "" {
-			return errors.Errorf("spec.tls[%d].secretName must be migrated to spec.tls[%d].ref", ti, ti)
+		if tls.SecretName == "" {
+			return errors.Errorf("spec.tls[%d] specifies no secret name", ti)
 		}
 	}
 
