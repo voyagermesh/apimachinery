@@ -92,8 +92,14 @@ func Convert_v1_IngressBackend_To_v1beta1_IngressBackend(in *v1.IngressBackend, 
 }
 
 func Convert_v1beta1_IngressSpec_To_v1_IngressSpec(in *IngressSpec, out *v1.IngressSpec, s conversion.Scope) error {
-	if err := Convert_v1beta1_HTTPIngressBackend_To_v1_HTTPIngressBackend(in.Backend, out.DefaultBackend, s); err != nil {
-		return err
+	if in.Backend != nil {
+		in, out := &in.Backend, &out.DefaultBackend
+		*out = new(v1.HTTPIngressBackend)
+		if err := Convert_v1beta1_HTTPIngressBackend_To_v1_HTTPIngressBackend(*in, *out, s); err != nil {
+			return err
+		}
+	} else {
+		out.DefaultBackend = nil
 	}
 	out.TLS = *(*[]v1.IngressTLS)(unsafe.Pointer(&in.TLS))
 	out.ConfigVolumes = *(*[]v1.VolumeSource)(unsafe.Pointer(&in.ConfigVolumes))
@@ -137,8 +143,14 @@ func Convert_v1beta1_IngressSpec_To_v1_IngressSpec(in *IngressSpec, out *v1.Ingr
 }
 
 func Convert_v1_IngressSpec_To_v1beta1_IngressSpec(in *v1.IngressSpec, out *IngressSpec, s conversion.Scope) error {
-	if err := Convert_v1_HTTPIngressBackend_To_v1beta1_HTTPIngressBackend(in.DefaultBackend, out.Backend, s); err != nil {
-		return err
+	if in.DefaultBackend != nil {
+		in, out := &in.DefaultBackend, &out.Backend
+		*out = new(HTTPIngressBackend)
+		if err := Convert_v1_HTTPIngressBackend_To_v1beta1_HTTPIngressBackend(*in, *out, s); err != nil {
+			return err
+		}
+	} else {
+		out.Backend = nil
 	}
 	out.TLS = *(*[]IngressTLS)(unsafe.Pointer(&in.TLS))
 	out.ConfigVolumes = *(*[]VolumeSource)(unsafe.Pointer(&in.ConfigVolumes))
