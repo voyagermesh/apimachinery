@@ -370,6 +370,7 @@ func (in *IngressSpec) DeepCopyInto(out *IngressSpec) {
 		copy(*out, *in)
 	}
 	in.Resources.DeepCopyInto(&out.Resources)
+	in.CoordinatorResources.DeepCopyInto(&out.CoordinatorResources)
 	if in.NodeSelector != nil {
 		in, out := &in.NodeSelector, &out.NodeSelector
 		*out = make(map[string]string, len(*in))

@@ -18365,7 +18365,14 @@ func schema_apimachinery_apis_voyager_v1_IngressSpec(ref common.ReferenceCallbac
 					},
 					"resources": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Compute Resources required by the sidecar container.",
+							Description: "Compute Resources required by the HAProxy container.",
+							Default:     map[string]interface{}{},
+							Ref:         ref("k8s.io/api/core/v1.ResourceRequirements"),
+						},
+					},
+					"coordinatorResources": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Compute Resources required by HAProxy coordinator container.",
 							Default:     map[string]interface{}{},
 							Ref:         ref("k8s.io/api/core/v1.ResourceRequirements"),
 						},

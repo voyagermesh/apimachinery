@@ -101,8 +101,13 @@ type IngressSpec struct {
 	// https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/
 	LoadBalancerSourceRanges []string `json:"loadBalancerSourceRanges,omitempty"`
 
-	// Compute Resources required by the sidecar container.
+	// Compute Resources required by the HAProxy container.
+	// +optional
 	Resources core.ResourceRequirements `json:"resources,omitempty"`
+
+	// Compute Resources required by HAProxy coordinator container.
+	// +optional
+	CoordinatorResources core.ResourceRequirements `json:"coordinatorResources,omitempty"`
 
 	// NodeSelector is a selector which must be true for the pod to fit on a node.
 	// Selector which must match a node's labels for the pod to be scheduled on that node.
