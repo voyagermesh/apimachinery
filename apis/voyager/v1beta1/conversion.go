@@ -127,7 +127,6 @@ func Convert_v1beta1_IngressSpec_To_v1_IngressSpec(in *IngressSpec, out *v1.Ingr
 	}
 	out.LoadBalancerSourceRanges = *(*[]string)(unsafe.Pointer(&in.LoadBalancerSourceRanges))
 	out.Resources = in.Resources
-	out.CoordinatorResources = in.CoordinatorResources
 	out.NodeSelector = *(*map[string]string)(unsafe.Pointer(&in.NodeSelector))
 	out.Affinity = (*corev1.Affinity)(unsafe.Pointer(in.Affinity))
 	out.SchedulerName = in.SchedulerName
@@ -140,6 +139,9 @@ func Convert_v1beta1_IngressSpec_To_v1_IngressSpec(in *IngressSpec, out *v1.Ingr
 	out.LivenessProbe = (*corev1.Probe)(unsafe.Pointer(in.LivenessProbe))
 	out.ReadinessProbe = (*corev1.Probe)(unsafe.Pointer(in.ReadinessProbe))
 	out.TerminationGracePeriodSeconds = (*int64)(unsafe.Pointer(in.TerminationGracePeriodSeconds))
+	if err := Convert_v1beta1_CoordinatorSpec_To_v1_CoordinatorSpec(&in.Coordinator, &out.Coordinator, s); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -179,7 +181,6 @@ func Convert_v1_IngressSpec_To_v1beta1_IngressSpec(in *v1.IngressSpec, out *Ingr
 	}
 	out.LoadBalancerSourceRanges = *(*[]string)(unsafe.Pointer(&in.LoadBalancerSourceRanges))
 	out.Resources = in.Resources
-	out.CoordinatorResources = in.CoordinatorResources
 	out.NodeSelector = *(*map[string]string)(unsafe.Pointer(&in.NodeSelector))
 	out.Affinity = (*corev1.Affinity)(unsafe.Pointer(in.Affinity))
 	out.SchedulerName = in.SchedulerName
@@ -192,5 +193,8 @@ func Convert_v1_IngressSpec_To_v1beta1_IngressSpec(in *v1.IngressSpec, out *Ingr
 	out.LivenessProbe = (*corev1.Probe)(unsafe.Pointer(in.LivenessProbe))
 	out.ReadinessProbe = (*corev1.Probe)(unsafe.Pointer(in.ReadinessProbe))
 	out.TerminationGracePeriodSeconds = (*int64)(unsafe.Pointer(in.TerminationGracePeriodSeconds))
+	if err := Convert_v1_CoordinatorSpec_To_v1beta1_CoordinatorSpec(&in.Coordinator, &out.Coordinator, s); err != nil {
+		return err
+	}
 	return nil
 }

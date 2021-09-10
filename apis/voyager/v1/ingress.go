@@ -105,10 +105,6 @@ type IngressSpec struct {
 	// +optional
 	Resources core.ResourceRequirements `json:"resources,omitempty"`
 
-	// Compute Resources required by HAProxy coordinator container.
-	// +optional
-	CoordinatorResources core.ResourceRequirements `json:"coordinatorResources,omitempty"`
-
 	// NodeSelector is a selector which must be true for the pod to fit on a node.
 	// Selector which must match a node's labels for the pod to be scheduled on that node.
 	// More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
@@ -179,6 +175,10 @@ type IngressSpec struct {
 	// Defaults to 30 seconds.
 	// +optional
 	TerminationGracePeriodSeconds *int64 `json:"terminationGracePeriodSeconds,omitempty"`
+
+	// Coordinator defines attributes of the coordinator container
+	// +optional
+	Coordinator CoordinatorSpec `json:"coordinator,omitempty"`
 }
 
 // IngressTLS describes the transport layer security associated with an Ingress.
@@ -451,4 +451,19 @@ type TLSAuth struct {
 	VerifyClient TLSAuthVerifyOption `json:"verifyClient,omitempty"`
 	Headers      map[string]string   `json:"headers,omitempty"`
 	ErrorPage    string              `json:"errorPage,omitempty"`
+}
+
+// CoordinatorSpec defines attributes of the coordinator container
+type CoordinatorSpec struct {
+	// Compute Resources required by coordinator container.
+	// Cannot be updated.
+	// More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
+	// +optional
+	Resources core.ResourceRequirements `json:"resources,omitempty"`
+
+	// Security options the coordinator container should run with.
+	// More info: https://kubernetes.io/docs/concepts/policy/security-context/
+	// More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+	// +optional
+	SecurityContext *core.SecurityContext `json:"securityContext,omitempty"`
 }

@@ -366,6 +366,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"kmodules.xyz/monitoring-agent-api/api/v1.ServiceMonitorSpec":       schema_kmodulesxyz_monitoring_agent_api_api_v1_ServiceMonitorSpec(ref),
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.AuthOption":           schema_apimachinery_apis_voyager_v1_AuthOption(ref),
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.BasicAuth":            schema_apimachinery_apis_voyager_v1_BasicAuth(ref),
+		"voyagermesh.dev/apimachinery/apis/voyager/v1.CoordinatorSpec":      schema_apimachinery_apis_voyager_v1_CoordinatorSpec(ref),
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.DNSResolver":          schema_apimachinery_apis_voyager_v1_DNSResolver(ref),
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.FrontendRule":         schema_apimachinery_apis_voyager_v1_FrontendRule(ref),
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.HTTPIngressBackend":   schema_apimachinery_apis_voyager_v1_HTTPIngressBackend(ref),
@@ -17658,6 +17659,34 @@ func schema_apimachinery_apis_voyager_v1_BasicAuth(ref common.ReferenceCallback)
 	}
 }
 
+func schema_apimachinery_apis_voyager_v1_CoordinatorSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "CoordinatorSpec defines attributes of the coordinator container",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"resources": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Compute Resources required by coordinator container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+							Default:     map[string]interface{}{},
+							Ref:         ref("k8s.io/api/core/v1.ResourceRequirements"),
+						},
+					},
+					"securityContext": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Security options the coordinator container should run with. More info: https://kubernetes.io/docs/concepts/policy/security-context/ More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+							Ref:         ref("k8s.io/api/core/v1.SecurityContext"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"k8s.io/api/core/v1.ResourceRequirements", "k8s.io/api/core/v1.SecurityContext"},
+	}
+}
+
 func schema_apimachinery_apis_voyager_v1_DNSResolver(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -18370,13 +18399,6 @@ func schema_apimachinery_apis_voyager_v1_IngressSpec(ref common.ReferenceCallbac
 							Ref:         ref("k8s.io/api/core/v1.ResourceRequirements"),
 						},
 					},
-					"coordinatorResources": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Compute Resources required by HAProxy coordinator container.",
-							Default:     map[string]interface{}{},
-							Ref:         ref("k8s.io/api/core/v1.ResourceRequirements"),
-						},
-					},
 					"nodeSelector": {
 						SchemaProps: spec.SchemaProps{
 							Description: "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
@@ -18488,11 +18510,18 @@ func schema_apimachinery_apis_voyager_v1_IngressSpec(ref common.ReferenceCallbac
 							Format:      "int64",
 						},
 					},
+					"coordinator": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Coordinator defines attributes of the coordinator container",
+							Default:     map[string]interface{}{},
+							Ref:         ref("voyagermesh.dev/apimachinery/apis/voyager/v1.CoordinatorSpec"),
+						},
+					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"k8s.io/api/core/v1.Affinity", "k8s.io/api/core/v1.LocalObjectReference", "k8s.io/api/core/v1.PodSecurityContext", "k8s.io/api/core/v1.Probe", "k8s.io/api/core/v1.ResourceRequirements", "k8s.io/api/core/v1.Toleration", "voyagermesh.dev/apimachinery/apis/voyager/v1.FrontendRule", "voyagermesh.dev/apimachinery/apis/voyager/v1.HTTPIngressBackend", "voyagermesh.dev/apimachinery/apis/voyager/v1.IngressRule", "voyagermesh.dev/apimachinery/apis/voyager/v1.IngressTLS", "voyagermesh.dev/apimachinery/apis/voyager/v1.VolumeSource"},
+			"k8s.io/api/core/v1.Affinity", "k8s.io/api/core/v1.LocalObjectReference", "k8s.io/api/core/v1.PodSecurityContext", "k8s.io/api/core/v1.Probe", "k8s.io/api/core/v1.ResourceRequirements", "k8s.io/api/core/v1.Toleration", "voyagermesh.dev/apimachinery/apis/voyager/v1.CoordinatorSpec", "voyagermesh.dev/apimachinery/apis/voyager/v1.FrontendRule", "voyagermesh.dev/apimachinery/apis/voyager/v1.HTTPIngressBackend", "voyagermesh.dev/apimachinery/apis/voyager/v1.IngressRule", "voyagermesh.dev/apimachinery/apis/voyager/v1.IngressTLS", "voyagermesh.dev/apimachinery/apis/voyager/v1.VolumeSource"},
 	}
 }
 

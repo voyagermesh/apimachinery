@@ -2209,6 +2209,21 @@
         }
       }
     },
+    "dev.voyagermesh.apimachinery.apis.voyager.v1.CoordinatorSpec": {
+      "description": "CoordinatorSpec defines attributes of the coordinator container",
+      "type": "object",
+      "properties": {
+        "resources": {
+          "description": "Compute Resources required by coordinator container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+          "default": {},
+          "$ref": "#/definitions/io.k8s.api.core.v1.ResourceRequirements"
+        },
+        "securityContext": {
+          "description": "Security options the coordinator container should run with. More info: https://kubernetes.io/docs/concepts/policy/security-context/ More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+          "$ref": "#/definitions/io.k8s.api.core.v1.SecurityContext"
+        }
+      }
+    },
     "dev.voyagermesh.apimachinery.apis.voyager.v1.FrontendRule": {
       "type": "object",
       "properties": {
@@ -2502,10 +2517,10 @@
             "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.VolumeSource"
           }
         },
-        "coordinatorResources": {
-          "description": "Compute Resources required by HAProxy coordinator container.",
+        "coordinator": {
+          "description": "Coordinator defines attributes of the coordinator container",
           "default": {},
-          "$ref": "#/definitions/io.k8s.api.core.v1.ResourceRequirements"
+          "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.CoordinatorSpec"
         },
         "defaultBackend": {
           "description": "A default backend capable of servicing requests that don't match any rule. At least one of 'backend' or 'rules' must be specified. This field is optional to allow the loadbalancer controller or defaulting logic to specify a global default.",
@@ -2786,6 +2801,21 @@
         },
         "secretName": {
           "type": "string"
+        }
+      }
+    },
+    "dev.voyagermesh.apimachinery.apis.voyager.v1beta1.CoordinatorSpec": {
+      "description": "CoordinatorSpec defines attributes of the coordinator container",
+      "type": "object",
+      "properties": {
+        "resources": {
+          "description": "Compute Resources required by coordinator container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+          "default": {},
+          "$ref": "#/definitions/io.k8s.api.core.v1.ResourceRequirements"
+        },
+        "securityContext": {
+          "description": "Security options the coordinator container should run with. More info: https://kubernetes.io/docs/concepts/policy/security-context/ More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+          "$ref": "#/definitions/io.k8s.api.core.v1.SecurityContext"
         }
       }
     },
@@ -3094,10 +3124,10 @@
             "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1beta1.VolumeSource"
           }
         },
-        "coordinatorResources": {
-          "description": "Compute Resources required by HAProxy coordinator container.",
+        "coordinator": {
+          "description": "Coordinator defines attributes of the coordinator container",
           "default": {},
-          "$ref": "#/definitions/io.k8s.api.core.v1.ResourceRequirements"
+          "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1beta1.CoordinatorSpec"
         },
         "externalIPs": {
           "description": "externalIPs is a list of IP addresses for which nodes in the cluster will also accept traffic for this service.  These IPs are not managed by Kubernetes.  The user is responsible for ensuring that traffic arrives at a node with this IP.  A common example is external load-balancers that are not part of the Kubernetes system.",
@@ -3385,6 +3415,28 @@
         "podAntiAffinity": {
           "description": "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
           "$ref": "#/definitions/io.k8s.api.core.v1.PodAntiAffinity"
+        }
+      }
+    },
+    "io.k8s.api.core.v1.Capabilities": {
+      "description": "Adds and removes POSIX capabilities from running containers.",
+      "type": "object",
+      "properties": {
+        "add": {
+          "description": "Added capabilities",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "default": ""
+          }
+        },
+        "drop": {
+          "description": "Removed capabilities",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "default": ""
+          }
         }
       }
     },
@@ -4104,6 +4156,58 @@
         "secretName": {
           "description": "Name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
           "type": "string"
+        }
+      }
+    },
+    "io.k8s.api.core.v1.SecurityContext": {
+      "description": "SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext.  When both are set, the values in SecurityContext take precedence.",
+      "type": "object",
+      "properties": {
+        "allowPrivilegeEscalation": {
+          "description": "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN",
+          "type": "boolean"
+        },
+        "capabilities": {
+          "description": "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime.",
+          "$ref": "#/definitions/io.k8s.api.core.v1.Capabilities"
+        },
+        "privileged": {
+          "description": "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false.",
+          "type": "boolean"
+        },
+        "procMount": {
+          "description": "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled.",
+          "type": "string"
+        },
+        "readOnlyRootFilesystem": {
+          "description": "Whether this container has a read-only root filesystem. Default is false.",
+          "type": "boolean"
+        },
+        "runAsGroup": {
+          "description": "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+          "type": "integer",
+          "format": "int64"
+        },
+        "runAsNonRoot": {
+          "description": "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+          "type": "boolean"
+        },
+        "runAsUser": {
+          "description": "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+          "type": "integer",
+          "format": "int64"
+        },
+        "seLinuxOptions": {
+          "description": "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+          "$ref": "#/definitions/io.k8s.api.core.v1.SELinuxOptions"
+        },
+        "seccompProfile": {
+          "description": "The seccomp options to use by this container. If seccomp options are provided at both the pod \u0026 container level, the container options override the pod options.",
+          "$ref": "#/definitions/io.k8s.api.core.v1.SeccompProfile"
+        },
+        "windowsOptions": {
+          "description": "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+          "$ref": "#/definitions/io.k8s.api.core.v1.WindowsSecurityContextOptions"
         }
       }
     },
