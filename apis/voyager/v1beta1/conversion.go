@@ -94,8 +94,8 @@ func Convert_v1_IngressBackend_To_v1beta1_IngressBackend(in *v1.IngressBackend, 
 func Convert_v1beta1_IngressSpec_To_v1_IngressSpec(in *IngressSpec, out *v1.IngressSpec, s conversion.Scope) error {
 	if in.Backend != nil {
 		in, out := &in.Backend, &out.DefaultBackend
-		*out = new(v1.HTTPIngressBackend)
-		if err := Convert_v1beta1_HTTPIngressBackend_To_v1_HTTPIngressBackend(*in, *out, s); err != nil {
+		*out = new(v1.IngressBackend)
+		if err := Convert_v1beta1_IngressBackend_To_v1_IngressBackend(*in, *out, s); err != nil {
 			return err
 		}
 	} else {
@@ -148,8 +148,8 @@ func Convert_v1beta1_IngressSpec_To_v1_IngressSpec(in *IngressSpec, out *v1.Ingr
 func Convert_v1_IngressSpec_To_v1beta1_IngressSpec(in *v1.IngressSpec, out *IngressSpec, s conversion.Scope) error {
 	if in.DefaultBackend != nil {
 		in, out := &in.DefaultBackend, &out.Backend
-		*out = new(HTTPIngressBackend)
-		if err := Convert_v1_HTTPIngressBackend_To_v1beta1_HTTPIngressBackend(*in, *out, s); err != nil {
+		*out = new(IngressBackend)
+		if err := Convert_v1_IngressBackend_To_v1beta1_IngressBackend(*in, *out, s); err != nil {
 			return err
 		}
 	} else {

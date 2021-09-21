@@ -152,8 +152,6 @@ API rule violation: list_type_missing,kmodules.xyz/monitoring-agent-api/api/v1,P
 API rule violation: list_type_missing,voyagermesh.dev/apimachinery/apis/voyager/v1,AuthOption,OAuth
 API rule violation: list_type_missing,voyagermesh.dev/apimachinery/apis/voyager/v1,DNSResolver,NameServer
 API rule violation: list_type_missing,voyagermesh.dev/apimachinery/apis/voyager/v1,FrontendRule,Rules
-API rule violation: list_type_missing,voyagermesh.dev/apimachinery/apis/voyager/v1,HTTPIngressBackend,HeaderRules
-API rule violation: list_type_missing,voyagermesh.dev/apimachinery/apis/voyager/v1,HTTPIngressBackend,RewriteRules
 API rule violation: list_type_missing,voyagermesh.dev/apimachinery/apis/voyager/v1,HTTPIngressRuleValue,ALPN
 API rule violation: list_type_missing,voyagermesh.dev/apimachinery/apis/voyager/v1,HTTPIngressRuleValue,Paths
 API rule violation: list_type_missing,voyagermesh.dev/apimachinery/apis/voyager/v1,IngressBackend,ALPN

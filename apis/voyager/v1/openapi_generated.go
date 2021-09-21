@@ -369,7 +369,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.CoordinatorSpec":      schema_apimachinery_apis_voyager_v1_CoordinatorSpec(ref),
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.DNSResolver":          schema_apimachinery_apis_voyager_v1_DNSResolver(ref),
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.FrontendRule":         schema_apimachinery_apis_voyager_v1_FrontendRule(ref),
-		"voyagermesh.dev/apimachinery/apis/voyager/v1.HTTPIngressBackend":   schema_apimachinery_apis_voyager_v1_HTTPIngressBackend(ref),
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.HTTPIngressPath":      schema_apimachinery_apis_voyager_v1_HTTPIngressPath(ref),
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.HTTPIngressRuleValue": schema_apimachinery_apis_voyager_v1_HTTPIngressRuleValue(ref),
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.Ingress":              schema_apimachinery_apis_voyager_v1_Ingress(ref),
@@ -17806,123 +17805,6 @@ func schema_apimachinery_apis_voyager_v1_FrontendRule(ref common.ReferenceCallba
 	}
 }
 
-func schema_apimachinery_apis_voyager_v1_HTTPIngressBackend(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Type: []string{"object"},
-				Properties: map[string]spec.Schema{
-					"name": {
-						SchemaProps: spec.SchemaProps{
-							Description: "User can specify backend name for using it with custom acl Otherwise it will be generated",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"hostNames": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Host names to forward traffic to. If empty traffic will be forwarded to all subsets instance. If set only matched hosts will get the traffic. This is an handy way to send traffic to Specific StatefulSet pod. IE. Setting [web-0] will send traffic to only web-0 host for this StatefulSet, https://kubernetes.io/docs/tasks/stateful-application/basic-stateful-set/#creating-a-statefulset",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: "",
-										Type:    []string{"string"},
-										Format:  "",
-									},
-								},
-							},
-						},
-					},
-					"service": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Service references a Service as a Backend. This is a mutually exclusive setting with \"Resource\".",
-							Default:     map[string]interface{}{},
-							Ref:         ref("k8s.io/api/networking/v1.IngressServiceBackend"),
-						},
-					},
-					"backendRules": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Serialized HAProxy rules to apply on server backend including request, response or header rewrite. acls also can be used. https://cbonte.github.io/haproxy-dconv/1.7/configuration.html#1",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: "",
-										Type:    []string{"string"},
-										Format:  "",
-									},
-								},
-							},
-						},
-					},
-					"alpn": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Application-Layer Protocol Negotiation (ALPN) is a Transport Layer Security (TLS) extension for application layer protocol negotiation. ALPN allows the application layer to negotiate which protocol should be performed over a secure connection in a manner which avoids additional round trips and which is independent of the application layer protocols. It is used by HTTP/2. If provided a list of alpn will be added to port as alpn option1,option2,... If SecretName is Provided this secret will be used to terminate SSL with alpn options. If Secret name is not provided backend server is responsible for handling SSL. Note that, the order of the options indicates the preference If the ALPN list contains \"h2\",  \"option http-use-htx\" will be added to enable HTX mode https://cbonte.github.io/haproxy-dconv/1.9/configuration.html#option%20http-use-htx https://cbonte.github.io/haproxy-dconv/1.9/configuration.html#alpn",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: "",
-										Type:    []string{"string"},
-										Format:  "",
-									},
-								},
-							},
-						},
-					},
-					"proto": {
-						SchemaProps: spec.SchemaProps{
-							Description: "HTTP protocol to use If the Proto contains \"h2\",  \"option http-use-htx\" will be added to enable HTX mode https://www.haproxy.com/blog/haproxy-1-9-2-adds-grpc-support/",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"loadBalanceOn": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Define the load balancing algorithm to be used in a backend. https://cbonte.github.io/haproxy-dconv/1.9/configuration.html#balance",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"rewriteRules": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Path rewrite rules with haproxy formatted regex.\n\nDeprecated: Use backendRule, will be removed.",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: "",
-										Type:    []string{"string"},
-										Format:  "",
-									},
-								},
-							},
-						},
-					},
-					"headerRules": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Header rules to modifies the header.\n\nDeprecated: Use backendRule, will be removed.",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: "",
-										Type:    []string{"string"},
-										Format:  "",
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"k8s.io/api/networking/v1.IngressServiceBackend"},
-	}
-}
-
 func schema_apimachinery_apis_voyager_v1_HTTPIngressPath(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -17941,14 +17823,14 @@ func schema_apimachinery_apis_voyager_v1_HTTPIngressPath(ref common.ReferenceCal
 						SchemaProps: spec.SchemaProps{
 							Description: "Backend defines the referenced service endpoint to which the traffic will be forwarded to.",
 							Default:     map[string]interface{}{},
-							Ref:         ref("voyagermesh.dev/apimachinery/apis/voyager/v1.HTTPIngressBackend"),
+							Ref:         ref("voyagermesh.dev/apimachinery/apis/voyager/v1.IngressBackend"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"voyagermesh.dev/apimachinery/apis/voyager/v1.HTTPIngressBackend"},
+			"voyagermesh.dev/apimachinery/apis/voyager/v1.IngressBackend"},
 	}
 }
 
@@ -18318,7 +18200,7 @@ func schema_apimachinery_apis_voyager_v1_IngressSpec(ref common.ReferenceCallbac
 					"defaultBackend": {
 						SchemaProps: spec.SchemaProps{
 							Description: "A default backend capable of servicing requests that don't match any rule. At least one of 'backend' or 'rules' must be specified. This field is optional to allow the loadbalancer controller or defaulting logic to specify a global default.",
-							Ref:         ref("voyagermesh.dev/apimachinery/apis/voyager/v1.HTTPIngressBackend"),
+							Ref:         ref("voyagermesh.dev/apimachinery/apis/voyager/v1.IngressBackend"),
 						},
 					},
 					"tls": {
@@ -18521,7 +18403,7 @@ func schema_apimachinery_apis_voyager_v1_IngressSpec(ref common.ReferenceCallbac
 			},
 		},
 		Dependencies: []string{
-			"k8s.io/api/core/v1.Affinity", "k8s.io/api/core/v1.LocalObjectReference", "k8s.io/api/core/v1.PodSecurityContext", "k8s.io/api/core/v1.Probe", "k8s.io/api/core/v1.ResourceRequirements", "k8s.io/api/core/v1.Toleration", "voyagermesh.dev/apimachinery/apis/voyager/v1.CoordinatorSpec", "voyagermesh.dev/apimachinery/apis/voyager/v1.FrontendRule", "voyagermesh.dev/apimachinery/apis/voyager/v1.HTTPIngressBackend", "voyagermesh.dev/apimachinery/apis/voyager/v1.IngressRule", "voyagermesh.dev/apimachinery/apis/voyager/v1.IngressTLS", "voyagermesh.dev/apimachinery/apis/voyager/v1.VolumeSource"},
+			"k8s.io/api/core/v1.Affinity", "k8s.io/api/core/v1.LocalObjectReference", "k8s.io/api/core/v1.PodSecurityContext", "k8s.io/api/core/v1.Probe", "k8s.io/api/core/v1.ResourceRequirements", "k8s.io/api/core/v1.Toleration", "voyagermesh.dev/apimachinery/apis/voyager/v1.CoordinatorSpec", "voyagermesh.dev/apimachinery/apis/voyager/v1.FrontendRule", "voyagermesh.dev/apimachinery/apis/voyager/v1.IngressBackend", "voyagermesh.dev/apimachinery/apis/voyager/v1.IngressRule", "voyagermesh.dev/apimachinery/apis/voyager/v1.IngressTLS", "voyagermesh.dev/apimachinery/apis/voyager/v1.VolumeSource"},
 	}
 }
 

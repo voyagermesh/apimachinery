@@ -181,11 +181,6 @@ func (r Ingress) IsValid(cloudProvider string) error {
 				if errs := validation.IsDNS1123Subdomain(path.Backend.Service.Name); len(errs) > 0 {
 					return errors.Errorf("spec.rules[%d].http.paths[%d] is using invalid serviceName for addr %s. Reason: %s", ri, pi, a, strings.Join(errs, ","))
 				}
-				for hi, hdr := range path.Backend.HeaderRules {
-					if len(strings.Fields(hdr)) == 1 {
-						return errors.Errorf("spec.rules[%d].http.paths[%d].backend.headerRules[%d] is invalid for addr %s and path %s", ri, pi, hi, a, path.Path)
-					}
-				}
 			}
 		} else if rule.TCP != nil && rule.HTTP == nil {
 			var err error
