@@ -369,7 +369,7 @@ func (r Ingress) SupportsLBType(cloudProvider string) bool {
 			cloudProvider == ProviderACS ||
 			cloudProvider == ProviderAKS ||
 			cloudProvider == "openstack" ||
-			cloudProvider == ProviderMinikube ||
+			cloudProvider == ProviderKind ||
 			cloudProvider == "metallb" ||
 			cloudProvider == "digitalocean" ||
 			cloudProvider == "linode"

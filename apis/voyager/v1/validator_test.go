@@ -25,7 +25,7 @@ import (
 
 func TestIsValid(t *testing.T) {
 	for k, expected := range dataTables {
-		err := k.IsValid("minikube")
+		err := k.IsValid("kind")
 		actual := err == nil
 		if expected != actual {
 			t.Errorf("Failed Tests: %s, Expected: %v, Actual: %v, Reason %v", k.Name, expected, actual, err)
@@ -150,12 +150,10 @@ var dataTables = map[*Ingress]bool{
 							Port: 80,
 							Paths: []HTTPIngressPath{
 								{
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 3444},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 3444},
 										},
 									},
 								},
@@ -188,12 +186,10 @@ var dataTables = map[*Ingress]bool{
 						HTTP: &HTTPIngressRuleValue{
 							Paths: []HTTPIngressPath{
 								{
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 3444},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 3444},
 										},
 									},
 								},
@@ -228,12 +224,10 @@ var dataTables = map[*Ingress]bool{
 							Port: 80,
 							Paths: []HTTPIngressPath{
 								{
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 3444},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 3444},
 										},
 									},
 								},
@@ -249,12 +243,10 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/should-be-true",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 3444},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 3444},
 										},
 									},
 								},
@@ -276,12 +268,10 @@ var dataTables = map[*Ingress]bool{
 							Port: 80,
 							Paths: []HTTPIngressPath{
 								{
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 3444},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 3444},
 										},
 									},
 								},
@@ -296,12 +286,10 @@ var dataTables = map[*Ingress]bool{
 							Port: 8091,
 							Paths: []HTTPIngressPath{
 								{
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 3444},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 3444},
 										},
 									},
 								},
@@ -795,12 +783,10 @@ var dataTables = map[*Ingress]bool{
 	{
 		ObjectMeta: metav1.ObjectMeta{Name: "Multi rule"},
 		Spec: IngressSpec{
-			DefaultBackend: &HTTPIngressBackend{
-				IngressBackend: IngressBackend{
-					Service: networking.IngressServiceBackend{
-						Name: "foo",
-						Port: networking.ServiceBackendPort{Number: 80},
-					},
+			DefaultBackend: &IngressBackend{
+				Service: networking.IngressServiceBackend{
+					Name: "foo",
+					Port: networking.ServiceBackendPort{Number: 80},
 				}},
 			Rules: []IngressRule{
 				{
@@ -809,45 +795,37 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/test-dns",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 80},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 80},
 										}},
 								},
 								{
 									Path: "/test-no-dns",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 80},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 80},
 										}},
 								},
 								{
 									Path: "/test-no-backend-redirect",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 80},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 80},
 										}},
 								},
 								{
 									Path: "/test-no-backend-rule-redirect",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 80},
-											},
-											BackendRules: []string{
-												"http-request redirect location https://google.com code 302",
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 80},
+										},
+										BackendRules: []string{
+											"http-request redirect location https://google.com code 302",
 										},
 									},
 								},
@@ -861,15 +839,13 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/redirect-rule",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											BackendRules: []string{
-												"http-request redirect location https://github.com/appscode/discuss/issues code 301",
-											},
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 80},
-											},
+									Backend: IngressBackend{
+										BackendRules: []string{
+											"http-request redirect location https://github.com/appscode/discuss/issues code 301",
+										},
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 80},
 										},
 									},
 								},
@@ -883,12 +859,10 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/redirect",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 80},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 80},
 										},
 									},
 								},
@@ -902,12 +876,10 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/back-end",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 8989},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 8989},
 										},
 									},
 								},
@@ -942,12 +914,10 @@ var dataTables = map[*Ingress]bool{
 						HTTP: &HTTPIngressRuleValue{
 							Paths: []HTTPIngressPath{
 								{
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "cluster-nginx",
-												Port: networking.ServiceBackendPort{Number: 80},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "cluster-nginx",
+											Port: networking.ServiceBackendPort{Number: 80},
 										},
 									},
 								},
@@ -962,12 +932,10 @@ var dataTables = map[*Ingress]bool{
 							NoTLS: true,
 							Paths: []HTTPIngressPath{
 								{
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "cluster-nginx",
-												Port: networking.ServiceBackendPort{Number: 80},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "cluster-nginx",
+											Port: networking.ServiceBackendPort{Number: 80},
 										},
 									},
 								},
@@ -981,12 +949,10 @@ var dataTables = map[*Ingress]bool{
 						HTTP: &HTTPIngressRuleValue{
 							Paths: []HTTPIngressPath{
 								{
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "cluster-nginx",
-												Port: networking.ServiceBackendPort{Number: 80},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "cluster-nginx",
+											Port: networking.ServiceBackendPort{Number: 80},
 										},
 									},
 								},
@@ -1000,12 +966,10 @@ var dataTables = map[*Ingress]bool{
 						HTTP: &HTTPIngressRuleValue{
 							Paths: []HTTPIngressPath{
 								{
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "cluster-nginx",
-												Port: networking.ServiceBackendPort{Number: 80},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "cluster-nginx",
+											Port: networking.ServiceBackendPort{Number: 80},
 										},
 									},
 								},
@@ -1041,23 +1005,19 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/resources",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "distro-static",
-												Port: networking.ServiceBackendPort{Number: 80},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "distro-static",
+											Port: networking.ServiceBackendPort{Number: 80},
 										},
 									},
 								},
 								{
 									Path: "/admin_resources",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "admin-resources",
-												Port: networking.ServiceBackendPort{Number: 80},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "admin-resources",
+											Port: networking.ServiceBackendPort{Number: 80},
 										},
 									},
 								},
@@ -1073,23 +1033,19 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/resources",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "distro-static",
-												Port: networking.ServiceBackendPort{Number: 80},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "distro-static",
+											Port: networking.ServiceBackendPort{Number: 80},
 										},
 									},
 								},
 								{
 									Path: "/admin_resources",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "admin-resources",
-												Port: networking.ServiceBackendPort{Number: 80},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "admin-resources",
+											Port: networking.ServiceBackendPort{Number: 80},
 										},
 									},
 								},
@@ -1103,12 +1059,10 @@ var dataTables = map[*Ingress]bool{
 						HTTP: &HTTPIngressRuleValue{
 							Paths: []HTTPIngressPath{
 								{
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "verify-tls-cert-dmmy-me",
-												Port: networking.ServiceBackendPort{Number: 80},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "verify-tls-cert-dmmy-me",
+											Port: networking.ServiceBackendPort{Number: 80},
 										},
 									},
 								},
@@ -1117,12 +1071,10 @@ var dataTables = map[*Ingress]bool{
 					},
 				},
 			},
-			DefaultBackend: &HTTPIngressBackend{
-				IngressBackend: IngressBackend{
-					Service: networking.IngressServiceBackend{
-						Name: "distro-biz",
-						Port: networking.ServiceBackendPort{Number: 80},
-					},
+			DefaultBackend: &IngressBackend{
+				Service: networking.IngressServiceBackend{
+					Name: "distro-biz",
+					Port: networking.ServiceBackendPort{Number: 80},
 				},
 			},
 		},
@@ -1144,12 +1096,10 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/.well-known/acme-challenge/",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "voyager-operator.kube-system",
-												Port: networking.ServiceBackendPort{Number: 56791},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "voyager-operator.kube-system",
+											Port: networking.ServiceBackendPort{Number: 56791},
 										},
 									},
 								},
@@ -1165,12 +1115,10 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "web",
-												Port: networking.ServiceBackendPort{Number: 80},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "web",
+											Port: networking.ServiceBackendPort{Number: 80},
 										},
 									},
 								},
@@ -1192,12 +1140,10 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/foo",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 3444},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 3444},
 										},
 									},
 								},
@@ -1213,12 +1159,10 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/not-foo",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 3444},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 3444},
 										},
 									},
 								},
@@ -1240,12 +1184,10 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/foo",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 3444},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 3444},
 										},
 									},
 								},
@@ -1261,12 +1203,10 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/foo",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 3444},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 3444},
 										},
 									},
 								},
@@ -1296,12 +1236,10 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/foo",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 3444},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 3444},
 										},
 									},
 								},
@@ -1317,12 +1255,10 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/not-foo",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 3444},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 3444},
 										},
 									},
 								},
@@ -1346,12 +1282,10 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/path-1",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 3444},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 3444},
 										},
 									},
 								},
@@ -1368,12 +1302,10 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/path-2",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 3444},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 3444},
 										},
 									},
 								},
@@ -1397,12 +1329,10 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/path-1",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 3444},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 3444},
 										},
 									},
 								},
@@ -1418,12 +1348,10 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/path-2",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 3444},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 3444},
 										},
 									},
 								},
@@ -1447,12 +1375,10 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/path-1",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 3444},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 3444},
 										},
 									},
 								},
@@ -1469,12 +1395,10 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/path-2",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 3444},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 3444},
 										},
 									},
 								},
@@ -1488,15 +1412,13 @@ var dataTables = map[*Ingress]bool{
 	{
 		ObjectMeta: metav1.ObjectMeta{Name: "Default backend Proto with ALPN"},
 		Spec: IngressSpec{
-			DefaultBackend: &HTTPIngressBackend{
-				IngressBackend: IngressBackend{
-					Service: networking.IngressServiceBackend{
-						Name: "foo",
-						Port: networking.ServiceBackendPort{Number: 3444},
-					},
-					ALPN:  []string{"a", "b", "c"},
-					Proto: "h2",
+			DefaultBackend: &IngressBackend{
+				Service: networking.IngressServiceBackend{
+					Name: "foo",
+					Port: networking.ServiceBackendPort{Number: 3444},
 				},
+				ALPN:  []string{"a", "b", "c"},
+				Proto: "h2",
 			},
 		},
 	}: false, // Proto with ALPN
@@ -1528,15 +1450,13 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/path-1",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 3444},
-											},
-											ALPN:  []string{"a", "b", "c"},
-											Proto: "h2",
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 3444},
 										},
+										ALPN:  []string{"a", "b", "c"},
+										Proto: "h2",
 									},
 								},
 							},
@@ -1575,13 +1495,11 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/path-1",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Name: "auth-be-1",
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 8080},
-											},
+									Backend: IngressBackend{
+										Name: "auth-be-1",
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 8080},
 										},
 									},
 								},
@@ -1597,13 +1515,11 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/path-2",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Name: "auth-be-2",
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 8080},
-											},
+									Backend: IngressBackend{
+										Name: "auth-be-2",
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 8080},
 										},
 									},
 								},
@@ -1643,25 +1559,21 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/path-1",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Name: "auth-be-1",
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 8080},
-											},
+									Backend: IngressBackend{
+										Name: "auth-be-1",
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 8080},
 										},
 									},
 								},
 								{
 									Path: "/path-2",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Name: "auth-be-2",
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 8080},
-											},
+									Backend: IngressBackend{
+										Name: "auth-be-2",
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 8080},
 										},
 									},
 								},
@@ -1697,13 +1609,11 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/path-1",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Name: "auth-be-1",
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 8080},
-											},
+									Backend: IngressBackend{
+										Name: "auth-be-1",
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 8080},
 										},
 									},
 								},
@@ -1739,13 +1649,11 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/path-1",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Name: "auth-be-1",
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 8080},
-											},
+									Backend: IngressBackend{
+										Name: "auth-be-1",
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 8080},
 										},
 									},
 								},
@@ -1781,13 +1689,11 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/path-1",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Name: "auth-be-2",
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 8080},
-											},
+									Backend: IngressBackend{
+										Name: "auth-be-2",
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 8080},
 										},
 									},
 								},
@@ -1818,13 +1724,11 @@ var dataTables = map[*Ingress]bool{
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/path-1",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Name: "auth-be-2",
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 8080},
-											},
+									Backend: IngressBackend{
+										Name: "auth-be-2",
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 8080},
 										},
 									},
 								},

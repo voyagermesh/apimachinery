@@ -24,7 +24,7 @@ require (
 	k8s.io/client-go v0.21.2
 	k8s.io/klog/v2 v2.8.0
 	k8s.io/kube-openapi v0.0.0-20210305001622-591a79e4bda7
-	kmodules.xyz/client-go v0.0.0-20210719120358-dd0503cf99cf
+	kmodules.xyz/client-go v0.0.0-20210921150324-f005c6dfcb32
 	kmodules.xyz/crd-schema-fuzz v0.0.0-20210618002152-fae23aef5fb4
 	kmodules.xyz/monitoring-agent-api v0.0.0-20210618005119-a8c212adc2bf
 	kmodules.xyz/webhook-runtime v0.0.0-20210716205500-e489faf01981

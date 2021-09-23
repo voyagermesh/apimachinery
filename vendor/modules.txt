@@ -211,7 +211,7 @@ golang.org/x/time/rate
 gomodules.xyz/jsonpatch/v2
 # gomodules.xyz/mergo v0.3.13-0.20210702100041-9d62ff8ece4d
 gomodules.xyz/mergo
-# gomodules.xyz/pointer v0.0.0-20201105071923-daf60fa55209
+# gomodules.xyz/pointer v0.1.0
 gomodules.xyz/pointer
 # gomodules.xyz/runtime v0.2.0
 ## explicit
@@ -793,7 +793,7 @@ k8s.io/utils/net
 k8s.io/utils/path
 k8s.io/utils/pointer
 k8s.io/utils/trace
-# kmodules.xyz/client-go v0.0.0-20210719120358-dd0503cf99cf
+# kmodules.xyz/client-go v0.0.0-20210921150324-f005c6dfcb32
 ## explicit
 kmodules.xyz/client-go
 kmodules.xyz/client-go/api/v1

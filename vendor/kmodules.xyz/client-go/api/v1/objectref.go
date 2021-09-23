@@ -16,17 +16,13 @@ limitations under the License.
 
 package v1
 
-const (
-	ProviderKind  = "kind"
-	ProviderAWS   = "aws"
-	ProviderGCE   = "gce"
-	ProviderGKE   = "gke"
-	ProviderAzure = "azure"
-	ProviderAKS   = "aks"
-	ProviderACS   = "acs"
-	ProviderHTTP  = "http"
-)
-
-const (
-	MatchAll = "*"
-)
+// ObjectReference contains enough information to let you inspect or modify the referred object.
+type ObjectReference struct {
+	// Namespace of the referent.
+	// More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+	// +optional
+	Namespace string `json:"namespace,omitempty" protobuf:"bytes,1,opt,name=namespace"`
+	// Name of the referent.
+	// More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+	Name string `json:"name" protobuf:"bytes,2,opt,name=name"`
+}
