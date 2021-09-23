@@ -86,8 +86,7 @@ BUILD_DIRS  := bin/$(OS)_$(ARCH)     \
                .go/cache             \
                hack/config           \
                $(HOME)/.credentials  \
-               $(HOME)/.kube         \
-               $(HOME)/.minikube
+               $(HOME)/.kube
 
 DOCKERFILE_PROD  = Dockerfile.in
 DOCKERFILE_DBG   = Dockerfile.dbg
@@ -361,7 +360,6 @@ e2e-tests: $(BUILD_DIRS)
 	    -w /src                                                 \
 	    --net=host                                              \
 	    -v $(HOME)/.kube:/.kube                                 \
-	    -v $(HOME)/.minikube:$(HOME)/.minikube                  \
 	    -v $(HOME)/.credentials:$(HOME)/.credentials            \
 	    -v $$(pwd)/.go/bin/$(OS)_$(ARCH):/go/bin                \
 	    -v $$(pwd)/.go/bin/$(OS)_$(ARCH):/go/bin/$(OS)_$(ARCH)  \

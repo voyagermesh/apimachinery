@@ -116,12 +116,10 @@ func TestIsPortChanged(t *testing.T) {
 							Paths: []HTTPIngressPath{
 								{
 									Path: "/test",
-									Backend: HTTPIngressBackend{
-										IngressBackend: IngressBackend{
-											Service: networking.IngressServiceBackend{
-												Name: "foo",
-												Port: networking.ServiceBackendPort{Number: 8080},
-											},
+									Backend: IngressBackend{
+										Service: networking.IngressServiceBackend{
+											Name: "foo",
+											Port: networking.ServiceBackendPort{Number: 8080},
 										},
 									},
 								},
