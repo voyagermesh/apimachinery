@@ -8,7 +8,7 @@ require (
 	github.com/golang/glog v0.0.0-20210429001901-424d2337a529 // indirect
 	github.com/google/go-cmp v0.5.6
 	github.com/google/gofuzz v1.2.0
-	github.com/json-iterator/go v1.1.10
+	github.com/json-iterator/go v1.1.11
 	github.com/mitchellh/mapstructure v1.3.2 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/soheilhy/cmux v0.1.5 // indirect
@@ -24,10 +24,10 @@ require (
 	k8s.io/client-go v0.21.2
 	k8s.io/klog/v2 v2.8.0
 	k8s.io/kube-openapi v0.0.0-20210305001622-591a79e4bda7
-	kmodules.xyz/client-go v0.0.0-20210921150324-f005c6dfcb32
+	kmodules.xyz/client-go v0.0.0-20210928133955-8df5bb467db6
 	kmodules.xyz/crd-schema-fuzz v0.0.0-20210618002152-fae23aef5fb4
-	kmodules.xyz/monitoring-agent-api v0.0.0-20210618005119-a8c212adc2bf
-	kmodules.xyz/webhook-runtime v0.0.0-20210716205500-e489faf01981
+	kmodules.xyz/monitoring-agent-api v0.0.0-20210928135619-38ca075a2dbd
+	kmodules.xyz/webhook-runtime v0.0.0-20210928141616-7f73c2ab318a
 	sigs.k8s.io/controller-runtime v0.9.2
 	sigs.k8s.io/yaml v1.2.0
 )
@@ -137,3 +137,5 @@ replace k8s.io/utils => k8s.io/utils v0.0.0-20201110183641-67b214c5f920
 replace sigs.k8s.io/application => github.com/kmodules/application v0.8.4-0.20210427030912-90eeee3bc4ad
 
 replace github.com/satori/go.uuid => github.com/gofrs/uuid v4.0.0+incompatible
+
+replace github.com/dgrijalva/jwt-go => github.com/golang-jwt/jwt v3.2.1+incompatible
