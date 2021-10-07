@@ -80,7 +80,7 @@ github.com/hashicorp/golang-lru
 github.com/hashicorp/golang-lru/simplelru
 # github.com/imdario/mergo v0.3.12 => github.com/imdario/mergo v0.3.5
 github.com/imdario/mergo
-# github.com/json-iterator/go v1.1.10
+# github.com/json-iterator/go v1.1.11
 ## explicit
 github.com/json-iterator/go
 # github.com/mailru/easyjson v0.7.0
@@ -793,7 +793,7 @@ k8s.io/utils/net
 k8s.io/utils/path
 k8s.io/utils/pointer
 k8s.io/utils/trace
-# kmodules.xyz/client-go v0.0.0-20210921150324-f005c6dfcb32
+# kmodules.xyz/client-go v0.0.0-20210928133955-8df5bb467db6
 ## explicit
 kmodules.xyz/client-go
 kmodules.xyz/client-go/api/v1
@@ -807,10 +807,10 @@ kmodules.xyz/client-go/openapi
 # kmodules.xyz/crd-schema-fuzz v0.0.0-20210618002152-fae23aef5fb4
 ## explicit
 kmodules.xyz/crd-schema-fuzz
-# kmodules.xyz/monitoring-agent-api v0.0.0-20210618005119-a8c212adc2bf
+# kmodules.xyz/monitoring-agent-api v0.0.0-20210928135619-38ca075a2dbd
 ## explicit
 kmodules.xyz/monitoring-agent-api/api/v1
-# kmodules.xyz/webhook-runtime v0.0.0-20210716205500-e489faf01981
+# kmodules.xyz/webhook-runtime v0.0.0-20210928141616-7f73c2ab318a
 ## explicit
 kmodules.xyz/webhook-runtime/apis/workload/v1
 # sigs.k8s.io/apiserver-network-proxy/konnectivity-client v0.0.15
@@ -882,3 +882,4 @@ sigs.k8s.io/yaml
 # k8s.io/utils => k8s.io/utils v0.0.0-20201110183641-67b214c5f920
 # sigs.k8s.io/application => github.com/kmodules/application v0.8.4-0.20210427030912-90eeee3bc4ad
 # github.com/satori/go.uuid => github.com/gofrs/uuid v4.0.0+incompatible
+# github.com/dgrijalva/jwt-go => github.com/golang-jwt/jwt v3.2.1+incompatible
