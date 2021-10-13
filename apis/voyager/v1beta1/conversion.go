@@ -23,19 +23,36 @@ import (
 
 	corev1 "k8s.io/api/core/v1"
 	networking "k8s.io/api/networking/v1"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/conversion"
 	"k8s.io/apimachinery/pkg/util/intstr"
 	kbconv "sigs.k8s.io/controller-runtime/pkg/conversion"
 )
 
-// ConvertTo converts this CronJob to the Hub version (v1).
+// ConvertTo converts this to the Hub version (v1).
 func (src *Ingress) ConvertTo(dstRaw kbconv.Hub) error {
-	return Convert_v1beta1_Ingress_To_v1_Ingress(src, dstRaw.(*v1.Ingress), nil)
+	dst := dstRaw.(*v1.Ingress)
+	if err := Convert_v1beta1_Ingress_To_v1_Ingress(src, dst, nil); err != nil {
+		return err
+	}
+	dst.TypeMeta = metav1.TypeMeta{
+		APIVersion: v1.SchemeGroupVersion.String(),
+		Kind:       "Ingress",
+	}
+	return nil
 }
 
 // ConvertFrom converts from the Hub version (v1) to this version.
 func (dst *Ingress) ConvertFrom(srcRaw kbconv.Hub) error {
-	return Convert_v1_Ingress_To_v1beta1_Ingress(srcRaw.(*v1.Ingress), dst, nil)
+	src := srcRaw.(*v1.Ingress)
+	if err := Convert_v1_Ingress_To_v1beta1_Ingress(src, dst, nil); err != nil {
+		return err
+	}
+	dst.TypeMeta = metav1.TypeMeta{
+		APIVersion: SchemeGroupVersion.String(),
+		Kind:       "Ingress",
+	}
+	return nil
 }
 
 func Convert_v1beta1_IngressTLS_To_v1_IngressTLS(in *IngressTLS, out *v1.IngressTLS, s conversion.Scope) error {
