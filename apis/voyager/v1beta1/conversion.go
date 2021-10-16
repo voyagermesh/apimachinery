@@ -18,6 +18,9 @@ package v1beta1
 
 import (
 	"fmt"
+	"regexp"
+	"strconv"
+	"strings"
 	"unsafe"
 
 	v1 "voyagermesh.dev/apimachinery/apis/voyager/v1"
@@ -95,6 +98,59 @@ func Convert_int32_To_intstr_IntOrString(in *int32, out *intstr.IntOrString, s c
 	return nil
 }
 
+var re = regexp.MustCompile(`[0-9]+`)
+
+func convertReqrep(r string) string {
+	r = strings.Replace(r, `^([^\ :]*)\ `, `^`, 1)
+	r = strings.Replace(r, `\1\ `, ``, 1)
+	r = re.ReplaceAllStringFunc(r, func(s string) string {
+		i, _ := strconv.Atoi(s)
+		return strconv.Itoa(i - 1)
+	})
+	return r
+}
+
+func Convert_v1beta1_HTTPIngressBackend_To_v1_IngressBackend(in *HTTPIngressBackend, out *v1.IngressBackend, s conversion.Scope) error {
+	out.Name = in.Name
+	out.HostNames = *(*[]string)(unsafe.Pointer(&in.HostNames))
+	out.Service = networking.IngressServiceBackend{
+		Name: in.ServiceName,
+	}
+	if portNo := in.ServicePort.IntValue(); portNo > 0 {
+		out.Service.Port.Number = int32(portNo)
+	} else {
+		out.Service.Port.Name = in.ServicePort.StrVal
+	}
+	out.BackendRules = *(*[]string)(unsafe.Pointer(&in.BackendRules))
+	for _, r := range in.RewriteRules {
+		out.BackendRules = append(out.BackendRules, fmt.Sprintf("# reqrep %s", r))
+		out.BackendRules = append(out.BackendRules, fmt.Sprintf("http-request replace-uri %s", convertReqrep(r)))
+	}
+	for _, r := range in.HeaderRules {
+		out.BackendRules = append(out.BackendRules, fmt.Sprintf("http-request set-header %s", r))
+	}
+	out.ALPN = *(*[]string)(unsafe.Pointer(&in.ALPN))
+	out.Proto = in.Proto
+	out.LoadBalanceOn = in.LoadBalanceOn
+	return nil
+}
+
+func Convert_v1_IngressBackend_To_v1beta1_HTTPIngressBackend(in *v1.IngressBackend, out *HTTPIngressBackend, s conversion.Scope) error {
+	out.Name = in.Name
+	out.HostNames = *(*[]string)(unsafe.Pointer(&in.HostNames))
+	out.ServiceName = in.Service.Name
+	if in.Service.Port.Name != "" {
+		out.ServicePort = intstr.FromString(in.Service.Port.Name)
+	} else {
+		out.ServicePort = intstr.FromInt(int(in.Service.Port.Number))
+	}
+	out.BackendRules = *(*[]string)(unsafe.Pointer(&in.BackendRules))
+	out.ALPN = *(*[]string)(unsafe.Pointer(&in.ALPN))
+	out.Proto = in.Proto
+	out.LoadBalanceOn = in.LoadBalanceOn
+	return nil
+}
+
 func Convert_v1beta1_IngressBackend_To_v1_IngressBackend(in *IngressBackend, out *v1.IngressBackend, s conversion.Scope) error {
 	out.Name = in.Name
 	out.HostNames = *(*[]string)(unsafe.Pointer(&in.HostNames))
@@ -133,13 +189,23 @@ func Convert_v1beta1_IngressSpec_To_v1_IngressSpec(in *IngressSpec, out *v1.Ingr
 	if in.Backend != nil {
 		in, out := &in.Backend, &out.DefaultBackend
 		*out = new(v1.IngressBackend)
-		if err := Convert_v1beta1_IngressBackend_To_v1_IngressBackend(*in, *out, s); err != nil {
+		if err := Convert_v1beta1_HTTPIngressBackend_To_v1_IngressBackend(*in, *out, s); err != nil {
 			return err
 		}
 	} else {
 		out.DefaultBackend = nil
 	}
-	out.TLS = *(*[]v1.IngressTLS)(unsafe.Pointer(&in.TLS))
+	if in.TLS != nil {
+		in, out := &in.TLS, &out.TLS
+		*out = make([]v1.IngressTLS, len(*in))
+		for i := range *in {
+			if err := Convert_v1beta1_IngressTLS_To_v1_IngressTLS(&(*in)[i], &(*out)[i], s); err != nil {
+				return err
+			}
+		}
+	} else {
+		out.TLS = nil
+	}
 	out.ConfigVolumes = *(*[]v1.VolumeSource)(unsafe.Pointer(&in.ConfigVolumes))
 	if in.FrontendRules != nil {
 		in, out := &in.FrontendRules, &out.FrontendRules
@@ -186,14 +252,24 @@ func Convert_v1beta1_IngressSpec_To_v1_IngressSpec(in *IngressSpec, out *v1.Ingr
 func Convert_v1_IngressSpec_To_v1beta1_IngressSpec(in *v1.IngressSpec, out *IngressSpec, s conversion.Scope) error {
 	if in.DefaultBackend != nil {
 		in, out := &in.DefaultBackend, &out.Backend
-		*out = new(IngressBackend)
-		if err := Convert_v1_IngressBackend_To_v1beta1_IngressBackend(*in, *out, s); err != nil {
+		*out = new(HTTPIngressBackend)
+		if err := Convert_v1_IngressBackend_To_v1beta1_HTTPIngressBackend(*in, *out, s); err != nil {
 			return err
 		}
 	} else {
 		out.Backend = nil
 	}
-	out.TLS = *(*[]IngressTLS)(unsafe.Pointer(&in.TLS))
+	if in.TLS != nil {
+		in, out := &in.TLS, &out.TLS
+		*out = make([]IngressTLS, len(*in))
+		for i := range *in {
+			if err := Convert_v1_IngressTLS_To_v1beta1_IngressTLS(&(*in)[i], &(*out)[i], s); err != nil {
+				return err
+			}
+		}
+	} else {
+		out.TLS = nil
+	}
 	out.ConfigVolumes = *(*[]VolumeSource)(unsafe.Pointer(&in.ConfigVolumes))
 	if in.FrontendRules != nil {
 		in, out := &in.FrontendRules, &out.FrontendRules

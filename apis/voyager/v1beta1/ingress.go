@@ -70,7 +70,7 @@ type IngressSpec struct {
 	// rule. At least one of 'backend' or 'rules' must be specified. This field
 	// is optional to allow the loadbalancer controller or defaulting logic to
 	// specify a global default.
-	Backend *IngressBackend `json:"backend,omitempty"`
+	Backend *HTTPIngressBackend `json:"backend,omitempty"`
 
 	// TLS is the TLS configuration. Currently the Ingress only supports a single TLS
 	// port, 443, and assumes TLS termination. If multiple members of this
@@ -342,7 +342,7 @@ type HTTPIngressPath struct {
 
 	// Backend defines the referenced service endpoint to which the traffic
 	// will be forwarded to.
-	Backend IngressBackend `json:"backend,omitempty"`
+	Backend HTTPIngressBackend `json:"backend,omitempty"`
 }
 
 // IngressBackend describes all endpoints for a given service and port.
@@ -393,6 +393,22 @@ type IngressBackend struct {
 	// Define the load balancing algorithm to be used in a backend.
 	// https://cbonte.github.io/haproxy-dconv/1.9/configuration.html#balance
 	LoadBalanceOn string `json:"loadBalanceOn,omitempty"`
+}
+
+type HTTPIngressBackend struct {
+	IngressBackend `json:",inline,omitempty"`
+
+	// Path rewrite rules with haproxy formatted regex.
+	//
+	// Deprecated: Use backendRule, will be removed.
+	// +optional
+	RewriteRules []string `json:"rewriteRules,omitempty"`
+
+	// Header rules to modifies the header.
+	//
+	// Deprecated: Use backendRule, will be removed.
+	// +optional
+	HeaderRules []string `json:"headerRules,omitempty"`
 }
 
 type IngressRef struct {
