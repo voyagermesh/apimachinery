@@ -139,7 +139,17 @@ func Convert_v1beta1_IngressSpec_To_v1_IngressSpec(in *IngressSpec, out *v1.Ingr
 	} else {
 		out.DefaultBackend = nil
 	}
-	out.TLS = *(*[]v1.IngressTLS)(unsafe.Pointer(&in.TLS))
+	if in.TLS != nil {
+		in, out := &in.TLS, &out.TLS
+		*out = make([]v1.IngressTLS, len(*in))
+		for i := range *in {
+			if err := Convert_v1beta1_IngressTLS_To_v1_IngressTLS(&(*in)[i], &(*out)[i], s); err != nil {
+				return err
+			}
+		}
+	} else {
+		out.TLS = nil
+	}
 	out.ConfigVolumes = *(*[]v1.VolumeSource)(unsafe.Pointer(&in.ConfigVolumes))
 	if in.FrontendRules != nil {
 		in, out := &in.FrontendRules, &out.FrontendRules
@@ -193,7 +203,17 @@ func Convert_v1_IngressSpec_To_v1beta1_IngressSpec(in *v1.IngressSpec, out *Ingr
 	} else {
 		out.Backend = nil
 	}
-	out.TLS = *(*[]IngressTLS)(unsafe.Pointer(&in.TLS))
+	if in.TLS != nil {
+		in, out := &in.TLS, &out.TLS
+		*out = make([]IngressTLS, len(*in))
+		for i := range *in {
+			if err := Convert_v1_IngressTLS_To_v1beta1_IngressTLS(&(*in)[i], &(*out)[i], s); err != nil {
+				return err
+			}
+		}
+	} else {
+		out.TLS = nil
+	}
 	out.ConfigVolumes = *(*[]VolumeSource)(unsafe.Pointer(&in.ConfigVolumes))
 	if in.FrontendRules != nil {
 		in, out := &in.FrontendRules, &out.FrontendRules
