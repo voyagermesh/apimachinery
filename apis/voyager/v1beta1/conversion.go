@@ -17,6 +17,7 @@ limitations under the License.
 package v1beta1
 
 import (
+	"fmt"
 	"unsafe"
 
 	v1 "voyagermesh.dev/apimachinery/apis/voyager/v1"
@@ -30,29 +31,43 @@ import (
 )
 
 // ConvertTo converts this to the Hub version (v1).
-func (src *Ingress) ConvertTo(dstRaw kbconv.Hub) error {
+func (src *Ingress) ConvertTo(dstRaw kbconv.Hub) (err error) {
+	defer func() {
+		if r := recover(); r != nil {
+			err = fmt.Errorf("failed to convert %s/%s to v1.Ingress, reason: %v", src.Namespace, src.Name, r)
+		}
+	}()
+
 	dst := dstRaw.(*v1.Ingress)
-	if err := Convert_v1beta1_Ingress_To_v1_Ingress(src, dst, nil); err != nil {
+	err = Convert_v1beta1_Ingress_To_v1_Ingress(src, dst, nil)
+	if err != nil {
 		return err
 	}
 	dst.TypeMeta = metav1.TypeMeta{
 		APIVersion: v1.SchemeGroupVersion.String(),
 		Kind:       "Ingress",
 	}
-	return nil
+	return
 }
 
 // ConvertFrom converts from the Hub version (v1) to this version.
-func (dst *Ingress) ConvertFrom(srcRaw kbconv.Hub) error {
+func (dst *Ingress) ConvertFrom(srcRaw kbconv.Hub) (err error) {
 	src := srcRaw.(*v1.Ingress)
-	if err := Convert_v1_Ingress_To_v1beta1_Ingress(src, dst, nil); err != nil {
+	defer func() {
+		if r := recover(); r != nil {
+			err = fmt.Errorf("failed to convert from %s/%s to v1beta1.Ingress, reason: %v", src.Namespace, src.Name, r)
+		}
+	}()
+
+	err = Convert_v1_Ingress_To_v1beta1_Ingress(src, dst, nil)
+	if err != nil {
 		return err
 	}
 	dst.TypeMeta = metav1.TypeMeta{
 		APIVersion: SchemeGroupVersion.String(),
 		Kind:       "Ingress",
 	}
-	return nil
+	return
 }
 
 func Convert_v1beta1_IngressTLS_To_v1_IngressTLS(in *IngressTLS, out *v1.IngressTLS, s conversion.Scope) error {
