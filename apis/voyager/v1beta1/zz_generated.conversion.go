@@ -214,6 +214,11 @@ func RegisterConversions(s *runtime.Scheme) error {
 	}); err != nil {
 		return err
 	}
+	if err := s.AddConversionFunc((*v1.IngressBackend)(nil), (*HTTPIngressBackend)(nil), func(a, b interface{}, scope conversion.Scope) error {
+		return Convert_v1_IngressBackend_To_v1beta1_HTTPIngressBackend(a.(*v1.IngressBackend), b.(*HTTPIngressBackend), scope)
+	}); err != nil {
+		return err
+	}
 	if err := s.AddConversionFunc((*v1.IngressBackend)(nil), (*IngressBackend)(nil), func(a, b interface{}, scope conversion.Scope) error {
 		return Convert_v1_IngressBackend_To_v1beta1_IngressBackend(a.(*v1.IngressBackend), b.(*IngressBackend), scope)
 	}); err != nil {
@@ -221,6 +226,11 @@ func RegisterConversions(s *runtime.Scheme) error {
 	}
 	if err := s.AddConversionFunc((*v1.IngressSpec)(nil), (*IngressSpec)(nil), func(a, b interface{}, scope conversion.Scope) error {
 		return Convert_v1_IngressSpec_To_v1beta1_IngressSpec(a.(*v1.IngressSpec), b.(*IngressSpec), scope)
+	}); err != nil {
+		return err
+	}
+	if err := s.AddConversionFunc((*HTTPIngressBackend)(nil), (*v1.IngressBackend)(nil), func(a, b interface{}, scope conversion.Scope) error {
+		return Convert_v1beta1_HTTPIngressBackend_To_v1_IngressBackend(a.(*HTTPIngressBackend), b.(*v1.IngressBackend), scope)
 	}); err != nil {
 		return err
 	}
@@ -340,7 +350,7 @@ func Convert_v1_FrontendRule_To_v1beta1_FrontendRule(in *v1.FrontendRule, out *F
 
 func autoConvert_v1beta1_HTTPIngressPath_To_v1_HTTPIngressPath(in *HTTPIngressPath, out *v1.HTTPIngressPath, s conversion.Scope) error {
 	out.Path = in.Path
-	if err := Convert_v1beta1_IngressBackend_To_v1_IngressBackend(&in.Backend, &out.Backend, s); err != nil {
+	if err := Convert_v1beta1_HTTPIngressBackend_To_v1_IngressBackend(&in.Backend, &out.Backend, s); err != nil {
 		return err
 	}
 	return nil
@@ -353,7 +363,7 @@ func Convert_v1beta1_HTTPIngressPath_To_v1_HTTPIngressPath(in *HTTPIngressPath, 
 
 func autoConvert_v1_HTTPIngressPath_To_v1beta1_HTTPIngressPath(in *v1.HTTPIngressPath, out *HTTPIngressPath, s conversion.Scope) error {
 	out.Path = in.Path
-	if err := Convert_v1_IngressBackend_To_v1beta1_IngressBackend(&in.Backend, &out.Backend, s); err != nil {
+	if err := Convert_v1_IngressBackend_To_v1beta1_HTTPIngressBackend(&in.Backend, &out.Backend, s); err != nil {
 		return err
 	}
 	return nil

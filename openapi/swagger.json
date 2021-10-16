@@ -2778,6 +2778,72 @@
         }
       }
     },
+    "dev.voyagermesh.apimachinery.apis.voyager.v1beta1.HTTPIngressBackend": {
+      "type": "object",
+      "properties": {
+        "alpn": {
+          "description": "Application-Layer Protocol Negotiation (ALPN) is a Transport Layer Security (TLS) extension for application layer protocol negotiation. ALPN allows the application layer to negotiate which protocol should be performed over a secure connection in a manner which avoids additional round trips and which is independent of the application layer protocols. It is used by HTTP/2. If provided a list of alpn will be added to port as alpn option1,option2,... If SecretName is Provided this secret will be used to terminate SSL with alpn options. If Secret name is not provided backend server is responsible for handling SSL. Note that, the order of the options indicates the preference If the ALPN list contains \"h2\",  \"option http-use-htx\" will be added to enable HTX mode https://cbonte.github.io/haproxy-dconv/1.9/configuration.html#option%20http-use-htx https://cbonte.github.io/haproxy-dconv/1.9/configuration.html#alpn",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "default": ""
+          }
+        },
+        "backendRules": {
+          "description": "Serialized HAProxy rules to apply on server backend including request, response or header rewrite. acls also can be used. https://cbonte.github.io/haproxy-dconv/1.7/configuration.html#1",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "default": ""
+          }
+        },
+        "headerRules": {
+          "description": "Header rules to modifies the header.\n\nDeprecated: Use backendRule, will be removed.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "default": ""
+          }
+        },
+        "hostNames": {
+          "description": "Host names to forward traffic to. If empty traffic will be forwarded to all subsets instance. If set only matched hosts will get the traffic. This is an handy way to send traffic to Specific StatefulSet pod. IE. Setting [web-0] will send traffic to only web-0 host for this StatefulSet, https://kubernetes.io/docs/tasks/stateful-application/basic-stateful-set/#creating-a-statefulset",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "default": ""
+          }
+        },
+        "loadBalanceOn": {
+          "description": "Define the load balancing algorithm to be used in a backend. https://cbonte.github.io/haproxy-dconv/1.9/configuration.html#balance",
+          "type": "string"
+        },
+        "name": {
+          "description": "User can specify backend name for using it with custom acl Otherwise it will be generated",
+          "type": "string"
+        },
+        "proto": {
+          "description": "HTTP protocol to use If the Proto contains \"h2\",  \"option http-use-htx\" will be added to enable HTX mode https://www.haproxy.com/blog/haproxy-1-9-2-adds-grpc-support/",
+          "type": "string"
+        },
+        "rewriteRules": {
+          "description": "Path rewrite rules with haproxy formatted regex.\n\nDeprecated: Use backendRule, will be removed.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "default": ""
+          }
+        },
+        "serviceName": {
+          "description": "Specifies the name of the referenced service.",
+          "type": "string"
+        },
+        "servicePort": {
+          "description": "Specifies the port of the referenced service.",
+          "default": {},
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString"
+        }
+      }
+    },
     "dev.voyagermesh.apimachinery.apis.voyager.v1beta1.HTTPIngressPath": {
       "description": "HTTPIngressPath associates a path regex with a backend. Incoming urls matching the path are forwarded to the backend.",
       "type": "object",
@@ -2785,7 +2851,7 @@
         "backend": {
           "description": "Backend defines the referenced service endpoint to which the traffic will be forwarded to.",
           "default": {},
-          "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1beta1.IngressBackend"
+          "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1beta1.HTTPIngressBackend"
         },
         "path": {
           "description": "Path is a extended POSIX regex as defined by IEEE Std 1003.1, (i.e this follows the egrep/unix syntax, not the perl syntax) matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional \"path\" part of a URL as defined by RFC 3986. Paths must begin with a '/'. If unspecified, the path defaults to a catch all sending traffic to the backend.",
@@ -2986,7 +3052,7 @@
         },
         "backend": {
           "description": "A default backend capable of servicing requests that don't match any rule. At least one of 'backend' or 'rules' must be specified. This field is optional to allow the loadbalancer controller or defaulting logic to specify a global default.",
-          "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1beta1.IngressBackend"
+          "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1beta1.HTTPIngressBackend"
         },
         "configVolumes": {
           "description": "Config volumes are used to mount any secret or configmap into HAProxy pods.",
