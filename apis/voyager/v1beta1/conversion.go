@@ -47,6 +47,9 @@ func (src *Ingress) ConvertTo(dstRaw kbconv.Hub) (err error) {
 		APIVersion: v1.SchemeGroupVersion.String(),
 		Kind:       "Ingress",
 	}
+	if dst.Annotations != nil {
+		delete(dst.Annotations, "kubectl.kubernetes.io/last-applied-configuration")
+	}
 	return
 }
 
@@ -66,6 +69,9 @@ func (dst *Ingress) ConvertFrom(srcRaw kbconv.Hub) (err error) {
 	dst.TypeMeta = metav1.TypeMeta{
 		APIVersion: SchemeGroupVersion.String(),
 		Kind:       "Ingress",
+	}
+	if dst.Annotations != nil {
+		delete(dst.Annotations, "kubectl.kubernetes.io/last-applied-configuration")
 	}
 	return
 }
