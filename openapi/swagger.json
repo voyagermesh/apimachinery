@@ -2517,6 +2517,10 @@
           "description": "If specified, indicates the pod's priority. \"system-node-critical\" and \"system-cluster-critical\" are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.",
           "type": "string"
         },
+        "proxySecurityContext": {
+          "description": "Security options the pod should run with. More info: https://kubernetes.io/docs/concepts/policy/security-context/ More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+          "$ref": "#/definitions/io.k8s.api.core.v1.SecurityContext"
+        },
         "readinessProbe": {
           "description": "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated.",
           "$ref": "#/definitions/io.k8s.api.core.v1.Probe"
@@ -3119,6 +3123,10 @@
         "priorityClassName": {
           "description": "If specified, indicates the pod's priority. \"system-node-critical\" and \"system-cluster-critical\" are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.",
           "type": "string"
+        },
+        "proxySecurityContext": {
+          "description": "Security options the pod should run with. More info: https://kubernetes.io/docs/concepts/policy/security-context/ More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+          "$ref": "#/definitions/io.k8s.api.core.v1.SecurityContext"
         },
         "readinessProbe": {
           "description": "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated.",

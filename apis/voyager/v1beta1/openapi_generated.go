@@ -18410,6 +18410,12 @@ func schema_apimachinery_apis_voyager_v1beta1_IngressSpec(ref common.ReferenceCa
 							Ref:         ref("k8s.io/api/core/v1.PodSecurityContext"),
 						},
 					},
+					"proxySecurityContext": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Security options the pod should run with. More info: https://kubernetes.io/docs/concepts/policy/security-context/ More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+							Ref:         ref("k8s.io/api/core/v1.SecurityContext"),
+						},
+					},
 					"externalIPs": {
 						SchemaProps: spec.SchemaProps{
 							Description: "externalIPs is a list of IP addresses for which nodes in the cluster will also accept traffic for this service.  These IPs are not managed by Kubernetes.  The user is responsible for ensuring that traffic arrives at a node with this IP.  A common example is external load-balancers that are not part of the Kubernetes system.",
@@ -18455,7 +18461,7 @@ func schema_apimachinery_apis_voyager_v1beta1_IngressSpec(ref common.ReferenceCa
 			},
 		},
 		Dependencies: []string{
-			"k8s.io/api/core/v1.Affinity", "k8s.io/api/core/v1.LocalObjectReference", "k8s.io/api/core/v1.PodSecurityContext", "k8s.io/api/core/v1.Probe", "k8s.io/api/core/v1.ResourceRequirements", "k8s.io/api/core/v1.Toleration", "voyagermesh.dev/apimachinery/apis/voyager/v1beta1.CoordinatorSpec", "voyagermesh.dev/apimachinery/apis/voyager/v1beta1.FrontendRule", "voyagermesh.dev/apimachinery/apis/voyager/v1beta1.HTTPIngressBackend", "voyagermesh.dev/apimachinery/apis/voyager/v1beta1.IngressRule", "voyagermesh.dev/apimachinery/apis/voyager/v1beta1.IngressTLS", "voyagermesh.dev/apimachinery/apis/voyager/v1beta1.VolumeSource"},
+			"k8s.io/api/core/v1.Affinity", "k8s.io/api/core/v1.LocalObjectReference", "k8s.io/api/core/v1.PodSecurityContext", "k8s.io/api/core/v1.Probe", "k8s.io/api/core/v1.ResourceRequirements", "k8s.io/api/core/v1.SecurityContext", "k8s.io/api/core/v1.Toleration", "voyagermesh.dev/apimachinery/apis/voyager/v1beta1.CoordinatorSpec", "voyagermesh.dev/apimachinery/apis/voyager/v1beta1.FrontendRule", "voyagermesh.dev/apimachinery/apis/voyager/v1beta1.HTTPIngressBackend", "voyagermesh.dev/apimachinery/apis/voyager/v1beta1.IngressRule", "voyagermesh.dev/apimachinery/apis/voyager/v1beta1.IngressTLS", "voyagermesh.dev/apimachinery/apis/voyager/v1beta1.VolumeSource"},
 	}
 }
 
