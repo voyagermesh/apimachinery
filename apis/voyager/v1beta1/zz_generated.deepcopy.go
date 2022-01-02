@@ -426,6 +426,11 @@ func (in *IngressSpec) DeepCopyInto(out *IngressSpec) {
 		*out = new(v1.PodSecurityContext)
 		(*in).DeepCopyInto(*out)
 	}
+	if in.ProxySecurityContext != nil {
+		in, out := &in.ProxySecurityContext, &out.ProxySecurityContext
+		*out = new(v1.SecurityContext)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.ExternalIPs != nil {
 		in, out := &in.ExternalIPs, &out.ExternalIPs
 		*out = make([]string, len(*in))

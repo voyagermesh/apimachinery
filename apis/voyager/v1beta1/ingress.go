@@ -150,6 +150,12 @@ type IngressSpec struct {
 	// +optional
 	SecurityContext *core.PodSecurityContext `json:"securityContext,omitempty"`
 
+	// Security options the pod should run with.
+	// More info: https://kubernetes.io/docs/concepts/policy/security-context/
+	// More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+	// +optional
+	ProxySecurityContext *core.SecurityContext `json:"proxySecurityContext,omitempty"`
+
 	// externalIPs is a list of IP addresses for which nodes in the cluster
 	// will also accept traffic for this service.  These IPs are not managed by
 	// Kubernetes.  The user is responsible for ensuring that traffic arrives
