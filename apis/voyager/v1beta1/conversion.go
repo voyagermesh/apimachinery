@@ -239,6 +239,7 @@ func Convert_v1beta1_IngressSpec_To_v1_IngressSpec(in *IngressSpec, out *v1.Ingr
 	out.PriorityClassName = in.PriorityClassName
 	out.Priority = (*int32)(unsafe.Pointer(in.Priority))
 	out.SecurityContext = (*corev1.PodSecurityContext)(unsafe.Pointer(in.SecurityContext))
+	out.ProxySecurityContext = (*corev1.SecurityContext)(unsafe.Pointer(in.ProxySecurityContext))
 	out.ExternalIPs = *(*[]string)(unsafe.Pointer(&in.ExternalIPs))
 	out.LivenessProbe = (*corev1.Probe)(unsafe.Pointer(in.LivenessProbe))
 	out.ReadinessProbe = (*corev1.Probe)(unsafe.Pointer(in.ReadinessProbe))
