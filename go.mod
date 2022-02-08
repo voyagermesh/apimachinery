@@ -4,14 +4,21 @@ go 1.16
 
 require (
 	github.com/evanphx/json-patch v4.11.0+incompatible
+	github.com/fsnotify/fsnotify v1.5.1 // indirect
 	github.com/go-openapi/spec v0.19.5
 	github.com/golang/glog v0.0.0-20210429001901-424d2337a529 // indirect
 	github.com/google/go-cmp v0.5.6
 	github.com/google/gofuzz v1.2.0
+	github.com/google/uuid v1.3.0 // indirect
+	github.com/grpc-ecosystem/grpc-gateway v1.16.0 // indirect
 	github.com/json-iterator/go v1.1.11
-	github.com/mitchellh/mapstructure v1.3.2 // indirect
+	github.com/mattn/go-colorable v0.1.9 // indirect
+	github.com/mattn/go-isatty v0.0.14 // indirect
+	github.com/mitchellh/mapstructure v1.4.1 // indirect
 	github.com/pkg/errors v0.9.1
+	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/soheilhy/cmux v0.1.5 // indirect
+	github.com/spf13/afero v1.6.0 // indirect
 	github.com/stretchr/testify v1.7.0
 	golang.org/x/oauth2 v0.0.0-20210615190721-d04028783cf1 // indirect
 	gomodules.xyz/runtime v0.2.0
@@ -21,12 +28,12 @@ require (
 	k8s.io/api v0.21.2
 	k8s.io/apimachinery v0.21.2
 	k8s.io/client-go v0.21.2
-	k8s.io/klog/v2 v2.8.0
-	k8s.io/kube-openapi v0.0.0-20210305001622-591a79e4bda7
-	kmodules.xyz/client-go v0.0.0-20211023080224-88313b8deed7
+	k8s.io/klog/v2 v2.9.0
+	k8s.io/kube-openapi v0.0.0-20210421082810-95288971da7e
+	kmodules.xyz/client-go v0.0.0-20220203031013-1de48437aaf3
 	kmodules.xyz/crd-schema-fuzz v0.0.0-20210618002152-fae23aef5fb4
-	kmodules.xyz/monitoring-agent-api v0.0.0-20210928135619-38ca075a2dbd
-	kmodules.xyz/webhook-runtime v0.0.0-20210928141616-7f73c2ab318a
+	kmodules.xyz/monitoring-agent-api v0.0.0-20211207173549-028e6430395e
+	kmodules.xyz/webhook-runtime v0.0.0-20211116181908-909a755cc9d1
 	sigs.k8s.io/controller-runtime v0.9.2
 	sigs.k8s.io/yaml v1.2.0
 )
@@ -119,7 +126,7 @@ replace k8s.io/api => k8s.io/api v0.21.1
 
 replace k8s.io/apimachinery => github.com/kmodules/apimachinery v0.21.2-rc.0.0.20210617231004-332981b97d2d
 
-replace k8s.io/apiserver => github.com/kmodules/apiserver v0.21.2-0.20210716212718-83e5493ac170
+replace k8s.io/apiserver => github.com/kmodules/apiserver v0.21.2-0.20220112070009-e3f6e88991d9
 
 replace k8s.io/cli-runtime => k8s.io/cli-runtime v0.21.1
 
