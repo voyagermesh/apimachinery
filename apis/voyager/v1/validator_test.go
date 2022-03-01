@@ -787,7 +787,8 @@ var dataTables = map[*Ingress]bool{
 				Service: networking.IngressServiceBackend{
 					Name: "foo",
 					Port: networking.ServiceBackendPort{Number: 80},
-				}},
+				},
+			},
 			Rules: []IngressRule{
 				{
 					IngressRuleValue: IngressRuleValue{
@@ -799,7 +800,8 @@ var dataTables = map[*Ingress]bool{
 										Service: networking.IngressServiceBackend{
 											Name: "foo",
 											Port: networking.ServiceBackendPort{Number: 80},
-										}},
+										},
+									},
 								},
 								{
 									Path: "/test-no-dns",
@@ -807,7 +809,8 @@ var dataTables = map[*Ingress]bool{
 										Service: networking.IngressServiceBackend{
 											Name: "foo",
 											Port: networking.ServiceBackendPort{Number: 80},
-										}},
+										},
+									},
 								},
 								{
 									Path: "/test-no-backend-redirect",
@@ -815,7 +818,8 @@ var dataTables = map[*Ingress]bool{
 										Service: networking.IngressServiceBackend{
 											Name: "foo",
 											Port: networking.ServiceBackendPort{Number: 80},
-										}},
+										},
+									},
 								},
 								{
 									Path: "/test-no-backend-rule-redirect",

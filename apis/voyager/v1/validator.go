@@ -117,7 +117,7 @@ func (r Ingress) IsValid(cloudProvider string) error {
 			}
 
 			var a *address
-			var addrKey = fmt.Sprintf("%s:%d", bindAddress, podPort)
+			addrKey := fmt.Sprintf("%s:%d", bindAddress, podPort)
 
 			if ea, found := addrs[addrKey]; found {
 				if ea.Protocol == "tcp" {
@@ -210,7 +210,7 @@ func (r Ingress) IsValid(cloudProvider string) error {
 			}
 
 			var a *address
-			var addrKey = fmt.Sprintf("%s:%d", bindAddress, podPort)
+			addrKey := fmt.Sprintf("%s:%d", bindAddress, podPort)
 
 			if ea, found := addrs[addrKey]; found {
 				if ea.Protocol != "tcp" {
@@ -424,7 +424,7 @@ func checkOptionalAddress(address string) (string, error) {
 }
 
 func checkExclusiveWildcard(address string, port int, defined map[string]*address) error {
-	var wildcard = fmt.Sprintf("*:%d", port)
+	wildcard := fmt.Sprintf("*:%d", port)
 
 	if address == "*" {
 		// If a wildcard already exists for the port, we've passed validation for this port before.
