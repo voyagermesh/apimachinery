@@ -165,5 +165,4 @@ func TestIsPortChanged(t *testing.T) {
 	}
 
 	assert.True(t, old.IsPortChanged(*new, ""))
-
 }

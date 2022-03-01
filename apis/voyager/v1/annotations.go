@@ -284,9 +284,7 @@ const (
 	AgentInterval = EngressKey + "/" + "agent-interval"
 )
 
-var (
-	get = map[string]meta.GetFunc{}
-)
+var get = map[string]meta.GetFunc{}
 
 func registerParser(key string, fn meta.ParserFunc) { get[key] = meta.ParseFor(key, fn) }
 func init() {
