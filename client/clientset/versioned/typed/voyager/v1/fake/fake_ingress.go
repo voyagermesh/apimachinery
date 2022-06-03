@@ -118,7 +118,7 @@ func (c *FakeIngresses) UpdateStatus(ctx context.Context, ingress *voyagerv1.Ing
 // Delete takes name of the ingress and deletes it. Returns an error if one occurs.
 func (c *FakeIngresses) Delete(ctx context.Context, name string, opts v1.DeleteOptions) error {
 	_, err := c.Fake.
-		Invokes(testing.NewDeleteAction(ingressesResource, c.ns, name), &voyagerv1.Ingress{})
+		Invokes(testing.NewDeleteActionWithOptions(ingressesResource, c.ns, name, opts), &voyagerv1.Ingress{})
 
 	return err
 }
