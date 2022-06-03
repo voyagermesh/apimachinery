@@ -143,7 +143,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -236,7 +236,7 @@
           {
             "uniqueItems": true,
             "type": "boolean",
-            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
             "name": "allowWatchBookmarks",
             "in": "query"
           },
@@ -743,6 +743,12 @@
             "schema": {
               "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.Ingress"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.Ingress"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -817,7 +823,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -925,7 +931,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -1041,7 +1047,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -1195,7 +1201,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -1288,7 +1294,7 @@
           {
             "uniqueItems": true,
             "type": "boolean",
-            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
             "name": "allowWatchBookmarks",
             "in": "query"
           },
@@ -1795,6 +1801,12 @@
             "schema": {
               "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1beta1.Ingress"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1beta1.Ingress"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -1869,7 +1881,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -1977,7 +1989,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -2093,7 +2105,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -3391,7 +3403,7 @@
       "type": "object",
       "properties": {
         "items": {
-          "description": "If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+          "description": "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
           "type": "array",
           "items": {
             "default": {},
@@ -3403,7 +3415,7 @@
           "type": "string"
         },
         "optional": {
-          "description": "Specify whether the ConfigMap or its keys must be defined",
+          "description": "optional specify whether the ConfigMap or its keys must be defined",
           "type": "boolean"
         }
       }
@@ -3413,12 +3425,12 @@
       "type": "object",
       "properties": {
         "defaultMode": {
-          "description": "Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+          "description": "defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
           "type": "integer",
           "format": "int32"
         },
         "items": {
-          "description": "If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+          "description": "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
           "type": "array",
           "items": {
             "default": {},
@@ -3430,7 +3442,7 @@
           "type": "string"
         },
         "optional": {
-          "description": "Specify whether the ConfigMap or its keys must be defined",
+          "description": "optional specify whether the ConfigMap or its keys must be defined",
           "type": "boolean"
         }
       }
@@ -3490,6 +3502,25 @@
         }
       }
     },
+    "io.k8s.api.core.v1.GRPCAction": {
+      "type": "object",
+      "required": [
+        "port"
+      ],
+      "properties": {
+        "port": {
+          "description": "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+          "type": "integer",
+          "format": "int32",
+          "default": 0
+        },
+        "service": {
+          "description": "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).\n\nIf this is not specified, the default behavior is defined by gRPC.",
+          "type": "string",
+          "default": ""
+        }
+      }
+    },
     "io.k8s.api.core.v1.HTTPGetAction": {
       "description": "HTTPGetAction describes an action based on HTTP Get requests.",
       "type": "object",
@@ -3519,8 +3550,12 @@
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString"
         },
         "scheme": {
-          "description": "Scheme to use for connecting to the host. Defaults to HTTP.",
-          "type": "string"
+          "description": "Scheme to use for connecting to the host. Defaults to HTTP.\n\nPossible enum values:\n - `\"HTTP\"` means that the scheme used will be http://\n - `\"HTTPS\"` means that the scheme used will be https://",
+          "type": "string",
+          "enum": [
+            "HTTP",
+            "HTTPS"
+          ]
         }
       }
     },
@@ -3553,17 +3588,17 @@
       ],
       "properties": {
         "key": {
-          "description": "The key to project.",
+          "description": "key is the key to project.",
           "type": "string",
           "default": ""
         },
         "mode": {
-          "description": "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+          "description": "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
           "type": "integer",
           "format": "int32"
         },
         "path": {
-          "description": "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+          "description": "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
           "type": "string",
           "default": ""
         }
@@ -3614,7 +3649,8 @@
           "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
           "type": "string"
         }
-      }
+      },
+      "x-kubernetes-map-type": "atomic"
     },
     "io.k8s.api.core.v1.NodeAffinity": {
       "description": "Node affinity is a group of node affinity scheduling rules.",
@@ -3649,7 +3685,8 @@
             "$ref": "#/definitions/io.k8s.api.core.v1.NodeSelectorTerm"
           }
         }
-      }
+      },
+      "x-kubernetes-map-type": "atomic"
     },
     "io.k8s.api.core.v1.NodeSelectorRequirement": {
       "description": "A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
@@ -3665,9 +3702,17 @@
           "default": ""
         },
         "operator": {
-          "description": "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+          "description": "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.\n\nPossible enum values:\n - `\"DoesNotExist\"`\n - `\"Exists\"`\n - `\"Gt\"`\n - `\"In\"`\n - `\"Lt\"`\n - `\"NotIn\"`",
           "type": "string",
-          "default": ""
+          "default": "",
+          "enum": [
+            "DoesNotExist",
+            "Exists",
+            "Gt",
+            "In",
+            "Lt",
+            "NotIn"
+          ]
         },
         "values": {
           "description": "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
@@ -3699,7 +3744,8 @@
             "$ref": "#/definitions/io.k8s.api.core.v1.NodeSelectorRequirement"
           }
         }
-      }
+      },
+      "x-kubernetes-map-type": "atomic"
     },
     "io.k8s.api.core.v1.ObjectFieldSelector": {
       "description": "ObjectFieldSelector selects an APIVersioned field of an object.",
@@ -3717,7 +3763,8 @@
           "type": "string",
           "default": ""
         }
-      }
+      },
+      "x-kubernetes-map-type": "atomic"
     },
     "io.k8s.api.core.v1.PodAffinity": {
       "description": "Pod affinity is a group of inter pod affinity scheduling rules.",
@@ -3753,11 +3800,11 @@
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelector"
         },
         "namespaceSelector": {
-          "description": "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means \"this pod's namespace\". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+          "description": "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means \"this pod's namespace\". An empty selector ({}) matches all namespaces.",
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelector"
         },
         "namespaces": {
-          "description": "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means \"this pod's namespace\"",
+          "description": "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means \"this pod's namespace\".",
           "type": "array",
           "items": {
             "type": "string",
@@ -3798,16 +3845,16 @@
       "type": "object",
       "properties": {
         "fsGroup": {
-          "description": "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:\n\n1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----\n\nIf unset, the Kubelet will not modify the ownership and permissions of any volume.",
+          "description": "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:\n\n1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----\n\nIf unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
           "type": "integer",
           "format": "int64"
         },
         "fsGroupChangePolicy": {
-          "description": "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are \"OnRootMismatch\" and \"Always\". If not specified, \"Always\" is used.",
+          "description": "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are \"OnRootMismatch\" and \"Always\". If not specified, \"Always\" is used. Note that this field cannot be set when spec.os.name is windows.",
           "type": "string"
         },
         "runAsGroup": {
-          "description": "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.",
+          "description": "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
           "type": "integer",
           "format": "int64"
         },
@@ -3816,20 +3863,20 @@
           "type": "boolean"
         },
         "runAsUser": {
-          "description": "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.",
+          "description": "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
           "type": "integer",
           "format": "int64"
         },
         "seLinuxOptions": {
-          "description": "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.",
+          "description": "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
           "$ref": "#/definitions/io.k8s.api.core.v1.SELinuxOptions"
         },
         "seccompProfile": {
-          "description": "The seccomp options to use by the containers in this pod.",
+          "description": "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
           "$ref": "#/definitions/io.k8s.api.core.v1.SeccompProfile"
         },
         "supplementalGroups": {
-          "description": "A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container.",
+          "description": "A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container. Note that this field cannot be set when spec.os.name is windows.",
           "type": "array",
           "items": {
             "type": "integer",
@@ -3838,7 +3885,7 @@
           }
         },
         "sysctls": {
-          "description": "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch.",
+          "description": "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
           "type": "array",
           "items": {
             "default": {},
@@ -3846,7 +3893,7 @@
           }
         },
         "windowsOptions": {
-          "description": "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+          "description": "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
           "$ref": "#/definitions/io.k8s.api.core.v1.WindowsSecurityContextOptions"
         }
       }
@@ -3869,9 +3916,14 @@
           "default": 0
         },
         "protocol": {
-          "description": "Protocol is the protocol of the service port of which status is recorded here The supported values are: \"TCP\", \"UDP\", \"SCTP\"",
+          "description": "Protocol is the protocol of the service port of which status is recorded here The supported values are: \"TCP\", \"UDP\", \"SCTP\"\n\nPossible enum values:\n - `\"SCTP\"` is the SCTP protocol.\n - `\"TCP\"` is the TCP protocol.\n - `\"UDP\"` is the UDP protocol.",
           "type": "string",
-          "default": ""
+          "default": "",
+          "enum": [
+            "SCTP",
+            "TCP",
+            "UDP"
+          ]
         }
       }
     },
@@ -3901,13 +3953,17 @@
       "type": "object",
       "properties": {
         "exec": {
-          "description": "One and only one of the following should be specified. Exec specifies the action to take.",
+          "description": "Exec specifies the action to take.",
           "$ref": "#/definitions/io.k8s.api.core.v1.ExecAction"
         },
         "failureThreshold": {
           "description": "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
           "type": "integer",
           "format": "int32"
+        },
+        "grpc": {
+          "description": "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+          "$ref": "#/definitions/io.k8s.api.core.v1.GRPCAction"
         },
         "httpGet": {
           "description": "HTTPGet specifies the http request to perform.",
@@ -3929,11 +3985,11 @@
           "format": "int32"
         },
         "tcpSocket": {
-          "description": "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
+          "description": "TCPSocket specifies an action involving a TCP port.",
           "$ref": "#/definitions/io.k8s.api.core.v1.TCPSocketAction"
         },
         "terminationGracePeriodSeconds": {
-          "description": "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is an alpha field and requires enabling ProbeTerminationGracePeriod feature gate.",
+          "description": "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
           "type": "integer",
           "format": "int64"
         },
@@ -3949,12 +4005,12 @@
       "type": "object",
       "properties": {
         "defaultMode": {
-          "description": "Mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+          "description": "defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
           "type": "integer",
           "format": "int32"
         },
         "sources": {
-          "description": "list of volume projections",
+          "description": "sources is the list of volume projections",
           "type": "array",
           "items": {
             "default": {},
@@ -3984,7 +4040,8 @@
           "type": "string",
           "default": ""
         }
-      }
+      },
+      "x-kubernetes-map-type": "atomic"
     },
     "io.k8s.api.core.v1.ResourceRequirements": {
       "description": "ResourceRequirements describes the compute resource requirements.",
@@ -4042,9 +4099,14 @@
           "type": "string"
         },
         "type": {
-          "description": "type indicates which kind of seccomp profile will be applied. Valid options are:\n\nLocalhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+          "description": "type indicates which kind of seccomp profile will be applied. Valid options are:\n\nLocalhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.\n\nPossible enum values:\n - `\"Localhost\"` indicates a profile defined in a file on the node should be used. The file's location relative to \u003ckubelet-root-dir\u003e/seccomp.\n - `\"RuntimeDefault\"` represents the default container runtime seccomp profile.\n - `\"Unconfined\"` indicates no seccomp profile is applied (A.K.A. unconfined).",
           "type": "string",
-          "default": ""
+          "default": "",
+          "enum": [
+            "Localhost",
+            "RuntimeDefault",
+            "Unconfined"
+          ]
         }
       },
       "x-kubernetes-unions": [
@@ -4061,7 +4123,7 @@
       "type": "object",
       "properties": {
         "items": {
-          "description": "If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+          "description": "items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
           "type": "array",
           "items": {
             "default": {},
@@ -4073,7 +4135,7 @@
           "type": "string"
         },
         "optional": {
-          "description": "Specify whether the Secret or its key must be defined",
+          "description": "optional field specify whether the Secret or its key must be defined",
           "type": "boolean"
         }
       }
@@ -4083,12 +4145,12 @@
       "type": "object",
       "properties": {
         "defaultMode": {
-          "description": "Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+          "description": "defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
           "type": "integer",
           "format": "int32"
         },
         "items": {
-          "description": "If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+          "description": "items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
           "type": "array",
           "items": {
             "default": {},
@@ -4096,11 +4158,11 @@
           }
         },
         "optional": {
-          "description": "Specify whether the Secret or its keys must be defined",
+          "description": "optional field specify whether the Secret or its keys must be defined",
           "type": "boolean"
         },
         "secretName": {
-          "description": "Name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+          "description": "secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
           "type": "string"
         }
       }
@@ -4110,27 +4172,27 @@
       "type": "object",
       "properties": {
         "allowPrivilegeEscalation": {
-          "description": "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN",
+          "description": "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.",
           "type": "boolean"
         },
         "capabilities": {
-          "description": "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime.",
+          "description": "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
           "$ref": "#/definitions/io.k8s.api.core.v1.Capabilities"
         },
         "privileged": {
-          "description": "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false.",
+          "description": "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
           "type": "boolean"
         },
         "procMount": {
-          "description": "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled.",
+          "description": "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
           "type": "string"
         },
         "readOnlyRootFilesystem": {
-          "description": "Whether this container has a read-only root filesystem. Default is false.",
+          "description": "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
           "type": "boolean"
         },
         "runAsGroup": {
-          "description": "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+          "description": "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
           "type": "integer",
           "format": "int64"
         },
@@ -4139,20 +4201,20 @@
           "type": "boolean"
         },
         "runAsUser": {
-          "description": "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+          "description": "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
           "type": "integer",
           "format": "int64"
         },
         "seLinuxOptions": {
-          "description": "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+          "description": "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
           "$ref": "#/definitions/io.k8s.api.core.v1.SELinuxOptions"
         },
         "seccompProfile": {
-          "description": "The seccomp options to use by this container. If seccomp options are provided at both the pod \u0026 container level, the container options override the pod options.",
+          "description": "The seccomp options to use by this container. If seccomp options are provided at both the pod \u0026 container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
           "$ref": "#/definitions/io.k8s.api.core.v1.SeccompProfile"
         },
         "windowsOptions": {
-          "description": "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+          "description": "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
           "$ref": "#/definitions/io.k8s.api.core.v1.WindowsSecurityContextOptions"
         }
       }
@@ -4165,16 +4227,16 @@
       ],
       "properties": {
         "audience": {
-          "description": "Audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.",
+          "description": "audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.",
           "type": "string"
         },
         "expirationSeconds": {
-          "description": "ExpirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.",
+          "description": "expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.",
           "type": "integer",
           "format": "int64"
         },
         "path": {
-          "description": "Path is the path relative to the mount point of the file to project the token into.",
+          "description": "path is the path relative to the mount point of the file to project the token into.",
           "type": "string",
           "default": ""
         }
@@ -4223,16 +4285,25 @@
       "type": "object",
       "properties": {
         "effect": {
-          "description": "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-          "type": "string"
+          "description": "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.\n\nPossible enum values:\n - `\"NoExecute\"` Evict any already-running pods that do not tolerate the taint. Currently enforced by NodeController.\n - `\"NoSchedule\"` Do not allow new pods to schedule onto the node unless they tolerate the taint, but allow all pods submitted to Kubelet without going through the scheduler to start, and allow all already-running pods to continue running. Enforced by the scheduler.\n - `\"PreferNoSchedule\"` Like TaintEffectNoSchedule, but the scheduler tries not to schedule new pods onto the node, rather than prohibiting new pods from scheduling onto the node entirely. Enforced by the scheduler.",
+          "type": "string",
+          "enum": [
+            "NoExecute",
+            "NoSchedule",
+            "PreferNoSchedule"
+          ]
         },
         "key": {
           "description": "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
           "type": "string"
         },
         "operator": {
-          "description": "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-          "type": "string"
+          "description": "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.\n\nPossible enum values:\n - `\"Equal\"`\n - `\"Exists\"`",
+          "type": "string",
+          "enum": [
+            "Equal",
+            "Exists"
+          ]
         },
         "tolerationSeconds": {
           "description": "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
@@ -4250,19 +4321,19 @@
       "type": "object",
       "properties": {
         "configMap": {
-          "description": "information about the configMap data to project",
+          "description": "configMap information about the configMap data to project",
           "$ref": "#/definitions/io.k8s.api.core.v1.ConfigMapProjection"
         },
         "downwardAPI": {
-          "description": "information about the downwardAPI data to project",
+          "description": "downwardAPI information about the downwardAPI data to project",
           "$ref": "#/definitions/io.k8s.api.core.v1.DownwardAPIProjection"
         },
         "secret": {
-          "description": "information about the secret data to project",
+          "description": "secret information about the secret data to project",
           "$ref": "#/definitions/io.k8s.api.core.v1.SecretProjection"
         },
         "serviceAccountToken": {
-          "description": "information about the serviceAccountToken data to project",
+          "description": "serviceAccountToken is information about the serviceAccountToken data to project",
           "$ref": "#/definitions/io.k8s.api.core.v1.ServiceAccountTokenProjection"
         }
       }
@@ -4299,6 +4370,10 @@
         "gmsaCredentialSpecName": {
           "description": "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
           "type": "string"
+        },
+        "hostProcess": {
+          "description": "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+          "type": "boolean"
         },
         "runAsUserName": {
           "description": "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
@@ -4685,7 +4760,7 @@
           "type": "string"
         },
         "selfLink": {
-          "description": "selfLink is a URL representing this object. Populated by the system. Read-only.\n\nDEPRECATED Kubernetes will stop propagating this field in 1.20 release and the field is planned to be removed in 1.21 release.",
+          "description": "Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.",
           "type": "string"
         }
       }
@@ -4714,8 +4789,12 @@
           "description": "Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are 'Apply' and 'Update'.",
           "type": "string"
         },
+        "subresource": {
+          "description": "Subresource is the name of the subresource used to update that object, or empty string if the object was updated through the main resource. The value of this field is used to distinguish between managers, even if they share the same name. For example, a status update will be distinct from a regular update using the same manager name. Note that the APIVersion field is not related to the Subresource field and it always corresponds to the version of the main resource.",
+          "type": "string"
+        },
         "time": {
-          "description": "Time is timestamp of when these fields were set. It should always be empty if Operation is 'Apply'",
+          "description": "Time is the timestamp of when the ManagedFields entry was added. The timestamp will also be updated if a field is added, the manager changes any of the owned fields value or removes a field. The timestamp does not update when a field is removed from the entry because another manager took it over.",
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
         }
       }
@@ -4733,7 +4812,7 @@
           }
         },
         "clusterName": {
-          "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
+          "description": "Deprecated: ClusterName is a legacy field that was always cleared by the system and never used; it will be removed completely in 1.25.\n\nThe name in the go struct is changed to help clients detect accidental use.",
           "type": "string"
         },
         "creationTimestamp": {
@@ -4760,7 +4839,7 @@
           "x-kubernetes-patch-strategy": "merge"
         },
         "generateName": {
-          "description": "GenerateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server.\n\nIf this field is specified and the generated name exists, the server will NOT return a 409 - instead, it will either return 201 Created or 500 with Reason ServerTimeout indicating a unique name could not be found in the time allotted, and the client should retry (optionally after the time indicated in the Retry-After header).\n\nApplied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency",
+          "description": "GenerateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server.\n\nIf this field is specified and the generated name exists, the server will return a 409.\n\nApplied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency",
           "type": "string"
         },
         "generation": {
@@ -4807,7 +4886,7 @@
           "type": "string"
         },
         "selfLink": {
-          "description": "SelfLink is a URL representing this object. Populated by the system. Read-only.\n\nDEPRECATED Kubernetes will stop propagating this field in 1.20 release and the field is planned to be removed in 1.21 release.",
+          "description": "Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.",
           "type": "string"
         },
         "uid": {
@@ -4832,7 +4911,7 @@
           "default": ""
         },
         "blockOwnerDeletion": {
-          "description": "If true, AND if the owner has the \"foregroundDeletion\" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. Defaults to false. To set this field, a user needs \"delete\" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.",
+          "description": "If true, AND if the owner has the \"foregroundDeletion\" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion for how the garbage collector interacts with this field and enforces the foreground deletion. Defaults to false. To set this field, a user needs \"delete\" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.",
           "type": "boolean"
         },
         "controller": {
@@ -4854,7 +4933,8 @@
           "type": "string",
           "default": ""
         }
-      }
+      },
+      "x-kubernetes-map-type": "atomic"
     },
     "io.k8s.apimachinery.pkg.apis.meta.v1.Patch": {
       "description": "Patch is provided to give a concrete name and type to the Kubernetes PATCH request body.",

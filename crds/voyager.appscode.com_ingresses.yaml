@@ -338,9 +338,7 @@ spec:
                                     field and the ones listed in the namespaces field.
                                     null selector and null or empty namespaces list
                                     means "this pod's namespace". An empty selector
-                                    ({}) matches all namespaces. This field is alpha-level
-                                    and is only honored when PodAffinityNamespaceSelector
-                                    feature is enabled.
+                                    ({}) matches all namespaces.
                                   properties:
                                     matchExpressions:
                                       description: matchExpressions is a list of label
@@ -395,7 +393,7 @@ spec:
                                     term is applied to the union of the namespaces
                                     listed in this field and the ones selected by
                                     namespaceSelector. null or empty namespaces list
-                                    and null namespaceSelector means "this pod's namespace"
+                                    and null namespaceSelector means "this pod's namespace".
                                   items:
                                     type: string
                                   type: array
@@ -494,8 +492,6 @@ spec:
                                 the ones listed in the namespaces field. null selector
                                 and null or empty namespaces list means "this pod's
                                 namespace". An empty selector ({}) matches all namespaces.
-                                This field is alpha-level and is only honored when
-                                PodAffinityNamespaceSelector feature is enabled.
                               properties:
                                 matchExpressions:
                                   description: matchExpressions is a list of label
@@ -546,7 +542,7 @@ spec:
                                 to the union of the namespaces listed in this field
                                 and the ones selected by namespaceSelector. null or
                                 empty namespaces list and null namespaceSelector means
-                                "this pod's namespace"
+                                "this pod's namespace".
                               items:
                                 type: string
                               type: array
@@ -647,9 +643,7 @@ spec:
                                     field and the ones listed in the namespaces field.
                                     null selector and null or empty namespaces list
                                     means "this pod's namespace". An empty selector
-                                    ({}) matches all namespaces. This field is alpha-level
-                                    and is only honored when PodAffinityNamespaceSelector
-                                    feature is enabled.
+                                    ({}) matches all namespaces.
                                   properties:
                                     matchExpressions:
                                       description: matchExpressions is a list of label
@@ -704,7 +698,7 @@ spec:
                                     term is applied to the union of the namespaces
                                     listed in this field and the ones selected by
                                     namespaceSelector. null or empty namespaces list
-                                    and null namespaceSelector means "this pod's namespace"
+                                    and null namespaceSelector means "this pod's namespace".
                                   items:
                                     type: string
                                   type: array
@@ -803,8 +797,6 @@ spec:
                                 the ones listed in the namespaces field. null selector
                                 and null or empty namespaces list means "this pod's
                                 namespace". An empty selector ({}) matches all namespaces.
-                                This field is alpha-level and is only honored when
-                                PodAffinityNamespaceSelector feature is enabled.
                               properties:
                                 matchExpressions:
                                   description: matchExpressions is a list of label
@@ -855,7 +847,7 @@ spec:
                                 to the union of the namespaces listed in this field
                                 and the ones selected by namespaceSelector. null or
                                 empty namespaces list and null namespaceSelector means
-                                "this pod's namespace"
+                                "this pod's namespace".
                               items:
                                 type: string
                               type: array
@@ -886,20 +878,20 @@ spec:
                         this volume
                       properties:
                         defaultMode:
-                          description: 'Optional: mode bits used to set permissions
-                            on created files by default. Must be an octal value between
-                            0000 and 0777 or a decimal value between 0 and 511. YAML
-                            accepts both octal and decimal values, JSON requires decimal
-                            values for mode bits. Defaults to 0644. Directories within
-                            the path are not affected by this setting. This might
-                            be in conflict with other options that affect the file
-                            mode, like fsGroup, and the result can be other mode bits
-                            set.'
+                          description: 'defaultMode is optional: mode bits used to
+                            set permissions on created files by default. Must be an
+                            octal value between 0000 and 0777 or a decimal value between
+                            0 and 511. YAML accepts both octal and decimal values,
+                            JSON requires decimal values for mode bits. Defaults to
+                            0644. Directories within the path are not affected by
+                            this setting. This might be in conflict with other options
+                            that affect the file mode, like fsGroup, and the result
+                            can be other mode bits set.'
                           format: int32
                           type: integer
                         items:
-                          description: If unspecified, each key-value pair in the
-                            Data field of the referenced ConfigMap will be projected
+                          description: items if unspecified, each key-value pair in
+                            the Data field of the referenced ConfigMap will be projected
                             into the volume as a file whose name is the key and content
                             is the value. If specified, the listed keys will be projected
                             into the specified paths, and unlisted keys will not be
@@ -911,25 +903,25 @@ spec:
                             description: Maps a string key to a path within a volume.
                             properties:
                               key:
-                                description: The key to project.
+                                description: key is the key to project.
                                 type: string
                               mode:
-                                description: 'Optional: mode bits used to set permissions
-                                  on this file. Must be an octal value between 0000
-                                  and 0777 or a decimal value between 0 and 511. YAML
-                                  accepts both octal and decimal values, JSON requires
-                                  decimal values for mode bits. If not specified,
-                                  the volume defaultMode will be used. This might
-                                  be in conflict with other options that affect the
-                                  file mode, like fsGroup, and the result can be other
-                                  mode bits set.'
+                                description: 'mode is Optional: mode bits used to
+                                  set permissions on this file. Must be an octal value
+                                  between 0000 and 0777 or a decimal value between
+                                  0 and 511. YAML accepts both octal and decimal values,
+                                  JSON requires decimal values for mode bits. If not
+                                  specified, the volume defaultMode will be used.
+                                  This might be in conflict with other options that
+                                  affect the file mode, like fsGroup, and the result
+                                  can be other mode bits set.'
                                 format: int32
                                 type: integer
                               path:
-                                description: The relative path of the file to map
-                                  the key to. May not be an absolute path. May not
-                                  contain the path element '..'. May not start with
-                                  the string '..'.
+                                description: path is the relative path of the file
+                                  to map the key to. May not be an absolute path.
+                                  May not contain the path element '..'. May not start
+                                  with the string '..'.
                                 type: string
                             required:
                             - key
@@ -941,8 +933,8 @@ spec:
                             TODO: Add other useful fields. apiVersion, kind, uid?'
                           type: string
                         optional:
-                          description: Specify whether the ConfigMap or its keys must
-                            be defined
+                          description: optional specify whether the ConfigMap or its
+                            keys must be defined
                           type: boolean
                       type: object
                     mountPath:
@@ -956,29 +948,29 @@ spec:
                         and downward API
                       properties:
                         defaultMode:
-                          description: Mode bits used to set permissions on created
-                            files by default. Must be an octal value between 0000
-                            and 0777 or a decimal value between 0 and 511. YAML accepts
-                            both octal and decimal values, JSON requires decimal values
-                            for mode bits. Directories within the path are not affected
-                            by this setting. This might be in conflict with other
-                            options that affect the file mode, like fsGroup, and the
-                            result can be other mode bits set.
+                          description: defaultMode are the mode bits used to set permissions
+                            on created files by default. Must be an octal value between
+                            0000 and 0777 or a decimal value between 0 and 511. YAML
+                            accepts both octal and decimal values, JSON requires decimal
+                            values for mode bits. Directories within the path are
+                            not affected by this setting. This might be in conflict
+                            with other options that affect the file mode, like fsGroup,
+                            and the result can be other mode bits set.
                           format: int32
                           type: integer
                         sources:
-                          description: list of volume projections
+                          description: sources is the list of volume projections
                           items:
                             description: Projection that may be projected along with
                               other supported volume types
                             properties:
                               configMap:
-                                description: information about the configMap data
-                                  to project
+                                description: configMap information about the configMap
+                                  data to project
                                 properties:
                                   items:
-                                    description: If unspecified, each key-value pair
-                                      in the Data field of the referenced ConfigMap
+                                    description: items if unspecified, each key-value
+                                      pair in the Data field of the referenced ConfigMap
                                       will be projected into the volume as a file
                                       whose name is the key and content is the value.
                                       If specified, the listed keys will be projected
@@ -993,27 +985,28 @@ spec:
                                         a volume.
                                       properties:
                                         key:
-                                          description: The key to project.
+                                          description: key is the key to project.
                                           type: string
                                         mode:
-                                          description: 'Optional: mode bits used to
-                                            set permissions on this file. Must be
-                                            an octal value between 0000 and 0777 or
-                                            a decimal value between 0 and 511. YAML
-                                            accepts both octal and decimal values,
-                                            JSON requires decimal values for mode
-                                            bits. If not specified, the volume defaultMode
-                                            will be used. This might be in conflict
-                                            with other options that affect the file
-                                            mode, like fsGroup, and the result can
-                                            be other mode bits set.'
+                                          description: 'mode is Optional: mode bits
+                                            used to set permissions on this file.
+                                            Must be an octal value between 0000 and
+                                            0777 or a decimal value between 0 and
+                                            511. YAML accepts both octal and decimal
+                                            values, JSON requires decimal values for
+                                            mode bits. If not specified, the volume
+                                            defaultMode will be used. This might be
+                                            in conflict with other options that affect
+                                            the file mode, like fsGroup, and the result
+                                            can be other mode bits set.'
                                           format: int32
                                           type: integer
                                         path:
-                                          description: The relative path of the file
-                                            to map the key to. May not be an absolute
-                                            path. May not contain the path element
-                                            '..'. May not start with the string '..'.
+                                          description: path is the relative path of
+                                            the file to map the key to. May not be
+                                            an absolute path. May not contain the
+                                            path element '..'. May not start with
+                                            the string '..'.
                                           type: string
                                       required:
                                       - key
@@ -1027,13 +1020,13 @@ spec:
                                       uid?'
                                     type: string
                                   optional:
-                                    description: Specify whether the ConfigMap or
-                                      its keys must be defined
+                                    description: optional specify whether the ConfigMap
+                                      or its keys must be defined
                                     type: boolean
                                 type: object
                               downwardAPI:
-                                description: information about the downwardAPI data
-                                  to project
+                                description: downwardAPI information about the downwardAPI
+                                  data to project
                                 properties:
                                   items:
                                     description: Items is a list of DownwardAPIVolume
@@ -1114,15 +1107,15 @@ spec:
                                     type: array
                                 type: object
                               secret:
-                                description: information about the secret data to
-                                  project
+                                description: secret information about the secret data
+                                  to project
                                 properties:
                                   items:
-                                    description: If unspecified, each key-value pair
-                                      in the Data field of the referenced Secret will
-                                      be projected into the volume as a file whose
-                                      name is the key and content is the value. If
-                                      specified, the listed keys will be projected
+                                    description: items if unspecified, each key-value
+                                      pair in the Data field of the referenced Secret
+                                      will be projected into the volume as a file
+                                      whose name is the key and content is the value.
+                                      If specified, the listed keys will be projected
                                       into the specified paths, and unlisted keys
                                       will not be present. If a key is specified which
                                       is not present in the Secret, the volume setup
@@ -1134,27 +1127,28 @@ spec:
                                         a volume.
                                       properties:
                                         key:
-                                          description: The key to project.
+                                          description: key is the key to project.
                                           type: string
                                         mode:
-                                          description: 'Optional: mode bits used to
-                                            set permissions on this file. Must be
-                                            an octal value between 0000 and 0777 or
-                                            a decimal value between 0 and 511. YAML
-                                            accepts both octal and decimal values,
-                                            JSON requires decimal values for mode
-                                            bits. If not specified, the volume defaultMode
-                                            will be used. This might be in conflict
-                                            with other options that affect the file
-                                            mode, like fsGroup, and the result can
-                                            be other mode bits set.'
+                                          description: 'mode is Optional: mode bits
+                                            used to set permissions on this file.
+                                            Must be an octal value between 0000 and
+                                            0777 or a decimal value between 0 and
+                                            511. YAML accepts both octal and decimal
+                                            values, JSON requires decimal values for
+                                            mode bits. If not specified, the volume
+                                            defaultMode will be used. This might be
+                                            in conflict with other options that affect
+                                            the file mode, like fsGroup, and the result
+                                            can be other mode bits set.'
                                           format: int32
                                           type: integer
                                         path:
-                                          description: The relative path of the file
-                                            to map the key to. May not be an absolute
-                                            path. May not contain the path element
-                                            '..'. May not start with the string '..'.
+                                          description: path is the relative path of
+                                            the file to map the key to. May not be
+                                            an absolute path. May not contain the
+                                            path element '..'. May not start with
+                                            the string '..'.
                                           type: string
                                       required:
                                       - key
@@ -1168,16 +1162,16 @@ spec:
                                       uid?'
                                     type: string
                                   optional:
-                                    description: Specify whether the Secret or its
-                                      key must be defined
+                                    description: optional field specify whether the
+                                      Secret or its key must be defined
                                     type: boolean
                                 type: object
                               serviceAccountToken:
-                                description: information about the serviceAccountToken
-                                  data to project
+                                description: serviceAccountToken is information about
+                                  the serviceAccountToken data to project
                                 properties:
                                   audience:
-                                    description: Audience is the intended audience
+                                    description: audience is the intended audience
                                       of the token. A recipient of a token must identify
                                       itself with an identifier specified in the audience
                                       of the token, and otherwise should reject the
@@ -1185,7 +1179,7 @@ spec:
                                       of the apiserver.
                                     type: string
                                   expirationSeconds:
-                                    description: ExpirationSeconds is the requested
+                                    description: expirationSeconds is the requested
                                       duration of validity of the service account
                                       token. As the token approaches expiration, the
                                       kubelet volume plugin will proactively rotate
@@ -1197,7 +1191,7 @@ spec:
                                     format: int64
                                     type: integer
                                   path:
-                                    description: Path is the path relative to the
+                                    description: path is the path relative to the
                                       mount point of the file to project the token
                                       into.
                                     type: string
@@ -1212,20 +1206,20 @@ spec:
                         this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret'
                       properties:
                         defaultMode:
-                          description: 'Optional: mode bits used to set permissions
-                            on created files by default. Must be an octal value between
-                            0000 and 0777 or a decimal value between 0 and 511. YAML
-                            accepts both octal and decimal values, JSON requires decimal
-                            values for mode bits. Defaults to 0644. Directories within
-                            the path are not affected by this setting. This might
-                            be in conflict with other options that affect the file
-                            mode, like fsGroup, and the result can be other mode bits
-                            set.'
+                          description: 'defaultMode is Optional: mode bits used to
+                            set permissions on created files by default. Must be an
+                            octal value between 0000 and 0777 or a decimal value between
+                            0 and 511. YAML accepts both octal and decimal values,
+                            JSON requires decimal values for mode bits. Defaults to
+                            0644. Directories within the path are not affected by
+                            this setting. This might be in conflict with other options
+                            that affect the file mode, like fsGroup, and the result
+                            can be other mode bits set.'
                           format: int32
                           type: integer
                         items:
-                          description: If unspecified, each key-value pair in the
-                            Data field of the referenced Secret will be projected
+                          description: items If unspecified, each key-value pair in
+                            the Data field of the referenced Secret will be projected
                             into the volume as a file whose name is the key and content
                             is the value. If specified, the listed keys will be projected
                             into the specified paths, and unlisted keys will not be
@@ -1237,25 +1231,25 @@ spec:
                             description: Maps a string key to a path within a volume.
                             properties:
                               key:
-                                description: The key to project.
+                                description: key is the key to project.
                                 type: string
                               mode:
-                                description: 'Optional: mode bits used to set permissions
-                                  on this file. Must be an octal value between 0000
-                                  and 0777 or a decimal value between 0 and 511. YAML
-                                  accepts both octal and decimal values, JSON requires
-                                  decimal values for mode bits. If not specified,
-                                  the volume defaultMode will be used. This might
-                                  be in conflict with other options that affect the
-                                  file mode, like fsGroup, and the result can be other
-                                  mode bits set.'
+                                description: 'mode is Optional: mode bits used to
+                                  set permissions on this file. Must be an octal value
+                                  between 0000 and 0777 or a decimal value between
+                                  0 and 511. YAML accepts both octal and decimal values,
+                                  JSON requires decimal values for mode bits. If not
+                                  specified, the volume defaultMode will be used.
+                                  This might be in conflict with other options that
+                                  affect the file mode, like fsGroup, and the result
+                                  can be other mode bits set.'
                                 format: int32
                                 type: integer
                               path:
-                                description: The relative path of the file to map
-                                  the key to. May not be an absolute path. May not
-                                  contain the path element '..'. May not start with
-                                  the string '..'.
+                                description: path is the relative path of the file
+                                  to map the key to. May not be an absolute path.
+                                  May not contain the path element '..'. May not start
+                                  with the string '..'.
                                 type: string
                             required:
                             - key
@@ -1263,12 +1257,12 @@ spec:
                             type: object
                           type: array
                         optional:
-                          description: Specify whether the Secret or its keys must
-                            be defined
+                          description: optional field specify whether the Secret or
+                            its keys must be defined
                           type: boolean
                         secretName:
-                          description: 'Name of the secret in the pod''s namespace
-                            to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret'
+                          description: 'secretName is the name of the secret in the
+                            pod''s namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret'
                           type: string
                       type: object
                   required:
@@ -1316,12 +1310,14 @@ spec:
                           This bool directly controls if the no_new_privs flag will
                           be set on the container process. AllowPrivilegeEscalation
                           is true always when the container is: 1) run as Privileged
-                          2) has CAP_SYS_ADMIN'
+                          2) has CAP_SYS_ADMIN Note that this field cannot be set
+                          when spec.os.name is windows.'
                         type: boolean
                       capabilities:
                         description: The capabilities to add/drop when running containers.
                           Defaults to the default set of capabilities granted by the
-                          container runtime.
+                          container runtime. Note that this field cannot be set when
+                          spec.os.name is windows.
                         properties:
                           add:
                             description: Added capabilities
@@ -1341,25 +1337,29 @@ spec:
                       privileged:
                         description: Run container in privileged mode. Processes in
                           privileged containers are essentially equivalent to root
-                          on the host. Defaults to false.
+                          on the host. Defaults to false. Note that this field cannot
+                          be set when spec.os.name is windows.
                         type: boolean
                       procMount:
                         description: procMount denotes the type of proc mount to use
                           for the containers. The default is DefaultProcMount which
                           uses the container runtime defaults for readonly paths and
                           masked paths. This requires the ProcMountType feature flag
-                          to be enabled.
+                          to be enabled. Note that this field cannot be set when spec.os.name
+                          is windows.
                         type: string
                       readOnlyRootFilesystem:
                         description: Whether this container has a read-only root filesystem.
-                          Default is false.
+                          Default is false. Note that this field cannot be set when
+                          spec.os.name is windows.
                         type: boolean
                       runAsGroup:
                         description: The GID to run the entrypoint of the container
                           process. Uses runtime default if unset. May also be set
                           in PodSecurityContext.  If set in both SecurityContext and
                           PodSecurityContext, the value specified in SecurityContext
-                          takes precedence.
+                          takes precedence. Note that this field cannot be set when
+                          spec.os.name is windows.
                         format: int64
                         type: integer
                       runAsNonRoot:
@@ -1376,7 +1376,8 @@ spec:
                           process. Defaults to user specified in image metadata if
                           unspecified. May also be set in PodSecurityContext.  If
                           set in both SecurityContext and PodSecurityContext, the
-                          value specified in SecurityContext takes precedence.
+                          value specified in SecurityContext takes precedence. Note
+                          that this field cannot be set when spec.os.name is windows.
                         format: int64
                         type: integer
                       seLinuxOptions:
@@ -1385,7 +1386,8 @@ spec:
                           SELinux context for each container.  May also be set in
                           PodSecurityContext.  If set in both SecurityContext and
                           PodSecurityContext, the value specified in SecurityContext
-                          takes precedence.
+                          takes precedence. Note that this field cannot be set when
+                          spec.os.name is windows.
                         properties:
                           level:
                             description: Level is SELinux level label that applies
@@ -1407,7 +1409,8 @@ spec:
                       seccompProfile:
                         description: The seccomp options to use by this container.
                           If seccomp options are provided at both the pod & container
-                          level, the container options override the pod options.
+                          level, the container options override the pod options. Note
+                          that this field cannot be set when spec.os.name is windows.
                         properties:
                           localhostProfile:
                             description: localhostProfile indicates a profile defined
@@ -1431,6 +1434,8 @@ spec:
                           containers. If unspecified, the options from the PodSecurityContext
                           will be used. If set in both SecurityContext and PodSecurityContext,
                           the value specified in SecurityContext takes precedence.
+                          Note that this field cannot be set when spec.os.name is
+                          linux.
                         properties:
                           gmsaCredentialSpec:
                             description: GMSACredentialSpec is where the GMSA admission
@@ -1442,6 +1447,18 @@ spec:
                             description: GMSACredentialSpecName is the name of the
                               GMSA credential spec to use.
                             type: string
+                          hostProcess:
+                            description: HostProcess determines if a container should
+                              be run as a 'Host Process' container. This field is
+                              alpha-level and will only be honored by components that
+                              enable the WindowsHostProcessContainers feature flag.
+                              Setting this field without the feature flag will result
+                              in errors when validating the Pod. All of a Pod's containers
+                              must have the same effective HostProcess value (it is
+                              not allowed to have a mix of HostProcess containers
+                              and non-HostProcess containers).  In addition, if HostProcess
+                              is true then HostNetwork must also be set to true.
+                            type: boolean
                           runAsUserName:
                             description: The UserName in Windows to run the entrypoint
                               of the container process. Defaults to the user specified
@@ -1626,8 +1643,7 @@ spec:
                   be restarted if the probe fails. Cannot be updated.
                 properties:
                   exec:
-                    description: One and only one of the following should be specified.
-                      Exec specifies the action to take.
+                    description: Exec specifies the action to take.
                     properties:
                       command:
                         description: Command is the command line to execute inside
@@ -1647,6 +1663,25 @@ spec:
                       value is 1.
                     format: int32
                     type: integer
+                  grpc:
+                    description: GRPC specifies an action involving a GRPC port. This
+                      is a beta field and requires enabling GRPCContainerProbe feature
+                      gate.
+                    properties:
+                      port:
+                        description: Port number of the gRPC service. Number must
+                          be in the range 1 to 65535.
+                        format: int32
+                        type: integer
+                      service:
+                        description: "Service is the name of the service to place
+                          in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).
+                          \n If this is not specified, the default behavior is defined
+                          by gRPC."
+                        type: string
+                    required:
+                    - port
+                    type: object
                   httpGet:
                     description: HTTPGet specifies the http request to perform.
                     properties:
@@ -1707,9 +1742,7 @@ spec:
                     format: int32
                     type: integer
                   tcpSocket:
-                    description: 'TCPSocket specifies an action involving a TCP port.
-                      TCP hooks not yet supported TODO: implement a realistic TCP
-                      lifecycle hook'
+                    description: TCPSocket specifies an action involving a TCP port.
                     properties:
                       host:
                         description: 'Optional: Host name to connect to, defaults
@@ -1736,9 +1769,10 @@ spec:
                       terminationGracePeriodSeconds will be used. Otherwise, this
                       value overrides the value provided by the pod spec. Value must
                       be non-negative integer. The value zero indicates stop immediately
-                      via the kill signal (no opportunity to shut down). This is an
-                      alpha field and requires enabling ProbeTerminationGracePeriod
-                      feature gate.
+                      via the kill signal (no opportunity to shut down). This is a
+                      beta field and requires enabling ProbeTerminationGracePeriod
+                      feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds
+                      is used if unset.
                     format: int64
                     type: integer
                   timeoutSeconds:
@@ -1788,12 +1822,14 @@ spec:
                       can gain more privileges than its parent process. This bool
                       directly controls if the no_new_privs flag will be set on the
                       container process. AllowPrivilegeEscalation is true always when
-                      the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN'
+                      the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN
+                      Note that this field cannot be set when spec.os.name is windows.'
                     type: boolean
                   capabilities:
                     description: The capabilities to add/drop when running containers.
                       Defaults to the default set of capabilities granted by the container
-                      runtime.
+                      runtime. Note that this field cannot be set when spec.os.name
+                      is windows.
                     properties:
                       add:
                         description: Added capabilities
@@ -1811,23 +1847,27 @@ spec:
                   privileged:
                     description: Run container in privileged mode. Processes in privileged
                       containers are essentially equivalent to root on the host. Defaults
-                      to false.
+                      to false. Note that this field cannot be set when spec.os.name
+                      is windows.
                     type: boolean
                   procMount:
                     description: procMount denotes the type of proc mount to use for
                       the containers. The default is DefaultProcMount which uses the
                       container runtime defaults for readonly paths and masked paths.
                       This requires the ProcMountType feature flag to be enabled.
+                      Note that this field cannot be set when spec.os.name is windows.
                     type: string
                   readOnlyRootFilesystem:
                     description: Whether this container has a read-only root filesystem.
-                      Default is false.
+                      Default is false. Note that this field cannot be set when spec.os.name
+                      is windows.
                     type: boolean
                   runAsGroup:
                     description: The GID to run the entrypoint of the container process.
                       Uses runtime default if unset. May also be set in PodSecurityContext.  If
                       set in both SecurityContext and PodSecurityContext, the value
-                      specified in SecurityContext takes precedence.
+                      specified in SecurityContext takes precedence. Note that this
+                      field cannot be set when spec.os.name is windows.
                     format: int64
                     type: integer
                   runAsNonRoot:
@@ -1844,7 +1884,8 @@ spec:
                       Defaults to user specified in image metadata if unspecified.
                       May also be set in PodSecurityContext.  If set in both SecurityContext
                       and PodSecurityContext, the value specified in SecurityContext
-                      takes precedence.
+                      takes precedence. Note that this field cannot be set when spec.os.name
+                      is windows.
                     format: int64
                     type: integer
                   seLinuxOptions:
@@ -1852,7 +1893,8 @@ spec:
                       If unspecified, the container runtime will allocate a random
                       SELinux context for each container.  May also be set in PodSecurityContext.  If
                       set in both SecurityContext and PodSecurityContext, the value
-                      specified in SecurityContext takes precedence.
+                      specified in SecurityContext takes precedence. Note that this
+                      field cannot be set when spec.os.name is windows.
                     properties:
                       level:
                         description: Level is SELinux level label that applies to
@@ -1874,7 +1916,8 @@ spec:
                   seccompProfile:
                     description: The seccomp options to use by this container. If
                       seccomp options are provided at both the pod & container level,
-                      the container options override the pod options.
+                      the container options override the pod options. Note that this
+                      field cannot be set when spec.os.name is windows.
                     properties:
                       localhostProfile:
                         description: localhostProfile indicates a profile defined
@@ -1897,7 +1940,8 @@ spec:
                     description: The Windows specific settings applied to all containers.
                       If unspecified, the options from the PodSecurityContext will
                       be used. If set in both SecurityContext and PodSecurityContext,
-                      the value specified in SecurityContext takes precedence.
+                      the value specified in SecurityContext takes precedence. Note
+                      that this field cannot be set when spec.os.name is linux.
                     properties:
                       gmsaCredentialSpec:
                         description: GMSACredentialSpec is where the GMSA admission
@@ -1909,6 +1953,17 @@ spec:
                         description: GMSACredentialSpecName is the name of the GMSA
                           credential spec to use.
                         type: string
+                      hostProcess:
+                        description: HostProcess determines if a container should
+                          be run as a 'Host Process' container. This field is alpha-level
+                          and will only be honored by components that enable the WindowsHostProcessContainers
+                          feature flag. Setting this field without the feature flag
+                          will result in errors when validating the Pod. All of a
+                          Pod's containers must have the same effective HostProcess
+                          value (it is not allowed to have a mix of HostProcess containers
+                          and non-HostProcess containers).  In addition, if HostProcess
+                          is true then HostNetwork must also be set to true.
+                        type: boolean
                       runAsUserName:
                         description: The UserName in Windows to run the entrypoint
                           of the container process. Defaults to the user specified
@@ -1924,8 +1979,7 @@ spec:
                   be updated.
                 properties:
                   exec:
-                    description: One and only one of the following should be specified.
-                      Exec specifies the action to take.
+                    description: Exec specifies the action to take.
                     properties:
                       command:
                         description: Command is the command line to execute inside
@@ -1945,6 +1999,25 @@ spec:
                       value is 1.
                     format: int32
                     type: integer
+                  grpc:
+                    description: GRPC specifies an action involving a GRPC port. This
+                      is a beta field and requires enabling GRPCContainerProbe feature
+                      gate.
+                    properties:
+                      port:
+                        description: Port number of the gRPC service. Number must
+                          be in the range 1 to 65535.
+                        format: int32
+                        type: integer
+                      service:
+                        description: "Service is the name of the service to place
+                          in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).
+                          \n If this is not specified, the default behavior is defined
+                          by gRPC."
+                        type: string
+                    required:
+                    - port
+                    type: object
                   httpGet:
                     description: HTTPGet specifies the http request to perform.
                     properties:
@@ -2005,9 +2078,7 @@ spec:
                     format: int32
                     type: integer
                   tcpSocket:
-                    description: 'TCPSocket specifies an action involving a TCP port.
-                      TCP hooks not yet supported TODO: implement a realistic TCP
-                      lifecycle hook'
+                    description: TCPSocket specifies an action involving a TCP port.
                     properties:
                       host:
                         description: 'Optional: Host name to connect to, defaults
@@ -2034,9 +2105,10 @@ spec:
                       terminationGracePeriodSeconds will be used. Otherwise, this
                       value overrides the value provided by the pod spec. Value must
                       be non-negative integer. The value zero indicates stop immediately
-                      via the kill signal (no opportunity to shut down). This is an
-                      alpha field and requires enabling ProbeTerminationGracePeriod
-                      feature gate.
+                      via the kill signal (no opportunity to shut down). This is a
+                      beta field and requires enabling ProbeTerminationGracePeriod
+                      feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds
+                      is used if unset.
                     format: int64
                     type: integer
                   timeoutSeconds:
@@ -2082,17 +2154,17 @@ spec:
                     the backend associated with the matching IngressRuleValue.
                   properties:
                     host:
-                      description: "Host is the fully qualified domain name of a network
+                      description: 'Host is the fully qualified domain name of a network
                         host, as defined by RFC 3986. Note the following deviations
-                        from the \"host\" part of the URI as defined in the RFC: 1.
+                        from the "host" part of the URI as defined in the RFC: 1.
                         IPs are not allowed. Currently an IngressRuleValue can only
-                        apply to the \t  IP in the Spec of the parent Ingress. 2.
-                        The `:` delimiter is not respected because ports are not allowed.
-                        \t  Currently the port of an Ingress is implicitly :80 for
-                        http and \t  :443 for https. Both these may change in the
-                        future. Incoming requests are matched against the host before
-                        the IngressRuleValue. If the host is unspecified, the Ingress
-                        routes all traffic based on the specified IngressRuleValue."
+                        apply to the IP in the Spec of the parent Ingress. 2. The
+                        `:` delimiter is not respected because ports are not allowed.
+                        Currently the port of an Ingress is implicitly :80 for http
+                        and :443 for https. Both these may change in the future. Incoming
+                        requests are matched against the host before the IngressRuleValue.
+                        If the host is unspecified, the Ingress routes all traffic
+                        based on the specified IngressRuleValue.'
                       type: string
                     http:
                       description: 'HTTPIngressRuleValue is a list of http selectors
@@ -2400,7 +2472,8 @@ spec:
                       set (new files created in the volume will be owned by FSGroup)
                       3. The permission bits are OR'd with rw-rw---- \n If unset,
                       the Kubelet will not modify the ownership and permissions of
-                      any volume."
+                      any volume. Note that this field cannot be set when spec.os.name
+                      is windows."
                     format: int64
                     type: integer
                   fsGroupChangePolicy:
@@ -2410,13 +2483,15 @@ spec:
                       support fsGroup based ownership(and permissions). It will have
                       no effect on ephemeral volume types such as: secret, configmaps
                       and emptydir. Valid values are "OnRootMismatch" and "Always".
-                      If not specified, "Always" is used.'
+                      If not specified, "Always" is used. Note that this field cannot
+                      be set when spec.os.name is windows.'
                     type: string
                   runAsGroup:
                     description: The GID to run the entrypoint of the container process.
                       Uses runtime default if unset. May also be set in SecurityContext.  If
                       set in both SecurityContext and PodSecurityContext, the value
                       specified in SecurityContext takes precedence for that container.
+                      Note that this field cannot be set when spec.os.name is windows.
                     format: int64
                     type: integer
                   runAsNonRoot:
@@ -2433,7 +2508,8 @@ spec:
                       Defaults to user specified in image metadata if unspecified.
                       May also be set in SecurityContext.  If set in both SecurityContext
                       and PodSecurityContext, the value specified in SecurityContext
-                      takes precedence for that container.
+                      takes precedence for that container. Note that this field cannot
+                      be set when spec.os.name is windows.
                     format: int64
                     type: integer
                   seLinuxOptions:
@@ -2442,6 +2518,7 @@ spec:
                       SELinux context for each container.  May also be set in SecurityContext.  If
                       set in both SecurityContext and PodSecurityContext, the value
                       specified in SecurityContext takes precedence for that container.
+                      Note that this field cannot be set when spec.os.name is windows.
                     properties:
                       level:
                         description: Level is SELinux level label that applies to
@@ -2462,7 +2539,8 @@ spec:
                     type: object
                   seccompProfile:
                     description: The seccomp options to use by the containers in this
-                      pod.
+                      pod. Note that this field cannot be set when spec.os.name is
+                      windows.
                     properties:
                       localhostProfile:
                         description: localhostProfile indicates a profile defined
@@ -2484,7 +2562,8 @@ spec:
                   supplementalGroups:
                     description: A list of groups applied to the first process run
                       in each container, in addition to the container's primary GID.  If
-                      unspecified, no groups will be added to any container.
+                      unspecified, no groups will be added to any container. Note
+                      that this field cannot be set when spec.os.name is windows.
                     items:
                       format: int64
                       type: integer
@@ -2492,7 +2571,8 @@ spec:
                   sysctls:
                     description: Sysctls hold a list of namespaced sysctls used for
                       the pod. Pods with unsupported sysctls (by the container runtime)
-                      might fail to launch.
+                      might fail to launch. Note that this field cannot be set when
+                      spec.os.name is windows.
                     items:
                       description: Sysctl defines a kernel parameter to be set
                       properties:
@@ -2511,7 +2591,8 @@ spec:
                     description: The Windows specific settings applied to all containers.
                       If unspecified, the options within a container's SecurityContext
                       will be used. If set in both SecurityContext and PodSecurityContext,
-                      the value specified in SecurityContext takes precedence.
+                      the value specified in SecurityContext takes precedence. Note
+                      that this field cannot be set when spec.os.name is linux.
                     properties:
                       gmsaCredentialSpec:
                         description: GMSACredentialSpec is where the GMSA admission
@@ -2523,6 +2604,17 @@ spec:
                         description: GMSACredentialSpecName is the name of the GMSA
                           credential spec to use.
                         type: string
+                      hostProcess:
+                        description: HostProcess determines if a container should
+                          be run as a 'Host Process' container. This field is alpha-level
+                          and will only be honored by components that enable the WindowsHostProcessContainers
+                          feature flag. Setting this field without the feature flag
+                          will result in errors when validating the Pod. All of a
+                          Pod's containers must have the same effective HostProcess
+                          value (it is not allowed to have a mix of HostProcess containers
+                          and non-HostProcess containers).  In addition, if HostProcess
+                          is true then HostNetwork must also be set to true.
+                        type: boolean
                       runAsUserName:
                         description: The UserName in Windows to run the entrypoint
                           of the container process. Defaults to the user specified
@@ -2640,8 +2732,8 @@ spec:
                                   the service port The format of the error shall comply
                                   with the following rules: - built-in error values
                                   shall be specified in this file and those shall
-                                  use   CamelCase names - cloud provider specific
-                                  error values must have names that comply with the   format
+                                  use CamelCase names - cloud provider specific error
+                                  values must have names that comply with the format
                                   foo.example.com/CamelCase. --- The regex it matches
                                   is (dns1123SubdomainFmt/)?(qualifiedNameFmt)'
                                 maxLength: 316
@@ -2997,9 +3089,7 @@ spec:
                                     field and the ones listed in the namespaces field.
                                     null selector and null or empty namespaces list
                                     means "this pod's namespace". An empty selector
-                                    ({}) matches all namespaces. This field is alpha-level
-                                    and is only honored when PodAffinityNamespaceSelector
-                                    feature is enabled.
+                                    ({}) matches all namespaces.
                                   properties:
                                     matchExpressions:
                                       description: matchExpressions is a list of label
@@ -3054,7 +3144,7 @@ spec:
                                     term is applied to the union of the namespaces
                                     listed in this field and the ones selected by
                                     namespaceSelector. null or empty namespaces list
-                                    and null namespaceSelector means "this pod's namespace"
+                                    and null namespaceSelector means "this pod's namespace".
                                   items:
                                     type: string
                                   type: array
@@ -3153,8 +3243,6 @@ spec:
                                 the ones listed in the namespaces field. null selector
                                 and null or empty namespaces list means "this pod's
                                 namespace". An empty selector ({}) matches all namespaces.
-                                This field is alpha-level and is only honored when
-                                PodAffinityNamespaceSelector feature is enabled.
                               properties:
                                 matchExpressions:
                                   description: matchExpressions is a list of label
@@ -3205,7 +3293,7 @@ spec:
                                 to the union of the namespaces listed in this field
                                 and the ones selected by namespaceSelector. null or
                                 empty namespaces list and null namespaceSelector means
-                                "this pod's namespace"
+                                "this pod's namespace".
                               items:
                                 type: string
                               type: array
@@ -3306,9 +3394,7 @@ spec:
                                     field and the ones listed in the namespaces field.
                                     null selector and null or empty namespaces list
                                     means "this pod's namespace". An empty selector
-                                    ({}) matches all namespaces. This field is alpha-level
-                                    and is only honored when PodAffinityNamespaceSelector
-                                    feature is enabled.
+                                    ({}) matches all namespaces.
                                   properties:
                                     matchExpressions:
                                       description: matchExpressions is a list of label
@@ -3363,7 +3449,7 @@ spec:
                                     term is applied to the union of the namespaces
                                     listed in this field and the ones selected by
                                     namespaceSelector. null or empty namespaces list
-                                    and null namespaceSelector means "this pod's namespace"
+                                    and null namespaceSelector means "this pod's namespace".
                                   items:
                                     type: string
                                   type: array
@@ -3462,8 +3548,6 @@ spec:
                                 the ones listed in the namespaces field. null selector
                                 and null or empty namespaces list means "this pod's
                                 namespace". An empty selector ({}) matches all namespaces.
-                                This field is alpha-level and is only honored when
-                                PodAffinityNamespaceSelector feature is enabled.
                               properties:
                                 matchExpressions:
                                   description: matchExpressions is a list of label
@@ -3514,7 +3598,7 @@ spec:
                                 to the union of the namespaces listed in this field
                                 and the ones selected by namespaceSelector. null or
                                 empty namespaces list and null namespaceSelector means
-                                "this pod's namespace"
+                                "this pod's namespace".
                               items:
                                 type: string
                               type: array
@@ -3619,20 +3703,20 @@ spec:
                         this volume
                       properties:
                         defaultMode:
-                          description: 'Optional: mode bits used to set permissions
-                            on created files by default. Must be an octal value between
-                            0000 and 0777 or a decimal value between 0 and 511. YAML
-                            accepts both octal and decimal values, JSON requires decimal
-                            values for mode bits. Defaults to 0644. Directories within
-                            the path are not affected by this setting. This might
-                            be in conflict with other options that affect the file
-                            mode, like fsGroup, and the result can be other mode bits
-                            set.'
+                          description: 'defaultMode is optional: mode bits used to
+                            set permissions on created files by default. Must be an
+                            octal value between 0000 and 0777 or a decimal value between
+                            0 and 511. YAML accepts both octal and decimal values,
+                            JSON requires decimal values for mode bits. Defaults to
+                            0644. Directories within the path are not affected by
+                            this setting. This might be in conflict with other options
+                            that affect the file mode, like fsGroup, and the result
+                            can be other mode bits set.'
                           format: int32
                           type: integer
                         items:
-                          description: If unspecified, each key-value pair in the
-                            Data field of the referenced ConfigMap will be projected
+                          description: items if unspecified, each key-value pair in
+                            the Data field of the referenced ConfigMap will be projected
                             into the volume as a file whose name is the key and content
                             is the value. If specified, the listed keys will be projected
                             into the specified paths, and unlisted keys will not be
@@ -3644,25 +3728,25 @@ spec:
                             description: Maps a string key to a path within a volume.
                             properties:
                               key:
-                                description: The key to project.
+                                description: key is the key to project.
                                 type: string
                               mode:
-                                description: 'Optional: mode bits used to set permissions
-                                  on this file. Must be an octal value between 0000
-                                  and 0777 or a decimal value between 0 and 511. YAML
-                                  accepts both octal and decimal values, JSON requires
-                                  decimal values for mode bits. If not specified,
-                                  the volume defaultMode will be used. This might
-                                  be in conflict with other options that affect the
-                                  file mode, like fsGroup, and the result can be other
-                                  mode bits set.'
+                                description: 'mode is Optional: mode bits used to
+                                  set permissions on this file. Must be an octal value
+                                  between 0000 and 0777 or a decimal value between
+                                  0 and 511. YAML accepts both octal and decimal values,
+                                  JSON requires decimal values for mode bits. If not
+                                  specified, the volume defaultMode will be used.
+                                  This might be in conflict with other options that
+                                  affect the file mode, like fsGroup, and the result
+                                  can be other mode bits set.'
                                 format: int32
                                 type: integer
                               path:
-                                description: The relative path of the file to map
-                                  the key to. May not be an absolute path. May not
-                                  contain the path element '..'. May not start with
-                                  the string '..'.
+                                description: path is the relative path of the file
+                                  to map the key to. May not be an absolute path.
+                                  May not contain the path element '..'. May not start
+                                  with the string '..'.
                                 type: string
                             required:
                             - key
@@ -3674,8 +3758,8 @@ spec:
                             TODO: Add other useful fields. apiVersion, kind, uid?'
                           type: string
                         optional:
-                          description: Specify whether the ConfigMap or its keys must
-                            be defined
+                          description: optional specify whether the ConfigMap or its
+                            keys must be defined
                           type: boolean
                       type: object
                     mountPath:
@@ -3689,29 +3773,29 @@ spec:
                         and downward API
                       properties:
                         defaultMode:
-                          description: Mode bits used to set permissions on created
-                            files by default. Must be an octal value between 0000
-                            and 0777 or a decimal value between 0 and 511. YAML accepts
-                            both octal and decimal values, JSON requires decimal values
-                            for mode bits. Directories within the path are not affected
-                            by this setting. This might be in conflict with other
-                            options that affect the file mode, like fsGroup, and the
-                            result can be other mode bits set.
+                          description: defaultMode are the mode bits used to set permissions
+                            on created files by default. Must be an octal value between
+                            0000 and 0777 or a decimal value between 0 and 511. YAML
+                            accepts both octal and decimal values, JSON requires decimal
+                            values for mode bits. Directories within the path are
+                            not affected by this setting. This might be in conflict
+                            with other options that affect the file mode, like fsGroup,
+                            and the result can be other mode bits set.
                           format: int32
                           type: integer
                         sources:
-                          description: list of volume projections
+                          description: sources is the list of volume projections
                           items:
                             description: Projection that may be projected along with
                               other supported volume types
                             properties:
                               configMap:
-                                description: information about the configMap data
-                                  to project
+                                description: configMap information about the configMap
+                                  data to project
                                 properties:
                                   items:
-                                    description: If unspecified, each key-value pair
-                                      in the Data field of the referenced ConfigMap
+                                    description: items if unspecified, each key-value
+                                      pair in the Data field of the referenced ConfigMap
                                       will be projected into the volume as a file
                                       whose name is the key and content is the value.
                                       If specified, the listed keys will be projected
@@ -3726,27 +3810,28 @@ spec:
                                         a volume.
                                       properties:
                                         key:
-                                          description: The key to project.
+                                          description: key is the key to project.
                                           type: string
                                         mode:
-                                          description: 'Optional: mode bits used to
-                                            set permissions on this file. Must be
-                                            an octal value between 0000 and 0777 or
-                                            a decimal value between 0 and 511. YAML
-                                            accepts both octal and decimal values,
-                                            JSON requires decimal values for mode
-                                            bits. If not specified, the volume defaultMode
-                                            will be used. This might be in conflict
-                                            with other options that affect the file
-                                            mode, like fsGroup, and the result can
-                                            be other mode bits set.'
+                                          description: 'mode is Optional: mode bits
+                                            used to set permissions on this file.
+                                            Must be an octal value between 0000 and
+                                            0777 or a decimal value between 0 and
+                                            511. YAML accepts both octal and decimal
+                                            values, JSON requires decimal values for
+                                            mode bits. If not specified, the volume
+                                            defaultMode will be used. This might be
+                                            in conflict with other options that affect
+                                            the file mode, like fsGroup, and the result
+                                            can be other mode bits set.'
                                           format: int32
                                           type: integer
                                         path:
-                                          description: The relative path of the file
-                                            to map the key to. May not be an absolute
-                                            path. May not contain the path element
-                                            '..'. May not start with the string '..'.
+                                          description: path is the relative path of
+                                            the file to map the key to. May not be
+                                            an absolute path. May not contain the
+                                            path element '..'. May not start with
+                                            the string '..'.
                                           type: string
                                       required:
                                       - key
@@ -3760,13 +3845,13 @@ spec:
                                       uid?'
                                     type: string
                                   optional:
-                                    description: Specify whether the ConfigMap or
-                                      its keys must be defined
+                                    description: optional specify whether the ConfigMap
+                                      or its keys must be defined
                                     type: boolean
                                 type: object
                               downwardAPI:
-                                description: information about the downwardAPI data
-                                  to project
+                                description: downwardAPI information about the downwardAPI
+                                  data to project
                                 properties:
                                   items:
                                     description: Items is a list of DownwardAPIVolume
@@ -3847,15 +3932,15 @@ spec:
                                     type: array
                                 type: object
                               secret:
-                                description: information about the secret data to
-                                  project
+                                description: secret information about the secret data
+                                  to project
                                 properties:
                                   items:
-                                    description: If unspecified, each key-value pair
-                                      in the Data field of the referenced Secret will
-                                      be projected into the volume as a file whose
-                                      name is the key and content is the value. If
-                                      specified, the listed keys will be projected
+                                    description: items if unspecified, each key-value
+                                      pair in the Data field of the referenced Secret
+                                      will be projected into the volume as a file
+                                      whose name is the key and content is the value.
+                                      If specified, the listed keys will be projected
                                       into the specified paths, and unlisted keys
                                       will not be present. If a key is specified which
                                       is not present in the Secret, the volume setup
@@ -3867,27 +3952,28 @@ spec:
                                         a volume.
                                       properties:
                                         key:
-                                          description: The key to project.
+                                          description: key is the key to project.
                                           type: string
                                         mode:
-                                          description: 'Optional: mode bits used to
-                                            set permissions on this file. Must be
-                                            an octal value between 0000 and 0777 or
-                                            a decimal value between 0 and 511. YAML
-                                            accepts both octal and decimal values,
-                                            JSON requires decimal values for mode
-                                            bits. If not specified, the volume defaultMode
-                                            will be used. This might be in conflict
-                                            with other options that affect the file
-                                            mode, like fsGroup, and the result can
-                                            be other mode bits set.'
+                                          description: 'mode is Optional: mode bits
+                                            used to set permissions on this file.
+                                            Must be an octal value between 0000 and
+                                            0777 or a decimal value between 0 and
+                                            511. YAML accepts both octal and decimal
+                                            values, JSON requires decimal values for
+                                            mode bits. If not specified, the volume
+                                            defaultMode will be used. This might be
+                                            in conflict with other options that affect
+                                            the file mode, like fsGroup, and the result
+                                            can be other mode bits set.'
                                           format: int32
                                           type: integer
                                         path:
-                                          description: The relative path of the file
-                                            to map the key to. May not be an absolute
-                                            path. May not contain the path element
-                                            '..'. May not start with the string '..'.
+                                          description: path is the relative path of
+                                            the file to map the key to. May not be
+                                            an absolute path. May not contain the
+                                            path element '..'. May not start with
+                                            the string '..'.
                                           type: string
                                       required:
                                       - key
@@ -3901,16 +3987,16 @@ spec:
                                       uid?'
                                     type: string
                                   optional:
-                                    description: Specify whether the Secret or its
-                                      key must be defined
+                                    description: optional field specify whether the
+                                      Secret or its key must be defined
                                     type: boolean
                                 type: object
                               serviceAccountToken:
-                                description: information about the serviceAccountToken
-                                  data to project
+                                description: serviceAccountToken is information about
+                                  the serviceAccountToken data to project
                                 properties:
                                   audience:
-                                    description: Audience is the intended audience
+                                    description: audience is the intended audience
                                       of the token. A recipient of a token must identify
                                       itself with an identifier specified in the audience
                                       of the token, and otherwise should reject the
@@ -3918,7 +4004,7 @@ spec:
                                       of the apiserver.
                                     type: string
                                   expirationSeconds:
-                                    description: ExpirationSeconds is the requested
+                                    description: expirationSeconds is the requested
                                       duration of validity of the service account
                                       token. As the token approaches expiration, the
                                       kubelet volume plugin will proactively rotate
@@ -3930,7 +4016,7 @@ spec:
                                     format: int64
                                     type: integer
                                   path:
-                                    description: Path is the path relative to the
+                                    description: path is the path relative to the
                                       mount point of the file to project the token
                                       into.
                                     type: string
@@ -3945,20 +4031,20 @@ spec:
                         this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret'
                       properties:
                         defaultMode:
-                          description: 'Optional: mode bits used to set permissions
-                            on created files by default. Must be an octal value between
-                            0000 and 0777 or a decimal value between 0 and 511. YAML
-                            accepts both octal and decimal values, JSON requires decimal
-                            values for mode bits. Defaults to 0644. Directories within
-                            the path are not affected by this setting. This might
-                            be in conflict with other options that affect the file
-                            mode, like fsGroup, and the result can be other mode bits
-                            set.'
+                          description: 'defaultMode is Optional: mode bits used to
+                            set permissions on created files by default. Must be an
+                            octal value between 0000 and 0777 or a decimal value between
+                            0 and 511. YAML accepts both octal and decimal values,
+                            JSON requires decimal values for mode bits. Defaults to
+                            0644. Directories within the path are not affected by
+                            this setting. This might be in conflict with other options
+                            that affect the file mode, like fsGroup, and the result
+                            can be other mode bits set.'
                           format: int32
                           type: integer
                         items:
-                          description: If unspecified, each key-value pair in the
-                            Data field of the referenced Secret will be projected
+                          description: items If unspecified, each key-value pair in
+                            the Data field of the referenced Secret will be projected
                             into the volume as a file whose name is the key and content
                             is the value. If specified, the listed keys will be projected
                             into the specified paths, and unlisted keys will not be
@@ -3970,25 +4056,25 @@ spec:
                             description: Maps a string key to a path within a volume.
                             properties:
                               key:
-                                description: The key to project.
+                                description: key is the key to project.
                                 type: string
                               mode:
-                                description: 'Optional: mode bits used to set permissions
-                                  on this file. Must be an octal value between 0000
-                                  and 0777 or a decimal value between 0 and 511. YAML
-                                  accepts both octal and decimal values, JSON requires
-                                  decimal values for mode bits. If not specified,
-                                  the volume defaultMode will be used. This might
-                                  be in conflict with other options that affect the
-                                  file mode, like fsGroup, and the result can be other
-                                  mode bits set.'
+                                description: 'mode is Optional: mode bits used to
+                                  set permissions on this file. Must be an octal value
+                                  between 0000 and 0777 or a decimal value between
+                                  0 and 511. YAML accepts both octal and decimal values,
+                                  JSON requires decimal values for mode bits. If not
+                                  specified, the volume defaultMode will be used.
+                                  This might be in conflict with other options that
+                                  affect the file mode, like fsGroup, and the result
+                                  can be other mode bits set.'
                                 format: int32
                                 type: integer
                               path:
-                                description: The relative path of the file to map
-                                  the key to. May not be an absolute path. May not
-                                  contain the path element '..'. May not start with
-                                  the string '..'.
+                                description: path is the relative path of the file
+                                  to map the key to. May not be an absolute path.
+                                  May not contain the path element '..'. May not start
+                                  with the string '..'.
                                 type: string
                             required:
                             - key
@@ -3996,12 +4082,12 @@ spec:
                             type: object
                           type: array
                         optional:
-                          description: Specify whether the Secret or its keys must
-                            be defined
+                          description: optional field specify whether the Secret or
+                            its keys must be defined
                           type: boolean
                         secretName:
-                          description: 'Name of the secret in the pod''s namespace
-                            to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret'
+                          description: 'secretName is the name of the secret in the
+                            pod''s namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret'
                           type: string
                       type: object
                   required:
@@ -4049,12 +4135,14 @@ spec:
                           This bool directly controls if the no_new_privs flag will
                           be set on the container process. AllowPrivilegeEscalation
                           is true always when the container is: 1) run as Privileged
-                          2) has CAP_SYS_ADMIN'
+                          2) has CAP_SYS_ADMIN Note that this field cannot be set
+                          when spec.os.name is windows.'
                         type: boolean
                       capabilities:
                         description: The capabilities to add/drop when running containers.
                           Defaults to the default set of capabilities granted by the
-                          container runtime.
+                          container runtime. Note that this field cannot be set when
+                          spec.os.name is windows.
                         properties:
                           add:
                             description: Added capabilities
@@ -4074,25 +4162,29 @@ spec:
                       privileged:
                         description: Run container in privileged mode. Processes in
                           privileged containers are essentially equivalent to root
-                          on the host. Defaults to false.
+                          on the host. Defaults to false. Note that this field cannot
+                          be set when spec.os.name is windows.
                         type: boolean
                       procMount:
                         description: procMount denotes the type of proc mount to use
                           for the containers. The default is DefaultProcMount which
                           uses the container runtime defaults for readonly paths and
                           masked paths. This requires the ProcMountType feature flag
-                          to be enabled.
+                          to be enabled. Note that this field cannot be set when spec.os.name
+                          is windows.
                         type: string
                       readOnlyRootFilesystem:
                         description: Whether this container has a read-only root filesystem.
-                          Default is false.
+                          Default is false. Note that this field cannot be set when
+                          spec.os.name is windows.
                         type: boolean
                       runAsGroup:
                         description: The GID to run the entrypoint of the container
                           process. Uses runtime default if unset. May also be set
                           in PodSecurityContext.  If set in both SecurityContext and
                           PodSecurityContext, the value specified in SecurityContext
-                          takes precedence.
+                          takes precedence. Note that this field cannot be set when
+                          spec.os.name is windows.
                         format: int64
                         type: integer
                       runAsNonRoot:
@@ -4109,7 +4201,8 @@ spec:
                           process. Defaults to user specified in image metadata if
                           unspecified. May also be set in PodSecurityContext.  If
                           set in both SecurityContext and PodSecurityContext, the
-                          value specified in SecurityContext takes precedence.
+                          value specified in SecurityContext takes precedence. Note
+                          that this field cannot be set when spec.os.name is windows.
                         format: int64
                         type: integer
                       seLinuxOptions:
@@ -4118,7 +4211,8 @@ spec:
                           SELinux context for each container.  May also be set in
                           PodSecurityContext.  If set in both SecurityContext and
                           PodSecurityContext, the value specified in SecurityContext
-                          takes precedence.
+                          takes precedence. Note that this field cannot be set when
+                          spec.os.name is windows.
                         properties:
                           level:
                             description: Level is SELinux level label that applies
@@ -4140,7 +4234,8 @@ spec:
                       seccompProfile:
                         description: The seccomp options to use by this container.
                           If seccomp options are provided at both the pod & container
-                          level, the container options override the pod options.
+                          level, the container options override the pod options. Note
+                          that this field cannot be set when spec.os.name is windows.
                         properties:
                           localhostProfile:
                             description: localhostProfile indicates a profile defined
@@ -4164,6 +4259,8 @@ spec:
                           containers. If unspecified, the options from the PodSecurityContext
                           will be used. If set in both SecurityContext and PodSecurityContext,
                           the value specified in SecurityContext takes precedence.
+                          Note that this field cannot be set when spec.os.name is
+                          linux.
                         properties:
                           gmsaCredentialSpec:
                             description: GMSACredentialSpec is where the GMSA admission
@@ -4175,6 +4272,18 @@ spec:
                             description: GMSACredentialSpecName is the name of the
                               GMSA credential spec to use.
                             type: string
+                          hostProcess:
+                            description: HostProcess determines if a container should
+                              be run as a 'Host Process' container. This field is
+                              alpha-level and will only be honored by components that
+                              enable the WindowsHostProcessContainers feature flag.
+                              Setting this field without the feature flag will result
+                              in errors when validating the Pod. All of a Pod's containers
+                              must have the same effective HostProcess value (it is
+                              not allowed to have a mix of HostProcess containers
+                              and non-HostProcess containers).  In addition, if HostProcess
+                              is true then HostNetwork must also be set to true.
+                            type: boolean
                           runAsUserName:
                             description: The UserName in Windows to run the entrypoint
                               of the container process. Defaults to the user specified
@@ -4282,8 +4391,7 @@ spec:
                   be restarted if the probe fails. Cannot be updated.
                 properties:
                   exec:
-                    description: One and only one of the following should be specified.
-                      Exec specifies the action to take.
+                    description: Exec specifies the action to take.
                     properties:
                       command:
                         description: Command is the command line to execute inside
@@ -4303,6 +4411,25 @@ spec:
                       value is 1.
                     format: int32
                     type: integer
+                  grpc:
+                    description: GRPC specifies an action involving a GRPC port. This
+                      is a beta field and requires enabling GRPCContainerProbe feature
+                      gate.
+                    properties:
+                      port:
+                        description: Port number of the gRPC service. Number must
+                          be in the range 1 to 65535.
+                        format: int32
+                        type: integer
+                      service:
+                        description: "Service is the name of the service to place
+                          in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).
+                          \n If this is not specified, the default behavior is defined
+                          by gRPC."
+                        type: string
+                    required:
+                    - port
+                    type: object
                   httpGet:
                     description: HTTPGet specifies the http request to perform.
                     properties:
@@ -4363,9 +4490,7 @@ spec:
                     format: int32
                     type: integer
                   tcpSocket:
-                    description: 'TCPSocket specifies an action involving a TCP port.
-                      TCP hooks not yet supported TODO: implement a realistic TCP
-                      lifecycle hook'
+                    description: TCPSocket specifies an action involving a TCP port.
                     properties:
                       host:
                         description: 'Optional: Host name to connect to, defaults
@@ -4392,9 +4517,10 @@ spec:
                       terminationGracePeriodSeconds will be used. Otherwise, this
                       value overrides the value provided by the pod spec. Value must
                       be non-negative integer. The value zero indicates stop immediately
-                      via the kill signal (no opportunity to shut down). This is an
-                      alpha field and requires enabling ProbeTerminationGracePeriod
-                      feature gate.
+                      via the kill signal (no opportunity to shut down). This is a
+                      beta field and requires enabling ProbeTerminationGracePeriod
+                      feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds
+                      is used if unset.
                     format: int64
                     type: integer
                   timeoutSeconds:
@@ -4444,12 +4570,14 @@ spec:
                       can gain more privileges than its parent process. This bool
                       directly controls if the no_new_privs flag will be set on the
                       container process. AllowPrivilegeEscalation is true always when
-                      the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN'
+                      the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN
+                      Note that this field cannot be set when spec.os.name is windows.'
                     type: boolean
                   capabilities:
                     description: The capabilities to add/drop when running containers.
                       Defaults to the default set of capabilities granted by the container
-                      runtime.
+                      runtime. Note that this field cannot be set when spec.os.name
+                      is windows.
                     properties:
                       add:
                         description: Added capabilities
@@ -4467,23 +4595,27 @@ spec:
                   privileged:
                     description: Run container in privileged mode. Processes in privileged
                       containers are essentially equivalent to root on the host. Defaults
-                      to false.
+                      to false. Note that this field cannot be set when spec.os.name
+                      is windows.
                     type: boolean
                   procMount:
                     description: procMount denotes the type of proc mount to use for
                       the containers. The default is DefaultProcMount which uses the
                       container runtime defaults for readonly paths and masked paths.
                       This requires the ProcMountType feature flag to be enabled.
+                      Note that this field cannot be set when spec.os.name is windows.
                     type: string
                   readOnlyRootFilesystem:
                     description: Whether this container has a read-only root filesystem.
-                      Default is false.
+                      Default is false. Note that this field cannot be set when spec.os.name
+                      is windows.
                     type: boolean
                   runAsGroup:
                     description: The GID to run the entrypoint of the container process.
                       Uses runtime default if unset. May also be set in PodSecurityContext.  If
                       set in both SecurityContext and PodSecurityContext, the value
-                      specified in SecurityContext takes precedence.
+                      specified in SecurityContext takes precedence. Note that this
+                      field cannot be set when spec.os.name is windows.
                     format: int64
                     type: integer
                   runAsNonRoot:
@@ -4500,7 +4632,8 @@ spec:
                       Defaults to user specified in image metadata if unspecified.
                       May also be set in PodSecurityContext.  If set in both SecurityContext
                       and PodSecurityContext, the value specified in SecurityContext
-                      takes precedence.
+                      takes precedence. Note that this field cannot be set when spec.os.name
+                      is windows.
                     format: int64
                     type: integer
                   seLinuxOptions:
@@ -4508,7 +4641,8 @@ spec:
                       If unspecified, the container runtime will allocate a random
                       SELinux context for each container.  May also be set in PodSecurityContext.  If
                       set in both SecurityContext and PodSecurityContext, the value
-                      specified in SecurityContext takes precedence.
+                      specified in SecurityContext takes precedence. Note that this
+                      field cannot be set when spec.os.name is windows.
                     properties:
                       level:
                         description: Level is SELinux level label that applies to
@@ -4530,7 +4664,8 @@ spec:
                   seccompProfile:
                     description: The seccomp options to use by this container. If
                       seccomp options are provided at both the pod & container level,
-                      the container options override the pod options.
+                      the container options override the pod options. Note that this
+                      field cannot be set when spec.os.name is windows.
                     properties:
                       localhostProfile:
                         description: localhostProfile indicates a profile defined
@@ -4553,7 +4688,8 @@ spec:
                     description: The Windows specific settings applied to all containers.
                       If unspecified, the options from the PodSecurityContext will
                       be used. If set in both SecurityContext and PodSecurityContext,
-                      the value specified in SecurityContext takes precedence.
+                      the value specified in SecurityContext takes precedence. Note
+                      that this field cannot be set when spec.os.name is linux.
                     properties:
                       gmsaCredentialSpec:
                         description: GMSACredentialSpec is where the GMSA admission
@@ -4565,6 +4701,17 @@ spec:
                         description: GMSACredentialSpecName is the name of the GMSA
                           credential spec to use.
                         type: string
+                      hostProcess:
+                        description: HostProcess determines if a container should
+                          be run as a 'Host Process' container. This field is alpha-level
+                          and will only be honored by components that enable the WindowsHostProcessContainers
+                          feature flag. Setting this field without the feature flag
+                          will result in errors when validating the Pod. All of a
+                          Pod's containers must have the same effective HostProcess
+                          value (it is not allowed to have a mix of HostProcess containers
+                          and non-HostProcess containers).  In addition, if HostProcess
+                          is true then HostNetwork must also be set to true.
+                        type: boolean
                       runAsUserName:
                         description: The UserName in Windows to run the entrypoint
                           of the container process. Defaults to the user specified
@@ -4580,8 +4727,7 @@ spec:
                   be updated.
                 properties:
                   exec:
-                    description: One and only one of the following should be specified.
-                      Exec specifies the action to take.
+                    description: Exec specifies the action to take.
                     properties:
                       command:
                         description: Command is the command line to execute inside
@@ -4601,6 +4747,25 @@ spec:
                       value is 1.
                     format: int32
                     type: integer
+                  grpc:
+                    description: GRPC specifies an action involving a GRPC port. This
+                      is a beta field and requires enabling GRPCContainerProbe feature
+                      gate.
+                    properties:
+                      port:
+                        description: Port number of the gRPC service. Number must
+                          be in the range 1 to 65535.
+                        format: int32
+                        type: integer
+                      service:
+                        description: "Service is the name of the service to place
+                          in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).
+                          \n If this is not specified, the default behavior is defined
+                          by gRPC."
+                        type: string
+                    required:
+                    - port
+                    type: object
                   httpGet:
                     description: HTTPGet specifies the http request to perform.
                     properties:
@@ -4661,9 +4826,7 @@ spec:
                     format: int32
                     type: integer
                   tcpSocket:
-                    description: 'TCPSocket specifies an action involving a TCP port.
-                      TCP hooks not yet supported TODO: implement a realistic TCP
-                      lifecycle hook'
+                    description: TCPSocket specifies an action involving a TCP port.
                     properties:
                       host:
                         description: 'Optional: Host name to connect to, defaults
@@ -4690,9 +4853,10 @@ spec:
                       terminationGracePeriodSeconds will be used. Otherwise, this
                       value overrides the value provided by the pod spec. Value must
                       be non-negative integer. The value zero indicates stop immediately
-                      via the kill signal (no opportunity to shut down). This is an
-                      alpha field and requires enabling ProbeTerminationGracePeriod
-                      feature gate.
+                      via the kill signal (no opportunity to shut down). This is a
+                      beta field and requires enabling ProbeTerminationGracePeriod
+                      feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds
+                      is used if unset.
                     format: int64
                     type: integer
                   timeoutSeconds:
@@ -4738,17 +4902,17 @@ spec:
                     the backend associated with the matching IngressRuleValue.
                   properties:
                     host:
-                      description: "Host is the fully qualified domain name of a network
+                      description: 'Host is the fully qualified domain name of a network
                         host, as defined by RFC 3986. Note the following deviations
-                        from the \"host\" part of the URI as defined in the RFC: 1.
+                        from the "host" part of the URI as defined in the RFC: 1.
                         IPs are not allowed. Currently an IngressRuleValue can only
-                        apply to the \t  IP in the Spec of the parent Ingress. 2.
-                        The `:` delimiter is not respected because ports are not allowed.
-                        \t  Currently the port of an Ingress is implicitly :80 for
-                        http and \t  :443 for https. Both these may change in the
-                        future. Incoming requests are matched against the host before
-                        the IngressRuleValue. If the host is unspecified, the Ingress
-                        routes all traffic based on the specified IngressRuleValue."
+                        apply to the IP in the Spec of the parent Ingress. 2. The
+                        `:` delimiter is not respected because ports are not allowed.
+                        Currently the port of an Ingress is implicitly :80 for http
+                        and :443 for https. Both these may change in the future. Incoming
+                        requests are matched against the host before the IngressRuleValue.
+                        If the host is unspecified, the Ingress routes all traffic
+                        based on the specified IngressRuleValue.'
                       type: string
                     http:
                       description: 'HTTPIngressRuleValue is a list of http selectors
@@ -5038,7 +5202,8 @@ spec:
                       set (new files created in the volume will be owned by FSGroup)
                       3. The permission bits are OR'd with rw-rw---- \n If unset,
                       the Kubelet will not modify the ownership and permissions of
-                      any volume."
+                      any volume. Note that this field cannot be set when spec.os.name
+                      is windows."
                     format: int64
                     type: integer
                   fsGroupChangePolicy:
@@ -5048,13 +5213,15 @@ spec:
                       support fsGroup based ownership(and permissions). It will have
                       no effect on ephemeral volume types such as: secret, configmaps
                       and emptydir. Valid values are "OnRootMismatch" and "Always".
-                      If not specified, "Always" is used.'
+                      If not specified, "Always" is used. Note that this field cannot
+                      be set when spec.os.name is windows.'
                     type: string
                   runAsGroup:
                     description: The GID to run the entrypoint of the container process.
                       Uses runtime default if unset. May also be set in SecurityContext.  If
                       set in both SecurityContext and PodSecurityContext, the value
                       specified in SecurityContext takes precedence for that container.
+                      Note that this field cannot be set when spec.os.name is windows.
                     format: int64
                     type: integer
                   runAsNonRoot:
@@ -5071,7 +5238,8 @@ spec:
                       Defaults to user specified in image metadata if unspecified.
                       May also be set in SecurityContext.  If set in both SecurityContext
                       and PodSecurityContext, the value specified in SecurityContext
-                      takes precedence for that container.
+                      takes precedence for that container. Note that this field cannot
+                      be set when spec.os.name is windows.
                     format: int64
                     type: integer
                   seLinuxOptions:
@@ -5080,6 +5248,7 @@ spec:
                       SELinux context for each container.  May also be set in SecurityContext.  If
                       set in both SecurityContext and PodSecurityContext, the value
                       specified in SecurityContext takes precedence for that container.
+                      Note that this field cannot be set when spec.os.name is windows.
                     properties:
                       level:
                         description: Level is SELinux level label that applies to
@@ -5100,7 +5269,8 @@ spec:
                     type: object
                   seccompProfile:
                     description: The seccomp options to use by the containers in this
-                      pod.
+                      pod. Note that this field cannot be set when spec.os.name is
+                      windows.
                     properties:
                       localhostProfile:
                         description: localhostProfile indicates a profile defined
@@ -5122,7 +5292,8 @@ spec:
                   supplementalGroups:
                     description: A list of groups applied to the first process run
                       in each container, in addition to the container's primary GID.  If
-                      unspecified, no groups will be added to any container.
+                      unspecified, no groups will be added to any container. Note
+                      that this field cannot be set when spec.os.name is windows.
                     items:
                       format: int64
                       type: integer
@@ -5130,7 +5301,8 @@ spec:
                   sysctls:
                     description: Sysctls hold a list of namespaced sysctls used for
                       the pod. Pods with unsupported sysctls (by the container runtime)
-                      might fail to launch.
+                      might fail to launch. Note that this field cannot be set when
+                      spec.os.name is windows.
                     items:
                       description: Sysctl defines a kernel parameter to be set
                       properties:
@@ -5149,7 +5321,8 @@ spec:
                     description: The Windows specific settings applied to all containers.
                       If unspecified, the options within a container's SecurityContext
                       will be used. If set in both SecurityContext and PodSecurityContext,
-                      the value specified in SecurityContext takes precedence.
+                      the value specified in SecurityContext takes precedence. Note
+                      that this field cannot be set when spec.os.name is linux.
                     properties:
                       gmsaCredentialSpec:
                         description: GMSACredentialSpec is where the GMSA admission
@@ -5161,6 +5334,17 @@ spec:
                         description: GMSACredentialSpecName is the name of the GMSA
                           credential spec to use.
                         type: string
+                      hostProcess:
+                        description: HostProcess determines if a container should
+                          be run as a 'Host Process' container. This field is alpha-level
+                          and will only be honored by components that enable the WindowsHostProcessContainers
+                          feature flag. Setting this field without the feature flag
+                          will result in errors when validating the Pod. All of a
+                          Pod's containers must have the same effective HostProcess
+                          value (it is not allowed to have a mix of HostProcess containers
+                          and non-HostProcess containers).  In addition, if HostProcess
+                          is true then HostNetwork must also be set to true.
+                        type: boolean
                       runAsUserName:
                         description: The UserName in Windows to run the entrypoint
                           of the container process. Defaults to the user specified
@@ -5291,8 +5475,8 @@ spec:
                                   the service port The format of the error shall comply
                                   with the following rules: - built-in error values
                                   shall be specified in this file and those shall
-                                  use   CamelCase names - cloud provider specific
-                                  error values must have names that comply with the   format
+                                  use CamelCase names - cloud provider specific error
+                                  values must have names that comply with the format
                                   foo.example.com/CamelCase. --- The regex it matches
                                   is (dns1123SubdomainFmt/)?(qualifiedNameFmt)'
                                 maxLength: 316
