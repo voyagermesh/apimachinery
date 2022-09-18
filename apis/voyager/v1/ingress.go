@@ -40,7 +40,7 @@ const (
 // +kubebuilder:object:root=true
 // +kubebuilder:resource:path=ingresses,singular=ingress,shortName=ing,categories={networking,appscode,all}
 // +kubebuilder:subresource:status
-//+kubebuilder:storageversion
+// +kubebuilder:storageversion
 // +kubebuilder:printcolumn:name="Hosts",type="string",JSONPath=".spec.rules[0].host"
 // +kubebuilder:printcolumn:name="LOAD_BALANCER_IP",type="string",JSONPath=".status.loadBalancer.ingress"
 // +kubebuilder:printcolumn:name="Age",type="date",JSONPath=".metadata.creationTimestamp"
