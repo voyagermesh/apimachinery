@@ -1006,8 +1006,8 @@ kmodules.xyz/webhook-runtime v0.25.0 h1:NKNgu0C1I8kUovQ+SVozs/q7cjq8zgpSjLfJf9Cx
 kmodules.xyz/webhook-runtime v0.25.0/go.mod h1:gK2iIF0oCeQVVqH4L5nFjcguyhMPBhHMhiV5Fgb6EE0=
 sigs.k8s.io/apiserver-network-proxy/konnectivity-client v0.0.32 h1:2WjukG7txtEsbXsSKWtTibCdsyYAhcu6KFnttyDdZOQ=
 sigs.k8s.io/apiserver-network-proxy/konnectivity-client v0.0.32/go.mod h1:fEO7lRTdivWO2qYVCVG7dEADOMo/MLDCVr8So2g88Uw=
-sigs.k8s.io/controller-runtime v0.13.0 h1:iqa5RNciy7ADWnIc8QxCbOX5FEKVR3uxVxKHRMc2WIQ=
-sigs.k8s.io/controller-runtime v0.13.0/go.mod h1:Zbz+el8Yg31jubvAEyglRZGdLAjplZl+PgtYNI6WNTI=
+sigs.k8s.io/controller-runtime v0.13.1 h1:tUsRCSJVM1QQOOeViGeX3GMT3dQF1eePPw6sEE3xSlg=
+sigs.k8s.io/controller-runtime v0.13.1/go.mod h1:Zbz+el8Yg31jubvAEyglRZGdLAjplZl+PgtYNI6WNTI=
 sigs.k8s.io/json v0.0.0-20220713155537-f223a00ba0e2 h1:iXTIw73aPyC+oRdyqqvVJuloN1p0AC/kzH07hu3NE+k=
 sigs.k8s.io/json v0.0.0-20220713155537-f223a00ba0e2/go.mod h1:B8JuhiUyNFVKdsE8h686QcCxMaH6HrOAZj4vswFpcB0=
 sigs.k8s.io/structured-merge-diff/v4 v4.2.3 h1:PRbqxJClWWYMNV1dhaG4NsibJbArud9kFxnAMREiWFE=
