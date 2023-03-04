@@ -19,7 +19,7 @@ require (
 	kmodules.xyz/crd-schema-fuzz v0.25.0
 	kmodules.xyz/monitoring-agent-api v0.25.0
 	kmodules.xyz/webhook-runtime v0.25.0
-	sigs.k8s.io/controller-runtime v0.13.0
+	sigs.k8s.io/controller-runtime v0.13.1
 	sigs.k8s.io/yaml v1.3.0
 )
 
