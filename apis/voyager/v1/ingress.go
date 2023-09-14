@@ -79,6 +79,8 @@ type IngressSpec struct {
 	// port according to the hostname specified through the SNI TLS extension.
 	TLS []IngressTLS `json:"tls,omitempty"`
 
+	TLSConfig *TLSConfig `json:"tlsConfig,omitempty"`
+
 	// Config volumes are used to mount any secret or configmap into HAProxy pods.
 	ConfigVolumes []VolumeSource `json:"configVolumes,omitempty"`
 
@@ -185,6 +187,10 @@ type IngressSpec struct {
 	// Coordinator defines attributes of the coordinator container
 	// +optional
 	Coordinator CoordinatorSpec `json:"coordinator,omitempty"`
+}
+
+type TLSConfig struct {
+	Ciphers []string `json:"ciphers,omitempty"`
 }
 
 // IngressTLS describes the transport layer security associated with an Ingress.

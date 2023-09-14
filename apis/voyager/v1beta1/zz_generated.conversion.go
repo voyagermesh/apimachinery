@@ -705,6 +705,7 @@ func autoConvert_v1_IngressSpec_To_v1beta1_IngressSpec(in *v1.IngressSpec, out *
 	} else {
 		out.TLS = nil
 	}
+	// WARNING: in.TLSConfig requires manual conversion: does not exist in peer-type
 	out.ConfigVolumes = *(*[]VolumeSource)(unsafe.Pointer(&in.ConfigVolumes))
 	if in.FrontendRules != nil {
 		in, out := &in.FrontendRules, &out.FrontendRules

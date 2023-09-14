@@ -386,6 +386,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.OAuth":                 schema_apimachinery_apis_voyager_v1_OAuth(ref),
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.TCPIngressRuleValue":   schema_apimachinery_apis_voyager_v1_TCPIngressRuleValue(ref),
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.TLSAuth":               schema_apimachinery_apis_voyager_v1_TLSAuth(ref),
+		"voyagermesh.dev/apimachinery/apis/voyager/v1.TLSConfig":             schema_apimachinery_apis_voyager_v1_TLSConfig(ref),
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.Target":                schema_apimachinery_apis_voyager_v1_Target(ref),
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.VolumeSource":          schema_apimachinery_apis_voyager_v1_VolumeSource(ref),
 		"voyagermesh.dev/apimachinery/apis/voyager/v1.statsService":          schema_apimachinery_apis_voyager_v1_statsService(ref),
@@ -18607,6 +18608,11 @@ func schema_apimachinery_apis_voyager_v1_IngressSpec(ref common.ReferenceCallbac
 							},
 						},
 					},
+					"tlsConfig": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("voyagermesh.dev/apimachinery/apis/voyager/v1.TLSConfig"),
+						},
+					},
 					"configVolumes": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Config volumes are used to mount any secret or configmap into HAProxy pods.",
@@ -18799,7 +18805,7 @@ func schema_apimachinery_apis_voyager_v1_IngressSpec(ref common.ReferenceCallbac
 			},
 		},
 		Dependencies: []string{
-			"k8s.io/api/core/v1.Affinity", "k8s.io/api/core/v1.LocalObjectReference", "k8s.io/api/core/v1.PodSecurityContext", "k8s.io/api/core/v1.Probe", "k8s.io/api/core/v1.ResourceRequirements", "k8s.io/api/core/v1.SecurityContext", "k8s.io/api/core/v1.Toleration", "voyagermesh.dev/apimachinery/apis/voyager/v1.CoordinatorSpec", "voyagermesh.dev/apimachinery/apis/voyager/v1.FrontendRule", "voyagermesh.dev/apimachinery/apis/voyager/v1.IngressBackend", "voyagermesh.dev/apimachinery/apis/voyager/v1.IngressRule", "voyagermesh.dev/apimachinery/apis/voyager/v1.IngressTLS", "voyagermesh.dev/apimachinery/apis/voyager/v1.VolumeSource"},
+			"k8s.io/api/core/v1.Affinity", "k8s.io/api/core/v1.LocalObjectReference", "k8s.io/api/core/v1.PodSecurityContext", "k8s.io/api/core/v1.Probe", "k8s.io/api/core/v1.ResourceRequirements", "k8s.io/api/core/v1.SecurityContext", "k8s.io/api/core/v1.Toleration", "voyagermesh.dev/apimachinery/apis/voyager/v1.CoordinatorSpec", "voyagermesh.dev/apimachinery/apis/voyager/v1.FrontendRule", "voyagermesh.dev/apimachinery/apis/voyager/v1.IngressBackend", "voyagermesh.dev/apimachinery/apis/voyager/v1.IngressRule", "voyagermesh.dev/apimachinery/apis/voyager/v1.IngressTLS", "voyagermesh.dev/apimachinery/apis/voyager/v1.TLSConfig", "voyagermesh.dev/apimachinery/apis/voyager/v1.VolumeSource"},
 	}
 }
 
@@ -19025,6 +19031,32 @@ func schema_apimachinery_apis_voyager_v1_TLSAuth(ref common.ReferenceCallback) c
 						SchemaProps: spec.SchemaProps{
 							Type:   []string{"string"},
 							Format: "",
+						},
+					},
+				},
+			},
+		},
+	}
+}
+
+func schema_apimachinery_apis_voyager_v1_TLSConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
+				Properties: map[string]spec.Schema{
+					"ciphers": {
+						SchemaProps: spec.SchemaProps{
+							Type: []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: "",
+										Type:    []string{"string"},
+										Format:  "",
+									},
+								},
+							},
 						},
 					},
 				},

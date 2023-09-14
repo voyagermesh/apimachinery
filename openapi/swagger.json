@@ -2613,6 +2613,9 @@
             "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.IngressTLS"
           }
         },
+        "tlsConfig": {
+          "$ref": "#/definitions/dev.voyagermesh.apimachinery.apis.voyager.v1.TLSConfig"
+        },
         "tolerations": {
           "description": "If specified, the pod's tolerations.",
           "type": "array",
@@ -2739,6 +2742,18 @@
         },
         "verifyClient": {
           "type": "string"
+        }
+      }
+    },
+    "dev.voyagermesh.apimachinery.apis.voyager.v1.TLSConfig": {
+      "type": "object",
+      "properties": {
+        "ciphers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "default": ""
+          }
         }
       }
     },

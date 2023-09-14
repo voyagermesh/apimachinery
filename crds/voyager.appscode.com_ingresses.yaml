@@ -2674,6 +2674,13 @@ spec:
                       type: string
                   type: object
                 type: array
+              tlsConfig:
+                properties:
+                  ciphers:
+                    items:
+                      type: string
+                    type: array
+                type: object
               tolerations:
                 description: If specified, the pod's tolerations.
                 items:
