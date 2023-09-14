@@ -231,6 +231,9 @@ const (
 	// Pass TLS connections directly to backend; do not offload.
 	SSLPassthrough = EngressKey + "/ssl-passthrough"
 
+	// Default SSL ciphers.
+	SSLCiphers = EngressKey + "/ssl-ciphers"
+
 	EnableHSTS = EngressKey + "/hsts"
 	// This specifies the time (in seconds) the browser should connect to the server using the HTTPS connection.
 	// https://blog.stackpath.com/glossary/hsts/
@@ -319,6 +322,7 @@ func init() {
 	registerParser(SSLRedirect, meta.GetBool)
 	registerParser(ForceSSLRedirect, meta.GetBool)
 	registerParser(SSLPassthrough, meta.GetBool)
+	registerParser(SSLCiphers, meta.GetString)
 	registerParser(StatsOn, meta.GetBool)
 	registerParser(KeepSourceIP, meta.GetBool)
 	registerParser(HealthCheckNodeport, meta.GetInt)
@@ -530,6 +534,11 @@ func (r Ingress) ProxyBodySize() string {
 func (r Ingress) SSLPassthrough() bool {
 	v, _ := get[SSLPassthrough](r.Annotations)
 	return v.(bool)
+}
+
+func (r Ingress) SSLCiphers() string {
+	v, _ := get[SSLCiphers](r.Annotations)
+	return v.(string)
 }
 
 func (r Ingress) Stats() bool {
