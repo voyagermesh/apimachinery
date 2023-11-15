@@ -61,7 +61,7 @@ func (r Ingress) IsValid(cloudProvider string) error {
 	}
 
 	timeouts, _ := get[DefaultsTimeOut](r.Annotations)
-	if err := checkMapKeys(timeouts.(map[string]string), sets.NewString(timeoutKeys...)); err != nil {
+	if err := checkMapKeys(timeouts.(map[string]string), sets.New[string](timeoutKeys...)); err != nil {
 		return errors.Errorf("invalid value for annotation %s. Reason: %s", DefaultsTimeOut, err)
 	}
 
@@ -445,10 +445,10 @@ func checkExclusiveWildcard(address string, port int, defined map[string]*addres
 	return nil
 }
 
-func checkMapKeys(m map[string]string, keys sets.String) error {
-	diff := sets.StringKeySet(m).Difference(keys)
+func checkMapKeys(m map[string]string, keys sets.Set[string]) error {
+	diff := sets.KeySet[string](m).Difference(keys)
 	if diff.Len() != 0 {
-		return errors.Errorf("invalid keys: %v", diff.List())
+		return errors.Errorf("invalid keys: %v", diff.UnsortedList())
 	}
 	return nil
 }

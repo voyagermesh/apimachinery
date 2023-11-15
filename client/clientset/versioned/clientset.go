@@ -36,8 +36,7 @@ type Interface interface {
 	VoyagerV1() voyagerv1.VoyagerV1Interface
 }
 
-// Clientset contains the clients for groups. Each group has exactly one
-// version included in a Clientset.
+// Clientset contains the clients for groups.
 type Clientset struct {
 	*discovery.DiscoveryClient
 	voyagerV1beta1 *voyagerv1beta1.VoyagerV1beta1Client

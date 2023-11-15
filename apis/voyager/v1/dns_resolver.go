@@ -47,8 +47,8 @@ const (
 )
 
 var (
-	DNSResolverHoldKeys    = sets.NewString("nx", "other", "refused", "timeout", "valid", "obsolete")
-	DNSResolverTimeoutKeys = sets.NewString("resolve", "retry")
+	DNSResolverHoldKeys    = sets.New[string]("nx", "other", "refused", "timeout", "valid", "obsolete")
+	DNSResolverTimeoutKeys = sets.New[string]("resolve", "retry")
 )
 
 type DNSResolver struct {
