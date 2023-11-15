@@ -19,6 +19,7 @@ package v1
 import (
 	"fmt"
 
+	v1 "github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1"
 	mona "kmodules.xyz/monitoring-agent-api/api/v1"
 )
 
@@ -58,4 +59,8 @@ func (s statsService) Path() string {
 
 func (s statsService) Scheme() string {
 	return ""
+}
+
+func (s statsService) TLSConfig() *v1.TLSConfig {
+	return nil
 }
