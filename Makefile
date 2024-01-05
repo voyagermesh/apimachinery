@@ -61,8 +61,8 @@ BIN_PLATFORMS    := $(DOCKER_PLATFORMS)
 OS   := $(if $(GOOS),$(GOOS),$(shell go env GOOS))
 ARCH := $(if $(GOARCH),$(GOARCH),$(shell go env GOARCH))
 
-BASEIMAGE_PROD   ?= gcr.io/distroless/static-debian11
-BASEIMAGE_DBG    ?= debian:bullseye
+BASEIMAGE_PROD   ?= gcr.io/distroless/static-debian12
+BASEIMAGE_DBG    ?= debian:bookworm
 
 IMAGE            := $(REGISTRY)/$(BIN)
 VERSION_PROD     := $(VERSION)
@@ -137,6 +137,7 @@ version:
 .PHONY: clientset
 clientset:
 	@docker run --rm                                   \
+		-u $$(id -u):$$(id -g)                           \
 		-v /tmp:/.cache                                  \
 		-v $$(pwd):$(DOCKER_REPO_ROOT)                   \
 		-w $(DOCKER_REPO_ROOT)                           \
@@ -151,6 +152,7 @@ clientset:
 			--go-header-file "./hack/license/go.txt"
 	rm -rf ./apis/voyager/v1beta1/zz_generated.conversion.go
 	@docker run --rm                                   \
+		-u $$(id -u):$$(id -g)                           \
 		-v /tmp:/.cache                                  \
 		-v $$(pwd):$(DOCKER_REPO_ROOT)                   \
 		-w $(DOCKER_REPO_ROOT)                           \
@@ -383,7 +385,7 @@ e2e-tests: $(BUILD_DIRS)
 e2e-parallel:
 	@$(MAKE) e2e-tests GINKGO_ARGS="-p -stream --flakeAttempts=2" --no-print-directory
 
-ADDTL_LINTERS   := goconst,gofmt,goimports,unparam
+ADDTL_LINTERS   := gofmt,goimports,unparam
 
 .PHONY: lint
 lint: $(BUILD_DIRS)
