@@ -51,8 +51,8 @@ endif
 ### These variables should not need tweaking.
 ###
 
-SRC_PKGS := apis client crds # directories which hold app source excluding tests (not vendored)
-SRC_DIRS := $(SRC_PKGS) hack/gencrd
+SRC_PKGS := apis client crds hack # directories which hold app source excluding tests (not vendored)
+SRC_DIRS := $(SRC_PKGS)
 
 DOCKER_PLATFORMS := linux/amd64 linux/arm linux/arm64
 BIN_PLATFORMS    := $(DOCKER_PLATFORMS)
