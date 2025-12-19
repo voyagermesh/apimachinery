@@ -24,7 +24,7 @@ import (
 
 func (*Ingress) Hub() {}
 
-func NewEngressFromIngress(ing interface{}) (*Ingress, error) {
+func NewEngressFromIngress(ing any) (*Ingress, error) {
 	data, err := json.Marshal(ing)
 	if err != nil {
 		return nil, err
