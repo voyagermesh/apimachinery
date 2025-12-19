@@ -641,7 +641,7 @@ func (r Ingress) WorkloadKind() string {
 	return v.(string)
 }
 
-func getWorkload(m map[string]string, key string) (interface{}, error) {
+func getWorkload(m map[string]string, key string) (any, error) {
 	if m == nil {
 		return wpi.KindDeployment, nil
 	}
@@ -659,7 +659,7 @@ func getWorkload(m map[string]string, key string) (interface{}, error) {
 	return w, nil
 }
 
-func getTolerations(m map[string]string, key string) (interface{}, error) {
+func getTolerations(m map[string]string, key string) (any, error) {
 	if m == nil {
 		return nil, nil
 	}
