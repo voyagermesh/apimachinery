@@ -2,6 +2,7 @@ API rule violation: list_type_missing,k8s.io/api/core/v1,RangeAllocation,Data
 API rule violation: list_type_missing,k8s.io/apimachinery/pkg/apis/meta/v1,FieldsV1,Raw
 API rule violation: list_type_missing,k8s.io/apimachinery/pkg/runtime,RawExtension,Raw
 API rule violation: list_type_missing,k8s.io/apimachinery/pkg/runtime,Unknown,Raw
+API rule violation: list_type_missing,kmodules.xyz/monitoring-agent-api/api/v1,ClientConfig,CABundle
 API rule violation: list_type_missing,kmodules.xyz/monitoring-agent-api/api/v1,PrometheusExporterSpec,Args
 API rule violation: list_type_missing,kmodules.xyz/monitoring-agent-api/api/v1,PrometheusExporterSpec,Env
 API rule violation: list_type_missing,voyagermesh.dev/apimachinery/apis/voyager/v1,AuthOption,OAuth
@@ -48,6 +49,7 @@ API rule violation: names_match,k8s.io/api/core/v1,RBDVolumeSource,RBDPool
 API rule violation: names_match,k8s.io/api/core/v1,RBDVolumeSource,RadosUser
 API rule violation: names_match,k8s.io/api/core/v1,VolumeSource,CephFS
 API rule violation: names_match,k8s.io/api/core/v1,VolumeSource,StorageOS
+API rule violation: names_match,k8s.io/api/networking/v1,ServiceCIDRSpec,CIDRs
 API rule violation: names_match,k8s.io/apimachinery/pkg/api/resource,Quantity,Format
 API rule violation: names_match,k8s.io/apimachinery/pkg/api/resource,Quantity,d
 API rule violation: names_match,k8s.io/apimachinery/pkg/api/resource,Quantity,i
