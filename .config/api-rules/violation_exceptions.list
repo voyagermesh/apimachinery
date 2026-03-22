@@ -3,8 +3,13 @@ API rule violation: list_type_missing,k8s.io/apimachinery/pkg/apis/meta/v1,Field
 API rule violation: list_type_missing,k8s.io/apimachinery/pkg/runtime,RawExtension,Raw
 API rule violation: list_type_missing,k8s.io/apimachinery/pkg/runtime,Unknown,Raw
 API rule violation: list_type_missing,kmodules.xyz/monitoring-agent-api/api/v1,ClientConfig,CABundle
+API rule violation: list_type_missing,kmodules.xyz/monitoring-agent-api/api/v1,Endpoint,MetricRelabelConfigs
+API rule violation: list_type_missing,kmodules.xyz/monitoring-agent-api/api/v1,Endpoint,RelabelConfigs
 API rule violation: list_type_missing,kmodules.xyz/monitoring-agent-api/api/v1,PrometheusExporterSpec,Args
 API rule violation: list_type_missing,kmodules.xyz/monitoring-agent-api/api/v1,PrometheusExporterSpec,Env
+API rule violation: list_type_missing,kmodules.xyz/monitoring-agent-api/api/v1,ServiceMonitorSpec,Endpoints
+API rule violation: list_type_missing,kmodules.xyz/monitoring-agent-api/api/v1,ServiceMonitorSpec,PodTargetLabels
+API rule violation: list_type_missing,kmodules.xyz/monitoring-agent-api/api/v1,ServiceMonitorSpec,TargetLabels
 API rule violation: list_type_missing,voyagermesh.dev/apimachinery/apis/voyager/v1,AuthOption,OAuth
 API rule violation: list_type_missing,voyagermesh.dev/apimachinery/apis/voyager/v1,DNSResolver,NameServer
 API rule violation: list_type_missing,voyagermesh.dev/apimachinery/apis/voyager/v1,FrontendRule,Rules
@@ -68,6 +73,8 @@ API rule violation: names_match,k8s.io/apimachinery/pkg/runtime,Unknown,ContentT
 API rule violation: names_match,k8s.io/apimachinery/pkg/util/intstr,IntOrString,IntVal
 API rule violation: names_match,k8s.io/apimachinery/pkg/util/intstr,IntOrString,StrVal
 API rule violation: names_match,k8s.io/apimachinery/pkg/util/intstr,IntOrString,Type
+API rule violation: names_match,kmodules.xyz/monitoring-agent-api/api/v1,Endpoint,MetricRelabelConfigs
+API rule violation: names_match,kmodules.xyz/monitoring-agent-api/api/v1,Endpoint,RelabelConfigs
 API rule violation: names_match,voyagermesh.dev/apimachinery/apis/voyager/v1,AuthOption,OAuth
 API rule violation: names_match,voyagermesh.dev/apimachinery/apis/voyager/v1,DNSResolver,Name
 API rule violation: names_match,voyagermesh.dev/apimachinery/apis/voyager/v1,DNSResolver,NameServer
