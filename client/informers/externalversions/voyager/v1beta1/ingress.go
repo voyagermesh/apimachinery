@@ -19,13 +19,13 @@ limitations under the License.
 package v1beta1
 
 import (
-	"context"
+	context "context"
 	time "time"
 
-	voyagerv1beta1 "voyagermesh.dev/apimachinery/apis/voyager/v1beta1"
+	apisvoyagerv1beta1 "voyagermesh.dev/apimachinery/apis/voyager/v1beta1"
 	versioned "voyagermesh.dev/apimachinery/client/clientset/versioned"
 	internalinterfaces "voyagermesh.dev/apimachinery/client/informers/externalversions/internalinterfaces"
-	v1beta1 "voyagermesh.dev/apimachinery/client/listers/voyager/v1beta1"
+	voyagerv1beta1 "voyagermesh.dev/apimachinery/client/listers/voyager/v1beta1"
 
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
@@ -37,7 +37,7 @@ import (
 // Ingresses.
 type IngressInformer interface {
 	Informer() cache.SharedIndexInformer
-	Lister() v1beta1.IngressLister
+	Lister() voyagerv1beta1.IngressLister
 }
 
 type ingressInformer struct {
@@ -63,16 +63,28 @@ func NewFilteredIngressInformer(client versioned.Interface, namespace string, re
 				if tweakListOptions != nil {
 					tweakListOptions(&options)
 				}
-				return client.VoyagerV1beta1().Ingresses(namespace).List(context.TODO(), options)
+				return client.VoyagerV1beta1().Ingresses(namespace).List(context.Background(), options)
 			},
 			WatchFunc: func(options v1.ListOptions) (watch.Interface, error) {
 				if tweakListOptions != nil {
 					tweakListOptions(&options)
 				}
-				return client.VoyagerV1beta1().Ingresses(namespace).Watch(context.TODO(), options)
+				return client.VoyagerV1beta1().Ingresses(namespace).Watch(context.Background(), options)
+			},
+			ListWithContextFunc: func(ctx context.Context, options v1.ListOptions) (runtime.Object, error) {
+				if tweakListOptions != nil {
+					tweakListOptions(&options)
+				}
+				return client.VoyagerV1beta1().Ingresses(namespace).List(ctx, options)
+			},
+			WatchFuncWithContext: func(ctx context.Context, options v1.ListOptions) (watch.Interface, error) {
+				if tweakListOptions != nil {
+					tweakListOptions(&options)
+				}
+				return client.VoyagerV1beta1().Ingresses(namespace).Watch(ctx, options)
 			},
 		},
-		&voyagerv1beta1.Ingress{},
+		&apisvoyagerv1beta1.Ingress{},
 		resyncPeriod,
 		indexers,
 	)
@@ -83,9 +95,9 @@ func (f *ingressInformer) defaultInformer(client versioned.Interface, resyncPeri
 }
 
 func (f *ingressInformer) Informer() cache.SharedIndexInformer {
-	return f.factory.InformerFor(&voyagerv1beta1.Ingress{}, f.defaultInformer)
+	return f.factory.InformerFor(&apisvoyagerv1beta1.Ingress{}, f.defaultInformer)
 }
 
-func (f *ingressInformer) Lister() v1beta1.IngressLister {
-	return v1beta1.NewIngressLister(f.Informer().GetIndexer())
+func (f *ingressInformer) Lister() voyagerv1beta1.IngressLister {
+	return voyagerv1beta1.NewIngressLister(f.Informer().GetIndexer())
 }

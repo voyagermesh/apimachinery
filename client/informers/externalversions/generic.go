@@ -19,7 +19,7 @@ limitations under the License.
 package externalversions
 
 import (
-	"fmt"
+	fmt "fmt"
 
 	v1 "voyagermesh.dev/apimachinery/apis/voyager/v1"
 	v1beta1 "voyagermesh.dev/apimachinery/apis/voyager/v1beta1"

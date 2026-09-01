@@ -30,7 +30,7 @@ type FakeVoyagerV1 struct {
 }
 
 func (c *FakeVoyagerV1) Ingresses(namespace string) v1.IngressInterface {
-	return &FakeIngresses{c, namespace}
+	return newFakeIngresses(c, namespace)
 }
 
 // RESTClient returns a RESTClient that is used to communicate
