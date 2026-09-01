@@ -19,8 +19,8 @@ limitations under the License.
 package versioned
 
 import (
-	"fmt"
-	"net/http"
+	fmt "fmt"
+	http "net/http"
 
 	voyagerv1 "voyagermesh.dev/apimachinery/client/clientset/versioned/typed/voyager/v1"
 	voyagerv1beta1 "voyagermesh.dev/apimachinery/client/clientset/versioned/typed/voyager/v1beta1"

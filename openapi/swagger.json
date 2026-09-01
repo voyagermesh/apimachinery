@@ -3446,6 +3446,10 @@
     "io.k8s.api.core.v1.PodCertificateProjection": {
       "description": "PodCertificateProjection provides a private key and X.509 certificate in the pod filesystem.",
       "type": "object",
+      "required": [
+        "signerName",
+        "keyType"
+      ],
       "properties": {
         "certificateChainPath": {
           "description": "Write the certificate chain at this path in the projected volume.\n\nMost applications should use credentialBundlePath.  When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation.",
